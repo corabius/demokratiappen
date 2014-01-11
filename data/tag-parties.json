@@ -1,0 +1,42 @@
+[
+	{
+		"name": "Socialdemokraterna",
+		"type": "Political Party"
+        },
+	{
+		"name": "Vänsterpartiet",
+		"type": "Political Party"
+        },
+	{
+		"name": "Centerpartiet",
+		"type": "Political Party"
+        },
+	{
+		"name": "Folkpartiet",
+		"type": "Political Party"
+        },
+	{
+		"name": "Kristdemokraterna",
+		"type": "Political Party"
+        },
+	{
+		"name": "Moderaterna",
+		"type": "Political Party"
+        },
+	{
+		"name": "Miljöpartiet",
+		"type": "Political Party"
+        },
+	{
+		"name": "Sverigedemokraterna",
+		"type": "Political Party"
+        },
+	{
+		"name": "Piratpartiet",
+		"type": "Political Party"
+        },
+	{
+		"name": "Feministiskt initiativ",
+		"type": "Political Party"
+        }
+]
