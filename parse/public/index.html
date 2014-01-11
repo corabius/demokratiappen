@@ -27,10 +27,14 @@
       <h1>Demokratiappen</h1>
 
       <div data-ng-app="democracy-app" data-ng-controller="MainController">
-        <div data-ng-controller="LoginController">
-          <div class="alert" data-ng-class="loginService.messageClass" data-ng-show="loginService.message" data-ng-bind="loginService.message">
-          </div>
 
+        <div data-ng-controller="AddController" data-ng-hide="loginService.state == 0" class="well">
+          Taggar:
+          <span data-ng-repeat="tag in tags" data-ng-bind="tag" class="label label-default" style="margin: 0.1em;white-space: wrap;">
+          </span>
+        </div>
+
+        <div data-ng-controller="LoginController">
           <div ng-class="{'md-overlay': true,
                              'md-show': loginService.state != 1}">
 
@@ -41,7 +45,6 @@
                           'md-show': loginService.state != 1}">
 
               <div class="md-content">
-                {{loginService.message}}
                 <form role="form" data-ng-show="loginService.state != 1">
                   <div class="form-group">
                     <label for="loginUsernameInput">Username</label>
@@ -51,8 +54,8 @@
                     <label for="loginPasswordInput">Password</label>
                     <input type="password" data-ng-model="loginService.password" id="loginPasswordInput" class="form-control" placeholder="Password">
                   </div>
-                  <button data-ng-click="login();" class="btn btn-default">Logga in</button>
-                  <button data-ng-click="signUp();" class="btn btn-default">Registrera</button>
+                  <button data-ng-click="login();" class="btn btn-default" style="margin-left: 100px">Logga in</button>
+                  <button data-ng-click="signUp();" class="btn btn-default" style="margin-right: 100px; float: right">Registrera</button>
                 </form>
               </div>
             </div>
@@ -61,11 +64,6 @@
           <form role="form" data-ng-hide="loginService.state == 0">
             <button data-ng-click="logout();" class="btn btn-default">Logga ut</button>
           </form>
-        </div>
-        <div data-ng-controller="AddController" data-ng-hide="loginService.state == 0" class="well">
-          Taggar:
-          <span data-ng-repeat="tag in tags" data-ng-bind="tag" class="label label-default" style="margin: 0.1em;white-space: wrap;">
-          </span>
         </div>
       </div>
     </div>

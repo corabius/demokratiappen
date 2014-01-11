@@ -10,15 +10,8 @@ angular.module('democracy-app', [])
 
 .factory('LoginService', function($rootScope, ParseInitializer) {
   var obj = {}
-  obj.setLoginState = function(newState, message, messageClass) {
+  obj.setLoginState = function(newState) {
     obj.state = newState;
-    obj.message = message;
-
-    if (messageClass === undefined) {
-      obj.messageClass = '';
-    } else {
-      obj.messageClass = messageClass;
-    }
 
     if (newState == LOGGED_IN) {
       obj.username = '';
@@ -31,8 +24,6 @@ angular.module('democracy-app', [])
   } else {
     obj.state = NOT_LOGGED_IN;
   }
-  obj.message = '';
-  obj.messageClass = '';
 
   return obj;
 })
@@ -65,11 +56,11 @@ angular.module('democracy-app', [])
       $scope.loginService.password,
       {
         success: function(user) {
-          LoginService.setLoginState(LOGGED_IN, "Inloggad.", "alert-success");
+          LoginService.setLoginState(LOGGED_IN);
           $scope.$apply();
         },
         error: function(user, error) {
-          LoginService.setLoginState(NOT_LOGGED_IN, "Inloggning misslyckades.", "alert-danger");
+          LoginService.setLoginState(NOT_LOGGED_IN);
           $scope.$apply();
         }
       });
@@ -81,18 +72,18 @@ angular.module('democracy-app', [])
       { ACL: new Parse.ACL() },
       {
         success: function(user) {
-          LoginService.setLoginState(LOGGED_IN, "Registrerad och inloggad.", "alert-success");
+          LoginService.setLoginState(LOGGED_IN);
           $scope.$apply();
         },
         error: function(user, error) {
-          LoginService.setLoginState(NOT_LOGGED_IN, "Registrering misslyckades.", "alert-danger");
+          LoginService.setLoginState(NOT_LOGGED_IN);
           $scope.$apply();
         }
       })
   };
   $scope.logout = function() {
     Parse.User.logOut();
-    LoginService.setLoginState(NOT_LOGGED_IN, "Du har nu blivit utloggad.", "alert-success");
+    LoginService.setLoginState(NOT_LOGGED_IN);
   }
 })
 
