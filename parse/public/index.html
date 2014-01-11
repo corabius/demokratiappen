@@ -41,6 +41,17 @@
           </form>
         </div>
 
+        <div data-ng-controller="ListController" data-ng-hide="loginService.state == 0" class="well">
+          <div data-ng-repeat="article in articles" class="article">
+            <h2>
+              <a href="{{article.url}}" data-ng-bind="article.title"></a>
+            </h2>
+            <div class="tags">
+              <span data-ng-repeat="tag in article.tags" data-ng-bind="tag" class="label label-default" style="margin-right: 0.5em;">
+            </div>
+          </div>
+        </div>
+
         <div data-ng-controller="LoginController">
           <div ng-class="{'md-overlay': true,
                              'md-show': loginService.state != 1}">

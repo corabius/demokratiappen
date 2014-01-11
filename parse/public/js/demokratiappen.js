@@ -4,8 +4,8 @@ LOGGED_IN = 1;
 angular.module('democracy-app', [])
 
 .factory('ParseInitializer', function() {
-  Parse.initialize("p7Nu6RZkIlnGUfofyOvms99yDnehPjzHg18OuFra",
-                   "A4aLf9YRKErwAeX444zdMTXHE1dUj5AAvBfHDTeL");
+  Parse.initialize("amtD1gwFz83IOqSdVF6I2oaxZeqRJRE57nyj3dKY",
+                   "24l3K1yDJpxkiYF4ZjUCtereM2jx9lET9LtKCvB4");
 })
 
 .factory('LoginService', function($rootScope, ParseInitializer) {
@@ -122,7 +122,32 @@ angular.module('democracy-app', [])
     $scope.tags = _.map(tags, function(tag) {
       return tag.get("name");
     });
+
     $scope.$apply();
   });
+})
+
+.controller('ListController', function($scope) {
+  var query = new Parse.Query("Article");
+  query.find().then(function(articles) {
+    console.log(articles.length);
+    $scope.articles = _.map(articles, function(article) {
+      var keyvals = _(article.get("tags")).map(function(tag) {
+        return [tag, true];
+      });
+      return {
+        title: article.get("title"),
+        url: article.get("url"),
+        tags: article.get("tags"),
+        // used for checking tag existence in O(1)
+        tag_exist: _.object(_(article.get("tags")).map(function(tag) {
+          return [tag, true];
+        }))
+      };
+    });
+
+    $scope.$apply();
+  });
+
 });
 
