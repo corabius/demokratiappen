@@ -4,8 +4,8 @@ LOGGED_IN = 1;
 angular.module('democracy-app', [])
 
 .factory('ParseInitializer', function() {
-  Parse.initialize("amtD1gwFz83IOqSdVF6I2oaxZeqRJRE57nyj3dKY", 
-                   "24l3K1yDJpxkiYF4ZjUCtereM2jx9lET9LtKCvB4");
+  Parse.initialize("p7Nu6RZkIlnGUfofyOvms99yDnehPjzHg18OuFra",
+                   "A4aLf9YRKErwAeX444zdMTXHE1dUj5AAvBfHDTeL");
 })
 
 .factory('LoginService', function($rootScope, ParseInitializer) {
@@ -87,7 +87,33 @@ angular.module('democracy-app', [])
   };
 })
 
-.controller('AddController', function($scope) {
+.factory('AddPageService', function($rootScope, ParseInitializer) {
+  var obj = {}
+  obj.url = '';
+  obj.messageClass = '';
+
+  return obj;
+})
+
+.controller('AddPageController', function($scope, AddPageService) {
+  $scope.addPageService = AddPageService;
+  $scope.post = function () {
+    var Page = Parse.Object.extend("Page");
+    var page = new Page();
+ 
+    page.set("url", $scope.addPageService.url);
+ 
+    page.save(null, {
+      success: function(page) {
+      },
+      error: function(page, error) {
+        // Execute any logic that should take place if the save fails.
+        // error is a Parse.Error with an error code and description.
+        alert('Failed to create new object, with error code: ' + error.description);
+      }
+    });
+  };
+
   var query = new Parse.Query("Tag");
   query.find().then(function(tags) {
     $scope.tags = _.map(tags, function(tag) {
@@ -96,3 +122,4 @@ angular.module('democracy-app', [])
     $scope.$apply();
   });
 });
+

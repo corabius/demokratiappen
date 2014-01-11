@@ -27,8 +27,14 @@
       <h1>Demokratiappen</h1>
 
       <div data-ng-app="democracy-app" data-ng-controller="MainController">
-
-        <div data-ng-controller="AddController" data-ng-hide="loginService.state == 0" class="well">
+        <div data-ng-controller="AddPageController" data-ng-hide="loginService.state == 0" class="well">
+          <form role="form">
+            <div class="form-group">
+              <label for="urlInput">Url</label>
+              <input type="text" class="form-control" data-ng-model="addPageService.url" id="urlInput" placeholder="Enter URL"/>
+            </div>
+            <button data-ng-click="post();" class="btn btn-default">Post</button>
+          </form>
           Taggar:
           <span data-ng-repeat="tag in tags" data-ng-bind="tag" class="label label-default" style="margin: 0.1em;white-space: wrap;">
           </span>
@@ -66,6 +72,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>
