@@ -71,11 +71,14 @@ angular.module('democracy-app', [])
   }
 })
 
-.controller('AddController', function($scope, $http) {
+.controller('AddController', function($scope) {
   //var Tag = Parse.Object.extend("Tag");
-  var query = new Parse.Query("Tag")
+  var query = new Parse.Query("Tag");
   query.find().then(function(tags) {
-    $scope.tags = tags;
+    $scope.tags = _.map(tags, function(tag) {
+      return tag.get("name");
+    });
+    $scope.$apply();
   });
 });
 
