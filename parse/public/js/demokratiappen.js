@@ -144,21 +144,20 @@ angular.module('democracy-app', [])
 })
 
 .controller('ListController', function($scope) {
-  var query = new Parse.Query("Article");
+  var query = new Parse.Query("Page");
   query.find().then(function(articles) {
-    console.log(articles.length);
     $scope.articles = _.map(articles, function(article) {
-      var keyvals = _(article.get("tags")).map(function(tag) {
-        return [tag, true];
-      });
+      var tags = _.map(article.get("positive_tags"), function(tag) {
+        return {name: tag, type:'success'};
+      }).concat(_.map(article.get("negative_tags"), function(tag) {
+        return {name: tag, type:'danger'};
+      }));
       return {
         title: article.get("title"),
         url: article.get("url"),
-        tags: article.get("tags"),
-        // used for checking tag existence in O(1)
-        tag_exist: _.object(_(article.get("tags")).map(function(tag) {
-          return [tag, true];
-        }))
+        tags: _.sortBy(tags, function(el) {
+          return el.name;
+        })
       };
     });
 
