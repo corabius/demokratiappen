@@ -100,10 +100,12 @@ angular.module('democracy-app', [])
   $scope.loginService = LoginService;
 })
 
-.factory('AddPageService', function($rootScope, ParseInitializer) {
+.factory('AddPageService', function($rootScope) {
   var obj = {}
   obj.url = '';
-  obj.messageClass = '';
+  obj.title = '';
+  obj.upTags = [];
+  obj.downTags = [];
 
   return obj;
 })
@@ -113,15 +115,18 @@ angular.module('democracy-app', [])
   $scope.post = function () {
     var Page = Parse.Object.extend("Page");
     var page = new Page();
- 
-    page.set("url", $scope.addPageService.url);
     var currentUser = Parse.User.current();
-    page.set("title", "");
-    page.set("user", currentUser); 
-    page.set("positive_tags", []);
-    page.set("negative_tags", []);
+
+    var positiveTags = page.relation("positive_tags");
+    positiveTags.add($scope.addPageService.upTags);
+    var negativeTags = page.relation("negative_tags");
+    negativeTags.add($scope.addPageService.downTags);
+
+    page.set("title", $scope.addPageService.title);
+    page.set("url", $scope.addPageService.url);
+    page.set("user", currentUser);
     page.setACL(new Parse.ACL(currentUser));
- 
+
     page.save(null, {
       success: function(page) {
       },
@@ -133,12 +138,16 @@ angular.module('democracy-app', [])
     });
   };
 
+  $scope.toggleTagUp = function(tag) {
+    $scope.addPageService.upTags = $scope.addPageService.upTags.concat(tag);
+  }
+  $scope.toggleTagDown = function(tag) {
+    $scope.addPageService.downTags = $scope.addPageService.downTags.concat(tag);
+  }
+
   var query = new Parse.Query("Tag");
   query.find().then(function(tags) {
-    $scope.tags = _.map(tags, function(tag) {
-      return tag.get("name");
-    });
-
+    $scope.tags = tags;
     $scope.$apply();
   });
 })
@@ -167,16 +176,39 @@ angular.module('democracy-app', [])
 })
 
 .controller('StatisticsController', function($scope) {
-  var query = new Parse.Query("Page");
-  query.find().then(function(articles) {
-    $scope.tagCounts = _.chain(articles).map(function(article) {
-      return article.get('negative_tags').concat(article.get('positive_tags'));
-    }).flatten().countBy(function(el) {
-      return el;
+  $scope.positiveTags = [];
+  $scope.negativeTags = [];
+  $scope.tagCounts = [];
+
+  var updateUI = function() {
+    var allTags = $scope.negativeTags.concat($scope.positiveTags);
+    $scope.tagCounts = _.chain(allTags).flatten().countBy(function(el) {
+      return el.get("name");
     }).pairs().sortBy(function(el) {
       return -el[1];
     }).value();
-    console.log($scope.tagCounts);
-  });
+  };
+ 
+  var Page = Parse.Object.extend("Page"); 
+  var query = new Parse.Query(Page);
+  query.find({
+    success: function(articles) {
+    for (var i = 0; i < articles.length; i++) {
+      var article = articles[i]
+      var positiveRelation = article.relation("positive_tags");
+      positiveRelation.query().find().then(function(ptags) {
+        $scope.positiveTags = $scope.positiveTags.concat(ptags);
+        updateUI();
+        $scope.$apply();
+      });
+
+      var negativeRelation = article.relation("negative_tags");
+      negativeRelation.query().find().then(function(ntags) {
+        $scope.negativeTags = $scope.negativeTags.concat(ntags);
+        updateUI();
+        $scope.$apply();
+      });
+    }
+  }});
 });
 
