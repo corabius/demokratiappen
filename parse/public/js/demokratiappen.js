@@ -4,8 +4,7 @@ LOGGED_IN = 1;
 angular.module('democracy-app', [])
 
 .factory('ParseInitializer', function() {
-  Parse.initialize("amtD1gwFz83IOqSdVF6I2oaxZeqRJRE57nyj3dKY",
-                   "24l3K1yDJpxkiYF4ZjUCtereM2jx9lET9LtKCvB4");
+  init_demokratiappen();
 })
 
 .factory('LoginService', function($rootScope, ParseInitializer) {
