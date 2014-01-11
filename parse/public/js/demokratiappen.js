@@ -1,8 +1,15 @@
 angular.module('democracy-app', [])
 
-.controller('MainController', function($scope) {
-  $scope.testvar = "Hej";
+.controller('MainController', function() {
+  
+})
+
+.controller('LoginController', function($scope) {
+  $scope.login = function() {
+    alert("You were logged in");
+  };
 });
+
 /*
 Parse.$ = jQuery;
 

@@ -21,10 +21,24 @@
 
   </head>
   <body>
-    <h1>Demokratiappen</h1>
+    <div class="container">
+      <h1>Demokratiappen</h1>
 
-    <div data-ng-app="democracy-app" data-ng-controller="MainController">
-      {{testvar}}
+      <div data-ng-app="democracy-app" data-ng-controller="MainController">
+        <div data-ng-controller="LoginController">
+          <form role="form">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" data-ng-model="username" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" data-ng-model="password" class="form-control" placeholder="Password">
+            </div>
+            <button data-ng-click="login();" class="btn btn-default">Logga in</button>
+          </form>
+        </div>
+      </div>
     </div>
 
   </body>
