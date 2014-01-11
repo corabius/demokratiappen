@@ -102,6 +102,9 @@ angular.module('democracy-app', [])
     var page = new Page();
  
     page.set("url", $scope.addPageService.url);
+    var currentUser = Parse.User.current();
+    page.set("user", currentUser); 
+    page.setACL(new Parse.ACL(currentUser));
  
     page.save(null, {
       success: function(page) {

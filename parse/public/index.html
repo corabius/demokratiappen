@@ -30,14 +30,15 @@
         <div data-ng-controller="AddPageController" data-ng-hide="loginService.state == 0" class="well">
           <form role="form">
             <div class="form-group">
-              <label for="urlInput">Url</label>
+              <label for="urlInput">URL</label>
               <input type="text" class="form-control" data-ng-model="addPageService.url" id="urlInput" placeholder="Enter URL"/>
             </div>
+
+            Taggar:
+            <span data-ng-repeat="tag in tags" data-ng-bind="tag" class="label label-default" style="margin: 0.1em;white-space: wrap;">
+            </span>
             <button data-ng-click="post();" class="btn btn-default">Post</button>
           </form>
-          Taggar:
-          <span data-ng-repeat="tag in tags" data-ng-bind="tag" class="label label-default" style="margin: 0.1em;white-space: wrap;">
-          </span>
         </div>
 
         <div data-ng-controller="LoginController">
