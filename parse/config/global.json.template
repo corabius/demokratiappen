@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Demokratiappen": {
+            "applicationId": "ENTER-APPLICATION-ID-HERE", 
+            "masterKey": "ENTER-MASTER-KEY-HERE"
+        }, 
+        "_default": {
+            "link": "Demokratiappen"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.16"
+    }
+}
