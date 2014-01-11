@@ -5,9 +5,14 @@ angular.module('democracy-app', [])
 
 .factory('LoginService', function($rootScope) {
   var obj = {}
-  obj.setLoginState = function(newState, message) {
+  obj.setLoginState = function(newState, message, messageClass) {
     obj.state = newState;
     obj.message = message;
+    if (messageClass === undefined) {
+      obj.messageClass = '';
+    } else {
+      obj.messageClass = messageClass;
+    }
   };
 
   if (Parse.User.current()) {
@@ -15,6 +20,8 @@ angular.module('democracy-app', [])
   } else {
     obj.state = NOT_LOGGED_IN;
   }
+  obj.message = '';
+  obj.messageClass = '';
 
   return obj;
 })
@@ -34,11 +41,11 @@ angular.module('democracy-app', [])
   $scope.login = function() {
     Parse.User.logIn($scope.username, $scope.password, {
       success: function(user) {
-        LoginService.setLoginState(LOGGED_IN, "Inloggad.");
+        LoginService.setLoginState(LOGGED_IN, "Inloggad.", "alert-success");
         $scope.$apply();
       },
       error: function(user, error) {
-        LoginService.setLoginState(NOT_LOGGED_IN, "Inloggning misslyckades.");
+        LoginService.setLoginState(NOT_LOGGED_IN, "Inloggning misslyckades.", "alert-danger");
         $scope.$apply();
       }
     });
@@ -46,18 +53,18 @@ angular.module('democracy-app', [])
   $scope.signUp = function() {
     Parse.User.signUp($scope.username, $scope.password, { ACL: new Parse.ACL() }, {
       success: function(user) {
-        LoginService.setLoginState(LOGGED_IN, "Registrerad och inloggad.");
+        LoginService.setLoginState(LOGGED_IN, "Registrerad och inloggad.", "alert-success");
         $scope.$apply();
       },
       error: function(user, error) {
-        LoginService.setLoginState(NOT_LOGGED_IN, "Registrering misslyckades.");
+        LoginService.setLoginState(NOT_LOGGED_IN, "Registrering misslyckades.", "alert-danger");
         $scope.$apply();
       }
     })
   };
   $scope.logout = function() {
     Parse.User.logOut();
-    LoginService.setLoginState(NOT_LOGGED_IN, "Du har nu blivit utloggad.");
+    LoginService.setLoginState(NOT_LOGGED_IN, "Du har nu blivit utloggad.", "alert-success");
   }
 });
 

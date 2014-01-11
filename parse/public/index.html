@@ -26,7 +26,8 @@
 
       <div data-ng-app="democracy-app" data-ng-controller="MainController">
         <div data-ng-controller="LoginController">
-          {{loginService.message}}
+          <div class="alert" data-ng-class="loginService.messageClass" data-ng-show="loginService.message" data-ng-bind="loginService.message">
+          </div>
           <form role="form" data-ng-show="loginService.state == 0">
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
