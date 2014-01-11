@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Demokratiappend - Web</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/demokratiappen.css" rel="stylesheet" type="text/css"/>
     <script src="js/underscore-1.1.6.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
     <script src="js/demokratiappen.js"></script>
 
@@ -28,18 +30,34 @@
         <div data-ng-controller="LoginController">
           <div class="alert" data-ng-class="loginService.messageClass" data-ng-show="loginService.message" data-ng-bind="loginService.message">
           </div>
-          <form role="form" data-ng-show="loginService.state == 0">
-            <div class="form-group">
-              <label for="loginUsernameInput">Email address</label>
-              <input type="email" class="form-control" data-ng-model="username" id="loginUsernameInput" placeholder="Enter email">
+
+          <div ng-class="{'md-overlay': true,
+                             'md-show': loginService.state != 1}">
+
+            <div ng-style="fillerHeight()"></div>
+
+            <div id="modallogin"
+              ng-class="{'md-modal': true,
+                          'md-show': loginService.state != 1}">
+
+              <div class="md-content">
+                {{loginService.message}}
+                <form role="form" data-ng-show="loginService.state != 1">
+                  <div class="form-group">
+                    <label for="loginUsernameInput">Username</label>
+                    <input type="email" class="form-control" data-ng-model="loginService.username" id="loginUsernameInput" placeholder="Enter username">
+                  </div>
+                  <div class="form-group">
+                    <label for="loginPasswordInput">Password</label>
+                    <input type="password" data-ng-model="loginService.password" id="loginPasswordInput" class="form-control" placeholder="Password">
+                  </div>
+                  <button data-ng-click="login();" class="btn btn-default">Logga in</button>
+                  <button data-ng-click="signUp();" class="btn btn-default">Registrera</button>
+                </form>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="loginPasswordInput">Password</label>
-              <input type="password" data-ng-model="password" id="loginPasswordInput" class="form-control" placeholder="Password">
-            </div>
-            <button data-ng-click="login();" class="btn btn-default">Logga in</button>
-            <button data-ng-click="signUp();" class="btn btn-default">Registrera</button>
-          </form>
+          </div>
+
           <form role="form" data-ng-hide="loginService.state == 0">
             <button data-ng-click="logout();" class="btn btn-default">Logga ut</button>
           </form>

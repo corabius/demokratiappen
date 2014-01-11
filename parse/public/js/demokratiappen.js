@@ -13,10 +13,16 @@ angular.module('democracy-app', [])
   obj.setLoginState = function(newState, message, messageClass) {
     obj.state = newState;
     obj.message = message;
+
     if (messageClass === undefined) {
       obj.messageClass = '';
     } else {
       obj.messageClass = messageClass;
+    }
+
+    if (newState == LOGGED_IN) {
+      obj.username = '';
+      obj.password = '';
     }
   };
 
@@ -36,34 +42,53 @@ angular.module('democracy-app', [])
 })
 
 .controller('LoginController', function($scope, LoginService) {
-  if (Parse.User.current()) {
-    $scope.mdLoginState = LOGGED_IN;
-  } else {
-    $scope.mdLoginState = NOT_LOGGED_IN;
+  $scope.oldFillerHeight = 0;
+
+  window.onresize = function() {
+    // So that fillerHeight() is evaluated.
+    $scope.$apply();
   }
+
+  $scope.fillerHeight = function() {
+    var newFillerHeight = Math.max(0, ($(window).height() - $('#modallogin').outerHeight(true)) / 2);
+    if (Math.abs(newFillerHeight - $scope.oldFillerHeight) > 1) {
+      $scope.oldFillerHeight = newFillerHeight;
+    }
+    
+    return {height: $scope.oldFillerHeight + 'px'};
+  };
+
+  $scope.loginService = LoginService;
   $scope.login = function() {
-    Parse.User.logIn($scope.username, $scope.password, {
-      success: function(user) {
-        LoginService.setLoginState(LOGGED_IN, "Inloggad.", "alert-success");
-        $scope.$apply();
-      },
-      error: function(user, error) {
-        LoginService.setLoginState(NOT_LOGGED_IN, "Inloggning misslyckades.", "alert-danger");
-        $scope.$apply();
-      }
-    });
+    Parse.User.logIn(
+      $scope.loginService.username,
+      $scope.loginService.password,
+      {
+        success: function(user) {
+          LoginService.setLoginState(LOGGED_IN, "Inloggad.", "alert-success");
+          $scope.$apply();
+        },
+        error: function(user, error) {
+          LoginService.setLoginState(NOT_LOGGED_IN, "Inloggning misslyckades.", "alert-danger");
+          $scope.$apply();
+        }
+      });
   };
   $scope.signUp = function() {
-    Parse.User.signUp($scope.username, $scope.password, { ACL: new Parse.ACL() }, {
-      success: function(user) {
-        LoginService.setLoginState(LOGGED_IN, "Registrerad och inloggad.", "alert-success");
-        $scope.$apply();
-      },
-      error: function(user, error) {
-        LoginService.setLoginState(NOT_LOGGED_IN, "Registrering misslyckades.", "alert-danger");
-        $scope.$apply();
-      }
-    })
+    Parse.User.signUp(
+      $scope.loginService.username,
+      $scope.loginService.password,
+      { ACL: new Parse.ACL() },
+      {
+        success: function(user) {
+          LoginService.setLoginState(LOGGED_IN, "Registrerad och inloggad.", "alert-success");
+          $scope.$apply();
+        },
+        error: function(user, error) {
+          LoginService.setLoginState(NOT_LOGGED_IN, "Registrering misslyckades.", "alert-danger");
+          $scope.$apply();
+        }
+      })
   };
   $scope.logout = function() {
     Parse.User.logOut();
