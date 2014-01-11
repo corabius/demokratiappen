@@ -79,12 +79,12 @@ angular.module('democracy-app', [])
           LoginService.setLoginState(NOT_LOGGED_IN);
           $scope.$apply();
         }
-      })
+      });
   };
   $scope.logout = function() {
     Parse.User.logOut();
     LoginService.setLoginState(NOT_LOGGED_IN);
-  }
+  };
 })
 
 .controller('AddController', function($scope) {
