@@ -5,7 +5,7 @@
     backface-visibility: hidden;
     margin: 0 auto;
 }
- 
+
 .md-show {
     visibility: visible;
 }
@@ -50,33 +50,14 @@
 	border-radius: 3px 3px 0 0;
 }
 
-.md-success .md-content h3 {
+h3.md-success {
+	margin: 0 0 20px 0;
 	background: #4f4;
 }
 
-.md-failure .md-content h3 {
+h3.md-failure {
+	margin: 0 0 20px 0;
 	background: #f44;
-}
-
-.md-content > div {
-	padding: 15px 40px 30px;
-	margin: 0;
-	font-weight: 300;
-	font-size: 1.15em;
-}
-
-.md-content > div p {
-	margin: 0;
-	padding: 10px 0;
-}
-
-.md-content > div ul {
-	margin: 0;
-	padding: 0 0 30px 20px;
-}
-
-.md-content > div ul li {
-	padding: 5px 0;
 }
 
 .md-content button {

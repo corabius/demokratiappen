@@ -1,5 +1,4 @@
-NOT_LOGGED_IN = 0;
-LOGGED_IN = 1;
+
 
 angular.module('democracy-app', [])
 
@@ -8,21 +7,71 @@ angular.module('democracy-app', [])
 })
 
 .factory('LoginService', function($rootScope, ParseInitializer) {
-  var obj = {};
-  obj.setLoginState = function(newState) {
-    obj.state = newState;
-
-    if (newState == LOGGED_IN) {
-      obj.username = '';
-      obj.password = '';
-    }
+  var obj = {
+    LOGGED_IN: 0,
+    NOT_LOGGED_IN: 1,
+    INITIAL: 0,
+    LOADING: 1,
+    LOGIN_FAILED: 2,
+    REGISTRATION_FAILED: 3
   };
 
-  if (Parse.User.current()) {
-    obj.state = LOGGED_IN;
-  } else {
-    obj.state = NOT_LOGGED_IN;
-  }
+  obj.stateLoggedIn = (Parse.User.current() ? obj.LOGGED_IN : obj.NOT_LOGGED_IN);
+  obj.stateLoginProcess = obj.INITIAL;
+  
+  obj.setStateLoggedIn = function(newState) {
+    obj.stateLoggedIn = newState;
+
+    obj.username = '';
+    obj.password = '';
+    obj.setStateLoginProcess(obj.INITIAL);
+  };
+
+  obj.setStateLoginProcess = function(newState) {
+    obj.stateLoginProcess = newState;
+  };
+
+  obj.login = function() {
+    obj.setStateLoginProcess(obj.LOADING);
+
+    Parse.User.logIn(
+      obj.username,
+      obj.password,
+      {
+        success: function(user) {
+          obj.setStateLoggedIn(obj.LOGGED_IN);
+          $rootScope.$apply();
+        },
+        error: function(user, error) {
+          obj.setStateLoginProcess(obj.LOGIN_FAILED);
+          $rootScope.$apply();
+        }
+      });
+  };
+
+  obj.signUp = function(scope) {
+    obj.setStateLoginProcess(obj.LOADING);
+
+    Parse.User.signUp(
+      obj.username,
+      obj.password,
+      { ACL: new Parse.ACL() },
+      {
+        success: function(user) {
+          obj.setStateLoggedIn(obj.LOGGED_IN);
+          $rootScope.$apply();
+        },
+        error: function(user, error) {
+          obj.setStateLoginProcess(obj.REGISTRATION_FAILED);
+          $rootScope.$apply();
+        }
+      });
+  };
+
+  obj.logout = function() {
+    Parse.User.logOut();
+    obj.setStateLoggedIn(obj.NOT_LOGGED_IN);
+  };
 
   return obj;
 })
@@ -49,41 +98,6 @@ angular.module('democracy-app', [])
   };
 
   $scope.loginService = LoginService;
-  $scope.login = function() {
-    Parse.User.logIn(
-      $scope.loginService.username,
-      $scope.loginService.password,
-      {
-        success: function(user) {
-          LoginService.setLoginState(LOGGED_IN);
-          $scope.$apply();
-        },
-        error: function(user, error) {
-          LoginService.setLoginState(NOT_LOGGED_IN);
-          $scope.$apply();
-        }
-      });
-  };
-  $scope.signUp = function() {
-    Parse.User.signUp(
-      $scope.loginService.username,
-      $scope.loginService.password,
-      { ACL: new Parse.ACL() },
-      {
-        success: function(user) {
-          LoginService.setLoginState(LOGGED_IN);
-          $scope.$apply();
-        },
-        error: function(user, error) {
-          LoginService.setLoginState(NOT_LOGGED_IN);
-          $scope.$apply();
-        }
-      });
-  };
-  $scope.logout = function() {
-    Parse.User.logOut();
-    LoginService.setLoginState(NOT_LOGGED_IN);
-  };
 })
 
 .factory('AddPageService', function($rootScope, ParseInitializer) {
