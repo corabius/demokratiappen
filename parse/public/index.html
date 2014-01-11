@@ -43,6 +43,7 @@
         </div>
 
         <div data-ng-controller="ListController" data-ng-hide="loginService.state == 0" class="well">
+          <h2>Dina artiklar</h2>
           <div data-ng-repeat="article in articles" class="article">
             <h2>
               <a href="{{article.url}}" data-ng-bind="article.title"></a>
@@ -51,6 +52,29 @@
               <span data-ng-repeat="tag in article.tags" data-ng-bind="tag.name" class="label label-{{tag.type}}" style="margin-right: 0.5em;">
             </div>
           </div>
+        </div>
+
+        <div data-ng-controller="StatisticsController" data-ng-hide="loginService.state == 0" class="well">
+          <h2>Statistik</h2>
+          <table>
+          <thead>
+            <tr>
+              <th>Etikett</th>
+              <th>Antal gånger</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody data-ng-repeat="stat in tagCounts">
+          <tr>
+            <td data-ng-bind="stat[0]">
+            </td>
+            <td data-ng-bind="stat[1]">
+            </td>
+            <td>
+              <div style="width: {{250*stat[1]/tagCounts[0][1]}}px;background-color: green;height: 1em;"></div>
+            </td>
+          </tbody>
+          </table>
         </div>
 
         <div data-ng-controller="LoginController">

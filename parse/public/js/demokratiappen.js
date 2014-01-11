@@ -164,5 +164,19 @@ angular.module('democracy-app', [])
     $scope.$apply();
   });
 
+})
+
+.controller('StatisticsController', function($scope) {
+  var query = new Parse.Query("Page");
+  query.find().then(function(articles) {
+    $scope.tagCounts = _.chain(articles).map(function(article) {
+      return article.get('negative_tags').concat(article.get('positive_tags'));
+    }).flatten().countBy(function(el) {
+      return el;
+    }).pairs().sortBy(function(el) {
+      return -el[1];
+    }).value();
+    console.log($scope.tagCounts);
+  });
 });
 
