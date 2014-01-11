@@ -1,13 +1,64 @@
+NOT_LOGGED_IN = 0;
+LOGGED_IN = 1;
+
 angular.module('democracy-app', [])
 
-.controller('MainController', function() {
-  
+.factory('LoginService', function($rootScope) {
+  var obj = {}
+  obj.setLoginState = function(newState, message) {
+    obj.state = newState;
+    obj.message = message;
+  };
+
+  if (Parse.User.current()) {
+    obj.state = LOGGED_IN;
+  } else {
+    obj.state = NOT_LOGGED_IN;
+  }
+
+  return obj;
 })
 
-.controller('LoginController', function($scope) {
+.controller('MainController', function() {
+  Parse.initialize("amtD1gwFz83IOqSdVF6I2oaxZeqRJRE57nyj3dKY", 
+                   "24l3K1yDJpxkiYF4ZjUCtereM2jx9lET9LtKCvB4");
+})
+
+.controller('LoginController', function($scope, LoginService) {
+  if (Parse.User.current()) {
+    $scope.mdLoginState = LOGGED_IN;
+  } else {
+    $scope.mdLoginState = NOT_LOGGED_IN;
+  }
+  $scope.loginService = LoginService;
   $scope.login = function() {
-    alert("You were logged in");
+    Parse.User.logIn($scope.username, $scope.password, {
+      success: function(user) {
+        LoginService.setLoginState(LOGGED_IN, "Inloggad.");
+        $scope.$apply();
+      },
+      error: function(user, error) {
+        LoginService.setLoginState(NOT_LOGGED_IN, "Inloggning misslyckades.");
+        $scope.$apply();
+      }
+    });
   };
+  $scope.signUp = function() {
+    Parse.User.signUp($scope.username, $scope.password, { ACL: new Parse.ACL() }, {
+      success: function(user) {
+        LoginService.setLoginState(LOGGED_IN, "Registrerad och inloggad.");
+        $scope.$apply();
+      },
+      error: function(user, error) {
+        LoginService.setLoginState(NOT_LOGGED_IN, "Registrering misslyckades.");
+        $scope.$apply();
+      }
+    })
+  };
+  $scope.logout = function() {
+    Parse.User.logOut();
+    LoginService.setLoginState(NOT_LOGGED_IN, "Du har nu blivit utloggad.");
+  }
 });
 
 /*
