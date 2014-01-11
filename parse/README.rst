@@ -1,5 +1,5 @@
-För att komma igång med utveckling
-==================================
+What to do to get started
+=========================
 1. Copy ``config/global.json.template`` to ``config/global.json`` and set the API keys
    for your Parse app.
 2. Modify ``js/demokratiappen.js`` and set the correct API keys in the
