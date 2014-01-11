@@ -9,7 +9,7 @@ angular.module('democracy-app', [])
 })
 
 .factory('LoginService', function($rootScope, ParseInitializer) {
-  var obj = {}
+  var obj = {};
   obj.setLoginState = function(newState) {
     obj.state = newState;
 
