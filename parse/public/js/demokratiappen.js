@@ -88,7 +88,6 @@ angular.module('democracy-app', [])
 })
 
 .controller('AddController', function($scope) {
-  //var Tag = Parse.Object.extend("Tag");
   var query = new Parse.Query("Tag");
   query.find().then(function(tags) {
     $scope.tags = _.map(tags, function(tag) {
