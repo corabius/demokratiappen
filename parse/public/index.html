@@ -25,7 +25,7 @@
       <h1>Demokratiappen</h1>
 
       <div data-ng-app="democracy-app" data-ng-controller="MainController">
-        <div data-ng-controller="LoginController">
+        <p data-ng-controller="LoginController">
           <div class="alert" data-ng-class="loginService.messageClass" data-ng-show="loginService.message" data-ng-bind="loginService.message">
           </div>
           <form role="form" data-ng-show="loginService.state == 0">
@@ -43,7 +43,12 @@
           <form role="form" data-ng-hide="loginService.state == 0">
             <button data-ng-click="logout();" class="btn btn-default">Logga ut</button>
           </form>
-        </div>
+        </p>
+        <p data-ng-controller="AddController" data-ng-hide="loginService.state == 0" class="well">
+          Taggar:
+          <span data-ng-repeat="tag in tags" data-ng-bind="tag" class="label label-default" style="margin: 0.1em;">
+          </span>
+        </p>
       </div>
     </div>
 
