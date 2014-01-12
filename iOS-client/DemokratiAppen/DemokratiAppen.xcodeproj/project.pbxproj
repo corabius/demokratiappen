@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55A5270618828FF8009207E2 /* UIGraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55A5270318828FF8009207E2 /* UIGraphView.xib */; };
+		55A5270718828FF8009207E2 /* UIGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A5270518828FF8009207E2 /* UIGraphViewController.m */; };
 		55A82E45188170A9004F2383 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A82E44188170A9004F2383 /* Foundation.framework */; };
 		55A82E47188170A9004F2383 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A82E46188170A9004F2383 /* CoreGraphics.framework */; };
 		55A82E49188170A9004F2383 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A82E48188170A9004F2383 /* UIKit.framework */; };
@@ -25,8 +27,6 @@
 		55A82E7E1881742A004F2383 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A82E7D1881742A004F2383 /* UserData.m */; };
 		55A82E8118818932004F2383 /* URLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A82E8018818932004F2383 /* URLDetailViewController.m */; };
 		55A82E8418819BEB004F2383 /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A82E8318819BEB004F2383 /* Party.m */; };
-		55A82E8B1881C5EC004F2383 /* UIGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A82E891881C5EC004F2383 /* UIGraphViewController.m */; };
-		55A82E8C1881C5EC004F2383 /* UIGraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55A82E8A1881C5EC004F2383 /* UIGraphView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		55A5270318828FF8009207E2 /* UIGraphView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIGraphView.xib; sourceTree = "<group>"; };
+		55A5270418828FF8009207E2 /* UIGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGraphViewController.h; sourceTree = "<group>"; };
+		55A5270518828FF8009207E2 /* UIGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGraphViewController.m; sourceTree = "<group>"; };
 		55A82E41188170A9004F2383 /* DemokratiAppen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemokratiAppen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55A82E44188170A9004F2383 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		55A82E46188170A9004F2383 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,9 +70,6 @@
 		55A82E8018818932004F2383 /* URLDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLDetailViewController.m; sourceTree = "<group>"; };
 		55A82E8218819BEB004F2383 /* Party.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
 		55A82E8318819BEB004F2383 /* Party.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Party.m; sourceTree = "<group>"; };
-		55A82E881881C5EC004F2383 /* UIGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIGraphViewController.h; path = ../UIGraphViewController.h; sourceTree = "<group>"; };
-		55A82E891881C5EC004F2383 /* UIGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIGraphViewController.m; path = ../UIGraphViewController.m; sourceTree = "<group>"; };
-		55A82E8A1881C5EC004F2383 /* UIGraphView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIGraphView.xib; path = ../UIGraphView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,9 +133,9 @@
 				55A82E54188170A9004F2383 /* AppDelegate.m */,
 				55A82E56188170A9004F2383 /* Main.storyboard */,
 				55A82E59188170A9004F2383 /* URLListViewController.h */,
-				55A82E881881C5EC004F2383 /* UIGraphViewController.h */,
-				55A82E891881C5EC004F2383 /* UIGraphViewController.m */,
-				55A82E8A1881C5EC004F2383 /* UIGraphView.xib */,
+				55A5270318828FF8009207E2 /* UIGraphView.xib */,
+				55A5270418828FF8009207E2 /* UIGraphViewController.h */,
+				55A5270518828FF8009207E2 /* UIGraphViewController.m */,
 				55A82E5A188170A9004F2383 /* URLListViewController.m */,
 				55A82E5C188170A9004F2383 /* PartyGraphViewController.h */,
 				55A82E5D188170A9004F2383 /* PartyGraphViewController.m */,
@@ -257,9 +257,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				55A82E60188170A9004F2383 /* Images.xcassets in Resources */,
-				55A82E8C1881C5EC004F2383 /* UIGraphView.xib in Resources */,
 				55A82E4F188170A9004F2383 /* InfoPlist.strings in Resources */,
 				55A82E58188170A9004F2383 /* Main.storyboard in Resources */,
+				55A5270618828FF8009207E2 /* UIGraphView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,8 +278,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55A5270718828FF8009207E2 /* UIGraphViewController.m in Sources */,
 				55A82E5E188170A9004F2383 /* PartyGraphViewController.m in Sources */,
-				55A82E8B1881C5EC004F2383 /* UIGraphViewController.m in Sources */,
 				55A82E55188170A9004F2383 /* AppDelegate.m in Sources */,
 				55A82E5B188170A9004F2383 /* URLListViewController.m in Sources */,
 				55A82E7E1881742A004F2383 /* UserData.m in Sources */,
