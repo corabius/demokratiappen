@@ -67,7 +67,9 @@
               <a href="{{article.url}}" data-ng-bind="article.title"></a>
             </h2>
             <div class="tags">
-              <span data-ng-repeat="tag in article.tags" data-ng-bind="tag.name" class="label label-{{tag.type}}" style="margin-right: 0.5em;">
+              <span data-ng-repeat="tag in article.tags" class="label label-{{tag.type}}" style="margin-right: 0.5em;">
+                {{tag.name}}
+              </span>
             </div>
           </div>
         </div>
