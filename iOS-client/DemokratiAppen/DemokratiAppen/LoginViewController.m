@@ -7,8 +7,16 @@
 //
 
 #import "LoginViewController.h"
+#import <Parse/Parse.h>
 
-@interface LoginViewController ()
+
+@interface LoginViewController () <PFLogInViewControllerDelegate>
+
+@property PFLogInViewController* parseLoginController;  //jag blir delegerad till från PF-login-kod
+
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+
+- (IBAction)loginAction:(id)sender;
 
 @end
 
@@ -26,8 +34,38 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+
+    [self updateCurrentUser];
 }
+
+
+- (void) updateCurrentUser{
+/*
+    PFUser* user = [PFUser currentUser];
+    
+    //BOOL fbConnection = NO;
+
+    if(user != nil){
+        //fbConnection = [PFFacebookUtils isLinkedWithUser: user];
+        //[self updateUserNameAndEmailFromFacebook: user];
+        self.currentUserLabel.text = user.username;
+
+        self.currentUserLabel.hidden = false;
+        self.logoutButton.hidden = false;
+
+    }
+
+    else{
+        //self.currentUserLabel.text = @"User: not logged in";
+        self.currentUserLabel.hidden = true;
+        self.logoutButton.hidden = true;
+
+    }
+
+    //self.aboutToCommentAfterLogin = false;
+ */
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -35,4 +73,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)loginAction:(id)sender {
+    
+}
 @end
