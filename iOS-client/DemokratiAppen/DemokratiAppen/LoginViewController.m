@@ -112,7 +112,6 @@
 
         [self presentViewController: self.parseLoginController animated:YES completion:nil];
 
-        //self.userLabel = self.parentViewController.
         [self updateCurrentUser];
 
     }
