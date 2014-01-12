@@ -113,29 +113,43 @@ angular.module('democracy-app', [])
 .controller('AddPageController', function($scope, AddPageService) {
   $scope.addPageService = AddPageService;
   $scope.post = function () {
-    var Page = Parse.Object.extend("Page");
-    var page = new Page();
-    var currentUser = Parse.User.current();
+    if (($scope.addPageService.title.length > 0)
+        && ($scope.addPageService.url.length > 0)) {
+      var Page = Parse.Object.extend("Page");
+      var page = new Page();
+      var currentUser = Parse.User.current();
 
-    var positiveTags = page.relation("positive_tags");
-    positiveTags.add($scope.addPageService.upTags);
-    var negativeTags = page.relation("negative_tags");
-    negativeTags.add($scope.addPageService.downTags);
-
-    page.set("title", $scope.addPageService.title);
-    page.set("url", $scope.addPageService.url);
-    page.set("user", currentUser);
-    page.setACL(new Parse.ACL(currentUser));
-
-    page.save(null, {
-      success: function(page) {
-      },
-      error: function(page, error) {
-        // Execute any logic that should take place if the save fails.
-        // error is a Parse.Error with an error code and description.
-        alert('Failed to create new object, with error code: ' + error.description);
+      if ($scope.addPageService.upTags.length > 0) { 
+        var positiveTags = page.relation("positive_tags");
+        positiveTags.add($scope.addPageService.upTags);
       }
-    });
+      if ($scope.addPageService.downTags.length > 0) {
+        var negativeTags = page.relation("negative_tags");
+        negativeTags.add($scope.addPageService.downTags);
+      }
+
+      page.set("title", $scope.addPageService.title);
+      page.set("url", $scope.addPageService.url);
+      page.set("user", currentUser);
+      page.setACL(new Parse.ACL(currentUser));
+
+      page.save(null, {
+        success: function(page) {
+          $scope.addPageService.title = "";
+          $scope.addPageService.url = "";
+          $scope.addPageService.upTags = [];
+          $scope.addPageService.downTags = [];
+
+          $scope.addPageForm.$setPristine();
+          $scope.$apply();
+        },
+        error: function(page, error) {
+          // Execute any logic that should take place if the save fails.
+          // error is a Parse.Error with an error code and description.
+          alert('Failed to create new object, with error code: ' + error.description);
+        }
+      });
+    }
   };
 
   $scope.toggleTagUp = function(tag) {
