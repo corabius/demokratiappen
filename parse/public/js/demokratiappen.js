@@ -156,18 +156,29 @@ angular.module('democracy-app', [])
   var query = new Parse.Query("Page");
   query.find().then(function(articles) {
     $scope.articles = _.map(articles, function(article) {
-      var tags = _.map(article.get("positive_tags"), function(tag) {
-        return {name: tag, type:'success'};
-      }).concat(_.map(article.get("negative_tags"), function(tag) {
-        return {name: tag, type:'danger'};
-      }));
-      return {
+      var a = {
         title: article.get("title"),
         url: article.get("url"),
-        tags: _.sortBy(tags, function(el) {
-          return el.name;
-        })
+        tags: [ ]
       };
+
+      var positiveRelation = article.relation("positive_tags");
+      positiveRelation.query().find().then(function(ptags) {
+        a.tags = a.tags.concat(_.map(ptags, function(tag) {
+          return {name: tag.get("name"), type: 'success' };
+        }));
+        $scope.$apply();
+      });
+
+      var negativeRelation = article.relation("negative_tags");
+      negativeRelation.query().find().then(function(ntags) {
+        a.tags = a.tags.concat(_.map(ntags, function(tag) {
+          return {name: tag.get("name"), type: 'danger' };
+        }));
+        $scope.$apply();
+      });
+
+      return a;
     });
 
     $scope.$apply();
