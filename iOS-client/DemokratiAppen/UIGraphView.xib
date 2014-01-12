@@ -18,10 +18,8 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aUk-29-w3p" userLabel="GraphImage">
                     <rect key="frame" x="0.0" y="0.0" width="272" height="198"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.060752969173607174" blue="0.092535346524951989" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="aUk-29-w3p" secondAttribute="bottom" id="CiZ-bx-VOn"/>
                 <constraint firstItem="aUk-29-w3p" firstAttribute="top" secondItem="hpb-oW-DIf" secondAttribute="top" id="SE5-GN-AZM"/>

@@ -17,7 +17,6 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithNibName:@"UIGraphView" bundle:[NSBundle mainBundle]];                                            
-    printf("Loaded view\n");
     
     if (self) {
         // Custom initialization
@@ -29,7 +28,7 @@
 {
     [super viewDidLoad];
 
-    //[self drawSomething];
+    [self drawSomething];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,17 +48,6 @@
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(NULL, width*imageScale, height*imageScale, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
     
-    CGContextSetRGBFillColor(context, (CGFloat)0.0, (CGFloat)1.0, (CGFloat)0.0, (CGFloat)1.0 );
-    CGContextFillRect(context, CGRectMake(0.0, 0.0, width*imageScale, height*imageScale));
-    
-    
-    CGImageRef srcIm = [UIImage imageNamed:@"horizontal_bars_128.png"].CGImage;
-    CGRect srcRect = CGRectMake(0, 0, 500, 500);
-    CGRect dstRect = CGRectMake(50, 120, 100, 100);
-
-//    [self drawInContext:context fromImage:srcIm fromRect:srcRect toRect:dstRect inColor:[UIColor redColor].CGColor];
-
-    
     [self drawGraphInContext:context];
     
     // Get your image
@@ -71,8 +59,6 @@
     CGColorSpaceRelease(colorSpace);
     CGContextRelease(context);
     CGImageRelease(cgImage);
-    
-    // TODO: some more releasing of stuff!
 }
 
 
@@ -106,7 +92,7 @@
 
     CGContextRelease(srcContext);
     CGImageRelease(finalSrcImage);
-    // TODO: some more releasing of stuff!
+    CGImageRelease(croppedSrcImage);
 }
 
 
@@ -152,7 +138,6 @@
         
         [self drawInContext:context fromImage:srcIm fromRect:srcRect toRect:dstRect inColor:color];
     }
-    
 }
 
 @end
