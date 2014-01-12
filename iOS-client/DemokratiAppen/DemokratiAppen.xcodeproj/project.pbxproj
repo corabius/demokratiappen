@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BC7927418829516005C9BBA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927218829516005C9BBA /* FacebookSDK.framework */; };
+		3BC7927518829516005C9BBA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927318829516005C9BBA /* Parse.framework */; };
 		55A5270618828FF8009207E2 /* UIGraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55A5270318828FF8009207E2 /* UIGraphView.xib */; };
 		55A5270718828FF8009207E2 /* UIGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A5270518828FF8009207E2 /* UIGraphViewController.m */; };
 		55A82E45188170A9004F2383 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A82E44188170A9004F2383 /* Foundation.framework */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3BC7927218829516005C9BBA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		3BC7927318829516005C9BBA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		55A5270318828FF8009207E2 /* UIGraphView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIGraphView.xib; sourceTree = "<group>"; };
 		55A5270418828FF8009207E2 /* UIGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGraphViewController.h; sourceTree = "<group>"; };
 		55A5270518828FF8009207E2 /* UIGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGraphViewController.m; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BC7927418829516005C9BBA /* FacebookSDK.framework in Frameworks */,
+				3BC7927518829516005C9BBA /* Parse.framework in Frameworks */,
 				55A82E47188170A9004F2383 /* CoreGraphics.framework in Frameworks */,
 				55A82E49188170A9004F2383 /* UIKit.framework in Frameworks */,
 				55A82E45188170A9004F2383 /* Foundation.framework in Frameworks */,
@@ -118,6 +124,8 @@
 		55A82E43188170A9004F2383 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BC7927218829516005C9BBA /* FacebookSDK.framework */,
+				3BC7927318829516005C9BBA /* Parse.framework */,
 				55A82E44188170A9004F2383 /* Foundation.framework */,
 				55A82E46188170A9004F2383 /* CoreGraphics.framework */,
 				55A82E48188170A9004F2383 /* UIKit.framework */,
@@ -412,6 +420,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/silviaman/_Development/git_repo/demokratiappen/iOS-client/DemokratiAppen",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemokratiAppen/DemokratiAppen-Prefix.pch";
 				INFOPLIST_FILE = "DemokratiAppen/DemokratiAppen-Info.plist";
@@ -425,6 +437,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/silviaman/_Development/git_repo/demokratiappen/iOS-client/DemokratiAppen",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemokratiAppen/DemokratiAppen-Prefix.pch";
 				INFOPLIST_FILE = "DemokratiAppen/DemokratiAppen-Info.plist";
