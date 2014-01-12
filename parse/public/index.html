@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="democracy-app">
   <head>
     <meta charset="utf-8">
     <title>Demokratiappen - Web</title>
@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
-    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
+    <script type="text/javascript" src="https://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
     <script type="text/javascript" src="js/initialize_parse.js"></script>
     <script src="js/demokratiappen.js"></script>
 
@@ -20,6 +20,7 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.2.6/json3.js"></script>
     <![endif]-->
 
   </head>
@@ -27,8 +28,8 @@
     <div class="container">
       <h1>Demokratiappen</h1>
 
-      <div data-ng-app="democracy-app" data-ng-controller="MainController" ng-cloak>
-        <div data-ng-controller="AddPageController" data-ng-hide="loginService.state == 0" class="well">
+      <div data-ng-controller="MainController" ng-cloak>
+         <div data-ng-controller="AddPageController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
           <form role="form">
             <div class="form-group">
               <label for="titleInput">Title</label>
@@ -59,7 +60,7 @@
           </form>
         </div>
 
-        <div data-ng-controller="ListController" data-ng-hide="loginService.state == 0" class="well">
+        <div data-ng-controller="ListController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
           <h2>Dina artiklar</h2>
           <div data-ng-repeat="article in articles" class="article">
             <h2>
@@ -71,7 +72,7 @@
           </div>
         </div>
 
-        <div data-ng-controller="StatisticsController" data-ng-hide="loginService.state == 0" class="well">
+        <div data-ng-controller="StatisticsController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
           <h2>Statistik</h2>
           <table>
           <thead>

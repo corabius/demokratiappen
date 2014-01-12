@@ -205,20 +205,22 @@ angular.module('democracy-app', [])
   query.find({
     success: function(articles) {
     for (var i = 0; i < articles.length; i++) {
-      var article = articles[i]
-      var positiveRelation = article.relation("positive_tags");
-      positiveRelation.query().find().then(function(ptags) {
-        $scope.positiveTags = $scope.positiveTags.concat(ptags);
-        updateUI();
-        $scope.$apply();
-      });
+      try {
+        var article = articles[i];
+        var positiveRelation = article.relation("positive_tags");
+        positiveRelation.query().find().then(function(ptags) {
+          $scope.positiveTags = $scope.positiveTags.concat(ptags);
+          updateUI();
+          $scope.$apply();
+        });
 
-      var negativeRelation = article.relation("negative_tags");
-      negativeRelation.query().find().then(function(ntags) {
-        $scope.negativeTags = $scope.negativeTags.concat(ntags);
-        updateUI();
-        $scope.$apply();
-      });
+        var negativeRelation = article.relation("negative_tags");
+        negativeRelation.query().find().then(function(ntags) {
+          $scope.negativeTags = $scope.negativeTags.concat(ntags);
+          updateUI();
+          $scope.$apply();
+        });
+      } catch(err) {}
     }
   }});
 });
