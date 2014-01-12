@@ -7,12 +7,26 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
+#import "Page.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+
+    // Registrera våra klasser
+    [Page registerSubclass];
+
+    [Parse setApplicationId:@"p7Nu6RZkIlnGUfofyOvms99yDnehPjzHg18OuFra"
+                  clientKey:@"jGbdwHMTsG4KRT96YjNf8fr1vEXdKuj94zF2p4wf"];
+
+    //creates a reference to PFImageView (bug in framework, doesn't recognize classes created only from Storyboard...)
+    [PFImageView class];
+
+    [PFFacebookUtils initializeFacebook];
+
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     return YES;
 }
 							
