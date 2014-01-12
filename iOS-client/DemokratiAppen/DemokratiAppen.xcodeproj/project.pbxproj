@@ -422,8 +422,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/silviaman/_Development/git_repo/demokratiappen/iOS-client/DemokratiAppen",
-					"/Users/joakim/Documents/Development/git/demokratiappen/iOS-client/DemokratiAppen",
+					"./**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemokratiAppen/DemokratiAppen-Prefix.pch";
@@ -440,8 +439,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/silviaman/_Development/git_repo/demokratiappen/iOS-client/DemokratiAppen",
-					"/Users/joakim/Documents/Development/git/demokratiappen/iOS-client/DemokratiAppen",
+					"./**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemokratiAppen/DemokratiAppen-Prefix.pch";
