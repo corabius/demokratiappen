@@ -91,6 +91,34 @@
             </objects>
             <point key="canvasLocation" x="1569" y="-138"/>
         </scene>
+        <!--Login View Controller - Logga in-->
+        <scene sceneID="8Hb-tg-yHI">
+            <objects>
+                <viewController id="Qa6-m4-wM7" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k3A-7v-uth"/>
+                        <viewControllerLayoutGuide type="bottom" id="0zu-0s-J5a"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QEb-us-Cf8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRn-Dy-Hzu">
+                                <rect key="frame" x="77" y="95" width="167" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logga in">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Logga in" image="second" id="hSi-WU-nkO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l3H-o7-caM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="636" y="568"/>
+        </scene>
         <!--PartyGraphViewController-->
         <scene sceneID="ot8-2e-RuS">
             <objects>
@@ -136,6 +164,7 @@
                     <connections>
                         <segue destination="QUy-BD-bpt" kind="relationship" relationship="viewControllers" id="Zx4-Cs-si1"/>
                         <segue destination="3lY-bp-gJC" kind="relationship" relationship="viewControllers" id="O9V-0i-3m8"/>
+                        <segue destination="Qa6-m4-wM7" kind="relationship" relationship="viewControllers" id="n4j-uG-BVd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
