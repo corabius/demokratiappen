@@ -11,7 +11,9 @@
 
 @interface UserData : NSObject
 
-@property NSMutableArray *parties;
+//@property NSMutableArray *parties;
+@property NSMutableArray *partyArray;
+
 
 -(int) getNumURLs;
 -(NSString*) getURLAtIndex:(int)index;
