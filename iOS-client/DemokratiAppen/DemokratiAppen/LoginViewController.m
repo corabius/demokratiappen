@@ -15,8 +15,11 @@
 @property PFLogInViewController* parseLoginController;  //jag blir delegerad till från PF-login-kod
 
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
 
 - (IBAction)loginAction:(id)sender;
+- (IBAction)logoutAction:(id)sender;
 
 @end
 
@@ -40,30 +43,27 @@
 
 
 - (void) updateCurrentUser{
-/*
+
     PFUser* user = [PFUser currentUser];
     
     //BOOL fbConnection = NO;
 
     if(user != nil){
         //fbConnection = [PFFacebookUtils isLinkedWithUser: user];
-        //[self updateUserNameAndEmailFromFacebook: user];
-        self.currentUserLabel.text = user.username;
+        self.userLabel.text = user.username;
 
-        self.currentUserLabel.hidden = false;
-        self.logoutButton.hidden = false;
+        self.userLabel.hidden = false;
+        self.logoutBtn.hidden = false;
+        self.loginBtn.hidden = true;
 
     }
 
     else{
-        //self.currentUserLabel.text = @"User: not logged in";
-        self.currentUserLabel.hidden = true;
-        self.logoutButton.hidden = true;
+        self.userLabel.hidden = true;
+        self.logoutBtn.hidden = true;
+        self.loginBtn.hidden = false;
 
     }
-
-    //self.aboutToCommentAfterLogin = false;
- */
 }
 
 
@@ -73,7 +73,98 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (IBAction)loginAction:(id)sender {
-    
+
+    PFUser* user = [PFUser currentUser];
+
+
+    if(user == nil){  //login (and create if not excist) user linked to their facebook-account
+
+        /*
+         User's public profile and also their friend list. Public profile refers to the following properties by default: id, name, first_name, last_name, link, username, gender, locale, age_range, Other public information
+         */
+        NSArray *facebookPermissions = [[NSArray alloc] initWithObjects: @"email", nil];
+
+
+        self.parseLoginController = [[PFLogInViewController alloc] init];
+        self.parseLoginController.delegate = self;
+        self.parseLoginController.facebookPermissions = facebookPermissions;
+
+        /*
+         A bitmask specifying the log in elements which are enabled in the view : for the property PFLogInFields fields
+         enum {
+         PFLogInFieldsNone = 0,
+         PFLogInFieldsUsernameAndPassword = 1 << 0,
+         PFLogInFieldsPasswordForgotten = 1 << 1,
+         PFLogInFieldsLogInButton = 1 << 2,
+         PFLogInFieldsFacebook = 1 << 3,
+         PFLogInFieldsTwitter = 1 << 4,
+         PFLogInFieldsSignUpButton = 1 << 5,
+         PFLogInFieldsDismissButton = 1 << 6,
+         PFLogInFieldsDefault = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsDismissButton
+         };
+         */
+
+        [self updateUserNameAndEmailFromFacebook: user];
+
+        self.parseLoginController.fields = PFLogInFieldsFacebook | PFLogInFieldsDismissButton;
+
+        [self presentViewController: self.parseLoginController animated:YES completion:nil];
+
+        //self.userLabel = self.parentViewController.
+        [self updateCurrentUser];
+
+    }
+
+/*
+    else{ //user is loggedin
+        [self performSegueWithIdentifier:@"NewCommentSeque" sender:self];
+    }
+*/
+}
+
+
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self updateUserNameAndEmailFromFacebook: user];
+    [self updateCurrentUser];
+}
+
+
+- (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)updateUserNameAndEmailFromFacebook: (PFUser*) user{
+
+    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            user.username = [result objectForKey:@"username"];
+            user.email = [result objectForKey:@"email"];
+            [user saveInBackground];
+            //[user saveEventually];
+            [self updateCurrentUser];
+        }
+        else
+        {
+            //            id alert = [[UIAlertView alloc] initWithTitle: @"Varning"
+            //                                                  message: error.userInfo[@"error"]
+            //                                                 delegate: nil
+            //                                        cancelButtonTitle: @"OK"
+            //                                        otherButtonTitles: nil];
+            //            [alert show];
+        }
+    }];
+}
+
+
+
+- (IBAction)logoutAction:(id)sender {
+
+    [PFUser logOut];
+    [self updateCurrentUser];
 }
 @end
