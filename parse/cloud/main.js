@@ -2,7 +2,7 @@
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // For example:
 Parse.Cloud.define("hello", function(request, response) {
-  response.success("Hello Democracy!”);
+  response.success("Hello Democracy!");
 });
 
 
@@ -35,7 +35,7 @@ Parse.Cloud.define("tagga",
                    
     
     //Request object to ask for a auth token
-    var accessTokenRequest = {"method":"auth.accessToken","params":{"api_key”:”XXXXX_API_KEY_XXXXX”,”secret_key”:”XXXX_SECRET_KEY_XXXXX}};
+    var accessTokenRequest = {"method":"auth.accessToken","params":{"api_key":"XXXXX_API_KEY_XXXXX","secret_key":"XXXX_SECRET_KEY_XXXXX"}};
     //Request object to create a new collection and ask for id for the same
     var collectionRequest = {"method":"collection.create", "params":{"name":"Dem App Samling", "language":"sv"}, "id":0};
     //Reqest object to create a text and get back the ID
