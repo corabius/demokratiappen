@@ -7,7 +7,7 @@
         <!--URLListViewController-->
         <scene sceneID="W3I-pn-N6e">
             <objects>
-                <viewController title="First" id="CZ4-MO-1fc" userLabel="URLListViewController" customClass="FirstViewController" sceneMemberID="viewController">
+                <viewController title="URL List2" id="CZ4-MO-1fc" userLabel="URLListViewController" customClass="FirstViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="50X-16-Edk"/>
                         <viewControllerLayoutGuide type="bottom" id="5U1-yJ-Gjf"/>
@@ -21,11 +21,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MyReuseIdentifier" id="mmV-ZE-1mY">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="MyReuseIdentifier" id="mmV-ZE-1mY">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mmV-ZE-1mY" id="exo-ux-o2n">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="273" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -94,7 +94,7 @@
         <!--PartyGraphViewController-->
         <scene sceneID="ot8-2e-RuS">
             <objects>
-                <viewController title="Second" id="QUy-BD-bpt" userLabel="PartyGraphViewController" customClass="SecondViewController" sceneMemberID="viewController">
+                <viewController title="Party graph" id="QUy-BD-bpt" userLabel="PartyGraphViewController" customClass="SecondViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aha-Bi-stz"/>
                         <viewControllerLayoutGuide type="bottom" id="Q8K-IL-wRK"/>
@@ -114,7 +114,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="Z7h-1E-pvt"/>
+                    <tabBarItem key="tabBarItem" title="Partigraf" image="second" id="Z7h-1E-pvt"/>
                     <connections>
                         <outlet property="container" destination="TMs-Py-Id9" id="b88-MO-eAc"/>
                     </connections>
@@ -142,11 +142,11 @@
             </objects>
             <point key="canvasLocation" x="132" y="180"/>
         </scene>
-        <!--Navigation Controller - First-->
+        <!--Navigation Controller - URL List-->
         <scene sceneID="m0j-Hl-c9d">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3lY-bp-gJC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="u1e-5L-l1D"/>
+                <navigationController title="URL List" automaticallyAdjustsScrollViewInsets="NO" id="3lY-bp-gJC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Länklista" image="first" id="u1e-5L-l1D"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0p8-Fg-f0i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
