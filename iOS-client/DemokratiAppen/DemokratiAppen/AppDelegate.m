@@ -21,8 +21,6 @@
     [Parse setApplicationId:@"p7Nu6RZkIlnGUfofyOvms99yDnehPjzHg18OuFra"
                   clientKey:@"jGbdwHMTsG4KRT96YjNf8fr1vEXdKuj94zF2p4wf"];
 
-    //creates a reference to PFImageView (bug in framework, doesn't recognize classes created only from Storyboard...)
-    [PFImageView class];
 
     [PFFacebookUtils initializeFacebook];
 
