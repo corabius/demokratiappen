@@ -14,8 +14,8 @@
 		55A82E51188170A9004F2383 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A82E50188170A9004F2383 /* main.m */; };
 		55A82E55188170A9004F2383 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A82E54188170A9004F2383 /* AppDelegate.m */; };
 		55A82E58188170A9004F2383 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A82E56188170A9004F2383 /* Main.storyboard */; };
-		55A82E5B188170A9004F2383 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A82E5A188170A9004F2383 /* FirstViewController.m */; };
-		55A82E5E188170A9004F2383 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A82E5D188170A9004F2383 /* SecondViewController.m */; };
+		55A82E5B188170A9004F2383 /* URLListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A82E5A188170A9004F2383 /* URLListViewController.m */; };
+		55A82E5E188170A9004F2383 /* PartyGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A82E5D188170A9004F2383 /* PartyGraphViewController.m */; };
 		55A82E60188170A9004F2383 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55A82E5F188170A9004F2383 /* Images.xcassets */; };
 		55A82E67188170A9004F2383 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A82E66188170A9004F2383 /* XCTest.framework */; };
 		55A82E68188170A9004F2383 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A82E44188170A9004F2383 /* Foundation.framework */; };
@@ -51,10 +51,10 @@
 		55A82E53188170A9004F2383 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		55A82E54188170A9004F2383 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		55A82E57188170A9004F2383 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		55A82E59188170A9004F2383 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		55A82E5A188170A9004F2383 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		55A82E5C188170A9004F2383 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		55A82E5D188170A9004F2383 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		55A82E59188170A9004F2383 /* URLListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLListViewController.h; sourceTree = "<group>"; };
+		55A82E5A188170A9004F2383 /* URLListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLListViewController.m; sourceTree = "<group>"; };
+		55A82E5C188170A9004F2383 /* PartyGraphViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyGraphViewController.h; sourceTree = "<group>"; };
+		55A82E5D188170A9004F2383 /* PartyGraphViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyGraphViewController.m; sourceTree = "<group>"; };
 		55A82E5F188170A9004F2383 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55A82E65188170A9004F2383 /* DemokratiAppenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemokratiAppenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55A82E66188170A9004F2383 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -132,13 +132,13 @@
 				55A82E53188170A9004F2383 /* AppDelegate.h */,
 				55A82E54188170A9004F2383 /* AppDelegate.m */,
 				55A82E56188170A9004F2383 /* Main.storyboard */,
-				55A82E59188170A9004F2383 /* FirstViewController.h */,
+				55A82E59188170A9004F2383 /* URLListViewController.h */,
 				55A82E881881C5EC004F2383 /* UIGraphViewController.h */,
 				55A82E891881C5EC004F2383 /* UIGraphViewController.m */,
 				55A82E8A1881C5EC004F2383 /* UIGraphView.xib */,
-				55A82E5A188170A9004F2383 /* FirstViewController.m */,
-				55A82E5C188170A9004F2383 /* SecondViewController.h */,
-				55A82E5D188170A9004F2383 /* SecondViewController.m */,
+				55A82E5A188170A9004F2383 /* URLListViewController.m */,
+				55A82E5C188170A9004F2383 /* PartyGraphViewController.h */,
+				55A82E5D188170A9004F2383 /* PartyGraphViewController.m */,
 				55A82E5F188170A9004F2383 /* Images.xcassets */,
 				55A82E4B188170A9004F2383 /* Supporting Files */,
 				55A82E7C1881742A004F2383 /* UserData.h */,
@@ -278,10 +278,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55A82E5E188170A9004F2383 /* SecondViewController.m in Sources */,
+				55A82E5E188170A9004F2383 /* PartyGraphViewController.m in Sources */,
 				55A82E8B1881C5EC004F2383 /* UIGraphViewController.m in Sources */,
 				55A82E55188170A9004F2383 /* AppDelegate.m in Sources */,
-				55A82E5B188170A9004F2383 /* FirstViewController.m in Sources */,
+				55A82E5B188170A9004F2383 /* URLListViewController.m in Sources */,
 				55A82E7E1881742A004F2383 /* UserData.m in Sources */,
 				55A82E51188170A9004F2383 /* main.m in Sources */,
 				55A82E8418819BEB004F2383 /* Party.m in Sources */,
@@ -494,6 +494,7 @@
 				55A82E78188170A9004F2383 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55A82E79188170A9004F2383 /* Build configuration list for PBXNativeTarget "DemokratiAppenTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +503,7 @@
 				55A82E7B188170A9004F2383 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

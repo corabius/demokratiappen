@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Joakim Rydell. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "PartyGraphViewController.h"
 #import "UIGraphViewController.h"
 
 @interface SecondViewController ()

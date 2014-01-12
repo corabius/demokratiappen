@@ -7,6 +7,7 @@
 //
 
 #import "UIGraphViewController.h"
+#import "Party.h"
 
 @interface UIGraphViewController ()
 
@@ -28,8 +29,21 @@
 {
     [super viewDidLoad];
 
-    [self drawSomething];
 }
+
+
+- (void) viewWillAppear:(BOOL)animated {
+    [self drawSomething];
+
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.33 target:self selector:@selector(drawSomething) userInfo:nil repeats:YES];
+
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    [timer invalidate];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -119,7 +133,6 @@
     
     for (int i = 0; i < nGridLines; i++) {
         float y0 = yMargin + i*yInterval/(nGridLines-1);
-        float y1 = y0 + gridLineThickness;
         CGRect dstRect = CGRectMake(x0, y0, x1-x0+1, gridLineThickness);
         
         // randomly select one of the 9 lines
@@ -127,7 +140,6 @@
         float x0_src = 128;
         float x1_src = 14*128;
         float y0_src = lineNumber*128+64;
-        float y1_src = y1_src+128;
         CGRect srcRect = CGRectMake(x0_src, y0_src, x1_src-x0_src+1, 128);
         
         CGColorRef color;
@@ -136,6 +148,41 @@
         else
             color = [UIColor grayColor].CGColor;
         
+        [self drawInContext:context fromImage:srcIm fromRect:srcRect toRect:dstRect inColor:color];
+    }
+
+    
+    // draw vertical bars
+    srcIm = [UIImage imageNamed:@"vertical_bars_128.png"].CGImage;
+    
+    float maxVal = -INFINITY;
+    for (int i = 0; i < nEntries; i++) {
+        Party *p = (Party*)[data objectAtIndex:i];
+        if (p.plusScore > maxVal)
+            maxVal = p.plusScore;
+        if (p.minusScore > maxVal)
+            maxVal = p.minusScore;
+    }
+    
+    for (int i = 0; i < nEntries; i++) {
+        Party *p = (Party*)[data objectAtIndex:i];
+
+        float barThickness = xInterval/3;
+        float x0 = xMargin + (i+1)*xInterval/(nEntries+1) - barThickness/2;
+        float barLength = (p.plusScore + p.minusScore)/(2*maxVal) * yInterval;
+        float y0 = yMargin + yInterval/2 - p.minusScore/maxVal*yInterval/2;
+        
+        CGRect dstRect = CGRectMake(x0, y0, barThickness, barLength);
+        
+        // randomly select one of the 4 bars
+        int barNumber = rand() % 4;
+        float x0_src = barNumber*128+64;
+        float y0_src = 128;
+        float y1_src = 615;
+        CGRect srcRect = CGRectMake(x0_src, y0_src, 128, y1_src - y0_src);
+        
+        CGColorRef color = [p.color CGColor];
+
         [self drawInContext:context fromImage:srcIm fromRect:srcRect toRect:dstRect inColor:color];
     }
 }

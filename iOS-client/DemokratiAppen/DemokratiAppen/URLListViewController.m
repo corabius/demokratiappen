@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Joakim Rydell. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "URLListViewController.h"
 #import "URLDetailViewController.h"
 
 @interface FirstViewController ()

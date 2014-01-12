@@ -14,6 +14,8 @@
 @end
 
 
+NSTimer *timer;
+
 @interface UIGraphViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIView *view;

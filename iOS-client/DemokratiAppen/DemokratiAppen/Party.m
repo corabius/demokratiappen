@@ -19,11 +19,11 @@
     _minusScore = aMinusScore;
 
     NSString *redStr = [NSString stringWithFormat:@"0x%@", [aColor substringWithRange:NSMakeRange(0, 2)]];
-    float red = atoi([redStr UTF8String]) / 256.0;
+    float red = strtol([redStr cStringUsingEncoding:NSASCIIStringEncoding], NULL, 16) / 255.0;
     NSString *greenStr = [NSString stringWithFormat:@"0x%@", [aColor substringWithRange:NSMakeRange(2, 2)]];
-    float green = atoi([greenStr UTF8String]) / 256.0;
+    float green = strtol([greenStr cStringUsingEncoding:NSASCIIStringEncoding], NULL, 16) / 255.0;
     NSString *blueStr = [NSString stringWithFormat:@"0x%@", [aColor substringWithRange:NSMakeRange(4, 2)]];
-    float blue = atoi([blueStr UTF8String]) / 256.0;
+    float blue = strtol([blueStr cStringUsingEncoding:NSASCIIStringEncoding], NULL, 16) / 255.0;
     _color = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
     
     return self;
