@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3BC7927418829516005C9BBA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927218829516005C9BBA /* FacebookSDK.framework */; };
-		3BC7927518829516005C9BBA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927318829516005C9BBA /* Parse.framework */; };
 		55A5270618828FF8009207E2 /* UIGraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55A5270318828FF8009207E2 /* UIGraphView.xib */; };
 		55A5270718828FF8009207E2 /* UIGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A5270518828FF8009207E2 /* UIGraphViewController.m */; };
+		55A52708188296DA009207E2 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927218829516005C9BBA /* FacebookSDK.framework */; };
+		55A52709188296E1009207E2 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927318829516005C9BBA /* Parse.framework */; };
 		55A82E45188170A9004F2383 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A82E44188170A9004F2383 /* Foundation.framework */; };
 		55A82E47188170A9004F2383 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A82E46188170A9004F2383 /* CoreGraphics.framework */; };
 		55A82E49188170A9004F2383 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A82E48188170A9004F2383 /* UIKit.framework */; };
@@ -81,8 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BC7927418829516005C9BBA /* FacebookSDK.framework in Frameworks */,
-				3BC7927518829516005C9BBA /* Parse.framework in Frameworks */,
+				55A52709188296E1009207E2 /* Parse.framework in Frameworks */,
+				55A52708188296DA009207E2 /* FacebookSDK.framework in Frameworks */,
 				55A82E47188170A9004F2383 /* CoreGraphics.framework in Frameworks */,
 				55A82E49188170A9004F2383 /* UIKit.framework in Frameworks */,
 				55A82E45188170A9004F2383 /* Foundation.framework in Frameworks */,
@@ -423,6 +423,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/silviaman/_Development/git_repo/demokratiappen/iOS-client/DemokratiAppen",
+					"/Users/joakim/Documents/Development/git/demokratiappen/iOS-client/DemokratiAppen",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemokratiAppen/DemokratiAppen-Prefix.pch";
@@ -440,6 +441,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/silviaman/_Development/git_repo/demokratiappen/iOS-client/DemokratiAppen",
+					"/Users/joakim/Documents/Development/git/demokratiappen/iOS-client/DemokratiAppen",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemokratiAppen/DemokratiAppen-Prefix.pch";
