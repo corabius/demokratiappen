@@ -2,7 +2,7 @@
 <html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="democracy-app">
   <head>
     <meta charset="utf-8">
-    <title>Demokratiappen - Web</title>
+    <title>Demokratiappen - Web - BETA</title>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/demokratiappen.css" rel="stylesheet" type="text/css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
@@ -26,8 +26,10 @@
   </head>
   <body>
     <div class="container">
-      <h1>Demokratiappen</h1>
-
+      <h1>Demokratiappen - BETA</h1>
+      <div class="well">Här är demokratiappens beta-gränssnitt. Prova gärna att skapa en användare och at lägga in taggar, men observera att allt är under utveckling och vi FÖRVÄNTAR oss att vi kommer behöva tömma databasen med registrerade användare och inmatade taggar. Det finns i dagsläget inga garantier för att inmatad data sparas på ett integritetsäkert sätt (detta kommer naturligtvis förbättras till slutversionen).<br/>
+/Demokratiappens teknikgrupp
+      </div>
       <div data-ng-controller="MainController" ng-cloak>
          <div data-ng-controller="AddPageController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
           <form role="form">
