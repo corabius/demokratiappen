@@ -35,9 +35,11 @@ Parse.Cloud.define("tagga",
                    
     
     //Request object to ask for a auth token
-    var accessTokenRequest = {"method":"auth.accessToken","params":{"api_key":"XXXXX_API_KEY_XXXXX","secret_key":"XXXX_SECRET_KEY_XXXXX"}};
+    var accessTokenRequest = {"method":"auth.accessToken","params":{"api_key":"API_KEY","secret_key":"SECRET_KEY"}};
+    // For some reason the global object isn't available here :(
+    //var accessTokenRequest = {"method":"auth.accessToken","params":{"api_key":global.applications.Demokratiappen.saploApiKey,"secret_key":global.applications.Demokratiappen.saploSecretKey}};
     //Request object to create a new collection and ask for id for the same
-    var collectionRequest = {"method":"collection.create", "params":{"name":"Dem App Samling", "language":"sv"}, "id":0};
+    var collectionRequest = {"method":"collection.create", "params":{"name":"DemoAppArtiklar", "language":"sv"}, "id":0};
     //Reqest object to create a text and get back the ID
     var textIdRequest = { "method":"text.create",  "params":{ "body": textToBeParsed, "collection_id": 0000, "ext_text_id":"AX-44-D" }, "id":0 };
     //Object to use to post the text id and get back the tags
@@ -135,4 +137,42 @@ Parse.Cloud.define("tagga",
                    
                    
   }// END anonymous function
-);
+); // END tagga
+
+
+/*
+Example usage:
+curl -X POST -H "X-Parse-Application-Id: APP_ID" -H "X-Parse-REST-API-Key: REST_KEY" -H "Content-Type: application/json" -d '{"url" : "http://www.sydsvenskan.se/opinion/huvudledare/luftiga-loften-om-dagis/"}'  https://api.parse.com/1/functions/texta
+*/
+Parse.Cloud.define("texta",
+  function(request, response) {
+    var textare = {
+      work: function(requestUrl) {
+        var text;
+        var document;
+
+        Parse.Cloud.httpRequest( 
+        {
+          url: requestUrl,
+          method: 'POST',
+          success: function(httpResponse){
+            text = httpResponse.text;
+            var mime_type = httpResponse.headers["Content-Type"];
+            var line_count = text.split("\r\n").length;
+
+            //document = (new global.DOMParser).parseFromString(text, mime_type);
+
+            response.success(mime_type + " - [" + line_count + "] - " + text);
+          },
+          error: function(httpResponse){
+            console.error('Request failed with response code ' + httpResponse.status);
+          }
+        }
+      );
+      } // END work
+    };
+
+    textare.work(request.params.url);
+
+    } // END main lambda
+); // END texta
