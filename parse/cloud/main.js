@@ -160,6 +160,10 @@ Parse.Cloud.define("texta",
             var mime_type = httpResponse.headers["Content-Type"];
             var line_count = text.split("\r\n").length;
 
+            // https://nodejsmodules.org/pkg/xmldom
+            // https://npmjs.org/package/xmldom
+            //var DOMParser = require('xmldom').DOMParser;
+            //var doc = new DOMParser();
             //document = (new global.DOMParser).parseFromString(text, mime_type);
 
             response.success(mime_type + " - [" + line_count + "] - " + text);
