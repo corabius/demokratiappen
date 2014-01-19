@@ -20,12 +20,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    uData = [[UserData alloc] init];
-
     UIGraphViewController *viewInsideOfContainer = (UIGraphViewController*)([self childViewControllers].lastObject);
     [viewInsideOfContainer setDelegate:self];
-    //[viewInsideOfContainer drawSomething];
 
+    [[UserData sharedUserData] addObserver:self forKeyPath:@"FIXME" options:0 context:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,13 +32,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)buttonPressed:(id)sender {
-    UIGraphViewController *viewInsideOfContainer = (UIGraphViewController*)([self childViewControllers].lastObject);
-    [viewInsideOfContainer drawSomething];
-}
 
 - (NSArray*) getGraphData {
-    return [uData getPartyData];
+    return [[UserData sharedUserData] getPartyData];
 }
 
 @end

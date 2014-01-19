@@ -14,7 +14,18 @@
 
 @implementation UserData
 
+// Does the pragma thing do anything?
+#pragma mark Singleton Methods
 
+// returns a singleton with all needed user data
++ (UserData*) sharedUserData {
+    @synchronized(self) {
+        if (mySharedUserData == nil) {
+            mySharedUserData = [[self alloc] init];
+        }
+    }
+    return mySharedUserData;
+}
 
 
 -(id) init {
@@ -23,21 +34,20 @@
     _partyArray = [[NSMutableArray alloc] init];
     [self populatePartyArray];
 
-    [self createAllPageQuery];
-
+    [self queryAllTagsAndPages];
+    [self queryAllPages];
+    
     return self;
 }
 
 
 -(int) getNumURLs {
-    return 5;
+    return [_pageArray count];
 }
 
 -(NSString*) getURLAtIndex:(int)index {
-    if (index == 0)
-        return @"http://www.google.com/";
-    else
-        return [NSString stringWithFormat:@"http://url/%d", index];
+    Page *page = (Page*)[_pageArray objectAtIndex:index];
+    return page.url;
 }
 
 -(NSArray*) getPartyData {
@@ -45,37 +55,69 @@
 }
 
 
-- (void) createAllPageQuery{
-
-//TODO: antagligen behöva ta ut alla url:er och sedan plocka ut taggarna i loop. Spara i NSDefaults.
-    PFQuery* allPageQuery = [Page query] ;
-
-    //Tag *socialdemokraterna = [query whereKey:@"name" equalTo:@"Socialdemokraterna"];
-
-
-
-    //[allQuery orderByAscending:@"name"];
-
-//TODO: find out why making so many requests?!
-    allPageQuery.trace = true;
-
-    [allPageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-
-        if (error == nil) {
-            self.partyArray = [NSMutableArray arrayWithArray:objects];
-            //[self.tableView reloadData];
-        }
-        else {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Tillfälligt Avbrott" message:@"Ingen förbindelse" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            
-            [alert show];
-        }
-        
-    }];
+- (void) networkError {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Tillfälligt Avbrott" message:@"Ingen förbindelse" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-    
+    [alert show];
 }
 
+
+- (void) queryAllPages {
+    PFQuery *allPagesQuery = [Page query];
+    [allPagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            [self networkError];
+            return;
+        }
+
+        [self setPageArray:[NSMutableArray arrayWithArray:objects]]; // needs to call the accessor in order to trigger KVO notififaction
+    }];
+}
+
+
+
+- (void) queryAllTagsAndPages {
+    
+    
+/*
+ PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+ 
+ // Retrieve the most recent ones
+ [query orderByDescending:@"createdAt"];
+ 
+ // Only retrieve the last ten
+ query.limit = 10;
+ 
+ // Include the post data with each comment
+ [query includeKey:@"post"];
+ 
+ [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+ // Comments now contains the last ten comments, and the "post" field
+ // has been populated. For example:
+ for (PFObject *comment in comments) {
+ // This does not require a network access.
+ PFObject *post = comment[@"post"];
+ NSLog(@"retrieved related post: %@", post);
+ }
+ }];
+ */
+    
+    PFQuery *allPagesQuery = [PFQuery queryWithClassName:@"Page"];
+    
+    [allPagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            [self networkError];
+            return;
+        }
+        
+        for (PFObject *object in objects) {
+            
+        }
+    }];
+}
+
+
+ 
 - (void) populatePartyArray{
 
     [_partyArray addObject:[[Party alloc] initWithName:@"Socialdemokraterna" acronym:@"S" plusScore:4 minusScore:2 color:@"ff0000"]];

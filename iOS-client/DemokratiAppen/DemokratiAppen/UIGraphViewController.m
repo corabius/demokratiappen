@@ -35,7 +35,7 @@
 - (void) viewWillAppear:(BOOL)animated {
     [self drawSomething];
 
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(drawSomething) userInfo:nil repeats:YES];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(drawSomething) userInfo:nil repeats:YES];
 
 }
 

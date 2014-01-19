@@ -8,15 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface UserData : NSObject
 
-//@property NSMutableArray *parties;
+// These will not change, I think. Change to NSArray?
 @property NSMutableArray *partyArray;
+@property NSMutableArray *pageArray;
 
++ (UserData*) sharedUserData;
 
 -(int) getNumURLs;
 -(NSString*) getURLAtIndex:(int)index;
 -(NSArray*) getPartyData;
 
 @end
+
+static UserData *mySharedUserData = nil;

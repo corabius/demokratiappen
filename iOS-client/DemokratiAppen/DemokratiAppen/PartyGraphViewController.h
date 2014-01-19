@@ -10,10 +10,7 @@
 #import "UserData.h"
 #import "UIGraphViewController.h"
 
-UserData *uData;
-
 @interface SecondViewController : UIViewController <GraphViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *container;
-- (IBAction)buttonPressed:(id)sender;
 - (NSArray*)getGraphData;
 @end

@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "UserData.h"
 
-UserData *uData;
-
 @interface FirstViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *urlTableView;

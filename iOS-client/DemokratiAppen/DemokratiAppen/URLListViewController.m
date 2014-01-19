@@ -20,7 +20,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    uData = [[UserData alloc] init]; // TODO: store in NSUserDefaults
+    [[UserData sharedUserData] addObserver:self forKeyPath:@"pageArray" options:0 context:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,7 +34,7 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [uData getNumURLs];
+    return [[UserData sharedUserData] getNumURLs];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -44,7 +44,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
     }
     
-    NSString *text = [uData getURLAtIndex:[indexPath row]];
+    NSString *text = [[UserData sharedUserData] getURLAtIndex:[indexPath row]];
     cell.textLabel.text = text;
     
     return cell;
@@ -57,8 +57,15 @@
         NSIndexPath *myIndexPath = [self.urlTableView indexPathForSelectedRow];
         long row = [myIndexPath row];
         
-        detailViewController.urlDetails = [uData getURLAtIndex:row];
+        detailViewController.urlDetails = [[UserData sharedUserData] getURLAtIndex:row];
     }
 }
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqual:@"pageArray"]) {
+        [_urlTableView reloadData];
+    }
+}
+
 
 @end
