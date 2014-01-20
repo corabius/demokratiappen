@@ -143,7 +143,7 @@
               </div>
             </div>
           </div>
-          <form role="form" data-ng-hide="loginService.stateLoggedIn == loginService.LOGGED_IN">
+          <form role="form" data-ng-show="loginService.stateLoggedIn == loginService.LOGGED_IN">
             <button data-ng-click="loginService.logout();" class="btn btn-default">Logga ut</button>
           </form>
         </div>
