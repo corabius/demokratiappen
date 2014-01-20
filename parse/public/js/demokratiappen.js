@@ -121,13 +121,16 @@ angular.module('democracy-app', [])
       var page = new Page();
       var currentUser = Parse.User.current();
 
-      if ($scope.addPageService.upTags.length > 0) { 
+      var upTags = $scope.addPageService.upTags;
+      var downTags = $scope.addPageService.downTags;
+
+      if (upTags.length > 0) {
         var positiveTags = page.relation("positive_tags");
-        positiveTags.add($scope.addPageService.upTags);
+        positiveTags.add(upTags);
       }
-      if ($scope.addPageService.downTags.length > 0) {
+      if (downTags.length > 0) {
         var negativeTags = page.relation("negative_tags");
-        negativeTags.add($scope.addPageService.downTags);
+        negativeTags.add(downTags);
       }
 
       page.set("title", $scope.addPageService.title);
@@ -135,13 +138,73 @@ angular.module('democracy-app', [])
       page.set("user", currentUser);
       page.setACL(new Parse.ACL(currentUser));
 
+      // Add tags to the user object, first update the tags we already have
+      var UserTag = Parse.Object.extend("UserTag");
+      for (var t = 0; t < upTags.length; t++) {
+	var tag = upTags[t];
+        var query = new Parse.Query("UserTag");
+        query.equalTo("tag", tag);
+        query.limit(1);
+        query.find({
+          success: function(previousUserTags) {
+            if (previousUserTags.length == 0) {
+              // Create new UserTag object and initialize
+	      var userTag = new UserTag();
+	      userTag.set("tag", tag);
+	      userTag.set("positiveCount", 1);
+	      userTag.set("negativeCount", 0);
+	      userTag.set("user", currentUser);
+	      userTag.setACL(new Parse.ACL(currentUser));
+	      userTag.save();
+	    }
+	    else {
+	      // Update the user tag
+	      var userTag = previousUserTags[0];
+	      userTag.set("positiveCount", userTag.get("positiveCount") + 1);
+	      userTag.save();
+	    }
+          }
+        });
+      }
+
+      // Add tags to the user object, first update the tags we already have
+      for (var t = 0; t < downTags.length; t++) {
+	var tag = upTags[t];
+
+        var query = new Parse.Query("UserTag");
+        query.equalTo("tag", tag);
+        query.limit(1);
+        query.find({
+          success: function(previousUserTags) {
+            if (previousUserTags.length == 0) {
+              // Create new UserTag object and initialize
+	      var userTag = new UserTag();
+	      userTag.set("tag", tag);
+	      userTag.set("positiveCount", 0);
+	      userTag.set("negativeCount", 1);
+	      userTag.set("user", currentUser);
+	      userTag.setACL(new Parse.ACL(currentUser));
+	      userTag.save();
+	    }
+	    else {
+	      // Update the user tag
+	      var userTag = previousUserTags[0];
+	      userTag.set("negativeCount", userTag.get("negativeCount") + 1);
+	      userTag.save();
+	    }
+          }
+        });
+      }
+
       page.save(null, {
         success: function(page) {
+          // Clear the entry from
           $scope.addPageService.title = "";
           $scope.addPageService.url = "";
           $scope.addPageService.upTags = [];
           $scope.addPageService.downTags = [];
 
+          // Remove any "error markers" from the form
           $scope.addPageForm.$setPristine();
           $rootScope.pageAddCount++;
           $scope.$apply();
