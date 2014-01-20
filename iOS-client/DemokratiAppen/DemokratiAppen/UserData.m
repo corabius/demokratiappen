@@ -14,7 +14,7 @@
 
 @implementation UserData
 
-// Does the pragma thing do anything?
+// Does the pragma thing do anything? (-> Yes, click on the purple-c-symbol on top of this page to see all methods collected under the mark)
 #pragma mark Singleton Methods
 
 // returns a singleton with all needed user data
@@ -63,6 +63,9 @@
 
 
 - (void) queryAllPages {
+
+    PFUser* user = [PFUser currentUser];
+
     PFQuery *allPagesQuery = [Page query];
     [allPagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
@@ -71,6 +74,11 @@
         }
 
         [self setPageArray:[NSMutableArray arrayWithArray:objects]]; // needs to call the accessor in order to trigger KVO notififaction
+
+        //NSLog(user);
+        //NSLog(@"pageArray, %@", objects);
+        NSLog(@"pageArray, %lu", (unsigned long)[objects count]);
+
     }];
 }
 
@@ -103,18 +111,33 @@
  */
     
     PFQuery *allPagesQuery = [PFQuery queryWithClassName:@"Page"];
+
     
     [allPagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
+
+
+        if (error == nil) {
+            self.pageArray = [NSMutableArray arrayWithArray:objects];
+
+            /*for (PFObject *object in objects) {
+            }*/
+        }
+        else {
+
             [self networkError];
+
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Tillfälligt Avbrott" message:@"Ingen förbindelse" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+
+            [alert show];
             return;
         }
-        
-        for (PFObject *object in objects) {
-            
-        }
+
     }];
 }
+
+
+
+
 
 
  

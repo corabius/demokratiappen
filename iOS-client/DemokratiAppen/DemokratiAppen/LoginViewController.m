@@ -14,9 +14,14 @@
 
 @property PFLogInViewController* parseLoginController;  //jag blir delegerad till från PF-login-kod
 
-@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
-@property (weak, nonatomic) IBOutlet UILabel *userLabel;
+@property (weak, nonatomic) IBOutlet UIButton *loginFBBtn;
+@property (weak, nonatomic) IBOutlet UIButton *logoutFBBtn;
+@property (weak, nonatomic) IBOutlet UILabel *userFBLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *loginAccountBtn;
+@property (weak, nonatomic) IBOutlet UIButton *logoutAccountBtn;
+@property (weak, nonatomic) IBOutlet UILabel *userAccountLabel;
+
 
 - (IBAction)loginAction:(id)sender;
 - (IBAction)logoutAction:(id)sender;

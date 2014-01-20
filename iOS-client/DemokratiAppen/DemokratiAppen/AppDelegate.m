@@ -27,6 +27,7 @@
     [PFFacebookUtils initializeFacebook];
 
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     return YES;
 }
 							

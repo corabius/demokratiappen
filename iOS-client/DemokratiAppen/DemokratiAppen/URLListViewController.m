@@ -19,8 +19,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
+
+    //UserData *myuser = [UserData sharedUserData];
     [[UserData sharedUserData] addObserver:self forKeyPath:@"pageArray" options:0 context:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning
