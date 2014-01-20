@@ -79,71 +79,23 @@ var readability = {
      * @return void
      **/
     init: function() {
-        /* Before we do anything, remove all scripts that are not readability. */
-        //window.onload = window.onunload = function() {};
-
-        //readability.removeScripts(document);
-
-        // if(document.body && !readability.bodyCache) {
-        //     readability.bodyCache = document.body.innerHTML;
-
-        // }
-        // /* Make sure this document is added to the list of parsed pages first, so we don't double up on the first page */
+       
+        /* Make sure this document is added to the list of parsed pages first, so we don't double up on the first page */
         readability.parsedPages[window.location.href.replace(/\/$/, '')] = true;
 
         /* Pull out any possible next page link first */
         var nextPageLink = readability.findNextPageLink(document.body);
         
-        readability.prepDocument();
+        var bestframe = readability.prepDocument();
+        dbg(bestframe);
 
-        /* Build readability's DOM tree */
-        //var overlay        = document.createElement("DIV");
-        //var innerDiv       = document.createElement("DIV");
-        // Sven var articleTools   = readability.getArticleTools();
+        /* Build (part of) readability's DOM tree */
         var articleTitle   = readability.getArticleTitle();
-        var articleContent = readability.grabArticle();
-        // Sven var articleFooter  = readability.getArticleFooter();
-
-
-        // if(!articleContent) {
-        //     articleContent    = document.createElement("DIV");
-        //     articleContent.id = "readability-content";
-        //     articleContent.innerHTML = [
-        //         "<p>Sorry, readability was unable to parse this page for content. If you feel like it should have been able to, please <a href='http://code.google.com/p/arc90labs-readability/issues/entry'>let us know by submitting an issue.</a></p>",
-        //         (readability.frameHack ? "<p><strong>It appears this page uses frames.</strong> Unfortunately, browser security properties often cause Readability to fail on pages that include frames. You may want to try running readability itself on this source page: <a href='" + readability.biggestFrame.src + "'>" + readability.biggestFrame.src + "</a></p>" : ""),
-        //         "<p>Also, please note that Readability does not play very nicely with front pages. Readability is intended to work on articles with a sizable chunk of text that you'd like to read comfortably. If you're using Readability on a landing page (like nytimes.com for example), please click into an article first before using Readability.</p>"
-        //     ].join('');
-
-        //     nextPageLink = null;
-        // }
-
-        // overlay.id              = "readOverlay";
-        // innerDiv.id             = "readInner";
-
-        // /* Glue the structure of our document together. */
-        // innerDiv.appendChild( articleTitle   );
-        // innerDiv.appendChild( articleContent );
-        // // Sven innerDiv.appendChild( articleFooter  );
-        //  overlay.appendChild( innerDiv       );
-
-        // /* Clear the old HTML, insert the new content. */
-        // document.body.innerHTML = "";
-        // document.body.insertBefore(overlay, document.body.firstChild);
-        // document.body.removeAttribute('style');
-
-        // if(readability.frameHack)
-        // {
-        //     var readOverlay = document.getElementById('readOverlay');
-        //     readOverlay.style.height = '100%';
-        //     readOverlay.style.overflow = 'auto';
-        // }
+        var articleContent = readability.grabArticle(bestframe);
+     
 
 // Sven ----------------
 var content = articleContent.innerHTML;
-// content = content.replace("<br>", "\n");
-// content = content.replace("<p>", "");
-// content = content.replace("</p>", "\n");
-// content = content + " - slut";
 scrapeResult = {
    "title" : articleTitle.innerHTML,
    "text" : content
@@ -200,7 +152,6 @@ dbg(scrapeResult.text);
         }
 
         curTitle = curTitle.replace( readability.regexps.trim, "" );
-
         if(curTitle.split(' ').length <= 4) {
             curTitle = origTitle;
         }
@@ -222,19 +173,19 @@ dbg(scrapeResult.text);
          * In some cases a body element can't be found (if the HTML is totally hosed for example)
          * so we create a new body node and append it to the document.
          */
-        if(document.body === null)
-        {
-            var body = document.createElement("body");
-            try {
-                document.body = body;       
-            }
-            catch(e) {
-                document.documentElement.appendChild(body);
-                dbg(e);
-            }
-        }
+        // if(document.body === null)
+        // {
+        //     var body = document.createElement("body");
+        //     try {
+        //         document.body = body;       
+        //     }
+        //     catch(e) {
+        //         document.documentElement.appendChild(body);
+        //         dbg(e);
+        //     }
+        // }
 
-        document.body.id = "readabilityBody";
+        // document.body.id = "readabilityBody";
 
         var frames = document.getElementsByTagName('frame');
         if(frames.length > 0)
@@ -270,33 +221,36 @@ dbg(scrapeResult.text);
 
             if(bestFrame)
             {
-                var newBody = document.createElement('body');
-                newBody.innerHTML = bestFrame.contentWindow.document.body.innerHTML;
-                newBody.style.overflow = 'scroll';
-                document.body = newBody;
+                // var newBody = document.createElement('body');
+                // newBody.innerHTML = bestFrame.contentWindow.document.body.innerHTML;
+                // newBody.style.overflow = 'scroll';
+                // document.body = newBody;
                 
-                var frameset = document.getElementsByTagName('frameset')[0];
-                if(frameset) {
-                    frameset.parentNode.removeChild(frameset); }
+                // var frameset = document.getElementsByTagName('frameset')[0];
+                // if(frameset) {
+                //     frameset.parentNode.removeChild(frameset); }
+
+                //var best = document.createElement(bestFrame.contentWindow.document.body.innerHTML);
+                //return best; // bestFrame.contentWindow.document.body.innerHTML
             }
         }
 
-        /* Remove all stylesheets */
-        for (var k=0;k < document.styleSheets.length; k++) {
-            if (document.styleSheets[k].href !== null && document.styleSheets[k].href.lastIndexOf("readability") == -1) {
-                document.styleSheets[k].disabled = true;
-            }
-        }
+        // /* Remove all stylesheets */
+        // for (var k=0;k < document.styleSheets.length; k++) {
+        //     if (document.styleSheets[k].href !== null && document.styleSheets[k].href.lastIndexOf("readability") == -1) {
+        //         document.styleSheets[k].disabled = true;
+        //     }
+        // }
 
-        /* Remove all style tags in head (not doing this on IE) - TODO: Why not? */
-        var styleTags = document.getElementsByTagName("style");
-        for (var st=0;st < styleTags.length; st++) {
-            styleTags[st].textContent = "";
-        }
+        // /* Remove all style tags in head (not doing this on IE) - TODO: Why not? */
+        // var styleTags = document.getElementsByTagName("style");
+        // for (var st=0;st < styleTags.length; st++) {
+        //     styleTags[st].textContent = "";
+        // }
 
-        /* Turn all double br's into p's */
-        /* Note, this is pretty costly as far as processing goes. Maybe optimize later. */
-        document.body.innerHTML = document.body.innerHTML.replace(readability.regexps.replaceBrs, '</p><p>').replace(readability.regexps.replaceFonts, '<$1span>');
+        // /* Turn all double br's into p's */
+        // /* Note, this is pretty costly as far as processing goes. Maybe optimize later. */
+        // document.body.innerHTML = document.body.innerHTML.replace(readability.regexps.replaceBrs, '</p><p>').replace(readability.regexps.replaceFonts, '<$1span>');
     },
 
     /**
