@@ -151,6 +151,7 @@ angular.module('democracy-app', [])
               // Create new UserTag object and initialize
 	      var userTag = new UserTag();
 	      userTag.set("tag", tag);
+	      userTag.set("name", tag.get("name"));
 	      userTag.set("positiveCount", 1);
 	      userTag.set("negativeCount", 0);
 	      userTag.set("user", currentUser);
@@ -169,7 +170,7 @@ angular.module('democracy-app', [])
 
       // Add tags to the user object, first update the tags we already have
       for (var t = 0; t < downTags.length; t++) {
-	var tag = upTags[t];
+	var tag = downTags[t];
 
         var query = new Parse.Query("UserTag");
         query.equalTo("tag", tag);
@@ -180,6 +181,7 @@ angular.module('democracy-app', [])
               // Create new UserTag object and initialize
 	      var userTag = new UserTag();
 	      userTag.set("tag", tag);
+	      userTag.set("name", tag.get("name"));
 	      userTag.set("positiveCount", 0);
 	      userTag.set("negativeCount", 1);
 	      userTag.set("user", currentUser);
@@ -234,7 +236,12 @@ angular.module('democracy-app', [])
 
 .controller('ListController', function($scope, $rootScope) {
   function queryPage() {
+    var currentUser = Parse.User.current();
+
     var query = new Parse.Query("Page");
+    query.equalTo("user", currentUser);
+    query.limit(20);
+
     query.find().then(function(articles) {
       $scope.articles = _.map(articles, function(article) {
         var a = {
@@ -271,46 +278,35 @@ angular.module('democracy-app', [])
 })
 
 .controller('StatisticsController', function($scope, $rootScope) {
-  $scope.positiveTags = [];
-  $scope.negativeTags = [];
-  $scope.tagCounts = [];
+  $scope.tags = [];
+  $scope.tagCount = 0;
 
-  var updateUI = function() {
-    var allTags = $scope.negativeTags.concat($scope.positiveTags);
-    $scope.tagCounts = _.chain(allTags).flatten().countBy(function(el) {
-      return el.get("name");
-    }).pairs().sortBy(function(el) {
-      return -el[1];
-    }).value();
-  };
- 
   function queryPage() {
-    var Page = Parse.Object.extend("Page"); 
-    var query = new Parse.Query(Page);
-    query.find({
-      success: function(articles) {
-      for (var i = 0; i < articles.length; i++) {
-        try {
-          var article = articles[i];
-          var positiveRelation = article.relation("positive_tags");
-          positiveRelation.query().find().then(function(ptags) {
-            $scope.positiveTags = $scope.positiveTags.concat(ptags);
-            updateUI();
-            $scope.$apply();
-          });
+    var UserTag = Parse.Object.extend("UserTag");
 
-          var negativeRelation = article.relation("negative_tags");
-          negativeRelation.query().find().then(function(ntags) {
-            $scope.negativeTags = $scope.negativeTags.concat(ntags);
-            updateUI();
-            $scope.$apply();
-          });
-        } catch(err) {}
+    var currentUser = Parse.User.current();
+    var query = new Parse.Query(UserTag);
+    query.equalTo("user", currentUser);
+
+    query.find({
+      success: function(tags) {
+	var tagCount = 0;
+	for (var i = 0; i < tags.length; i++) {
+	  var tag = tags[i];
+	  $scope.tags[i] = {
+	    name: tag.get("name"),
+	    positiveCount: tag.get("positiveCount"),
+	    negativeCount: tag.get("negativeCount")
+	  };
+	  tagCount += $scope.tags[i].positiveCount
+	    + $scope.tags[i].negativeCount;
+        }
+	$scope.tagCount = tagCount;
+        $scope.$apply();
       }
-    }});
+    });
   }
 
   queryPage();
   $rootScope.$watch('pageAddCount', queryPage);
 });
-

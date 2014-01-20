@@ -81,19 +81,20 @@
           <table>
           <thead>
             <tr>
-              <th>Etikett</th>
-              <th>Antal gånger</th>
+              <th>Namn</th>
+              <th>&nbsp;</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
-          <tbody data-ng-repeat="stat in tagCounts">
+          <tbody data-ng-repeat="tag in tags">
           <tr>
-            <td data-ng-bind="stat[0]">
-            </td>
-            <td data-ng-bind="stat[1]">
+            <td data-ng-bind="tag.name">
             </td>
             <td>
-              <div style="width: {{250*stat[1]/tagCounts[0][1]}}px;background-color: green;height: 1em;"></div>
+              <div style="float:right; width: {{250*tag.negativeCount/tagCount}}px; background-color: red; height: 1em;"></div>
+            </td>
+            <td>
+              <div style="width: {{250*tag.positiveCount/tagCount}}px; background-color: green; height: 1em;"></div>
             </td>
           </tbody>
           </table>
