@@ -1,4 +1,4 @@
 function init_demokratiappen() {
-	Parse.initialize(global.applications.Demokratiappen.applicationId,
-	                 global.applications.Demokratiappen.javascriptKey);
+	Parse.initialize(APPLICATION_ID,
+	                 JAVASCRIPT_KEY);
 }
