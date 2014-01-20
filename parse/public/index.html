@@ -44,11 +44,15 @@
 
             Taggar:
             <script type="text/ng-template" id="tag.html">
-              <button type="button" class="btn btn-default" data-ng-click="toggleTagUp(tag)">
+              <button type="button" data-ng-click="tag.up = !tag.up"
+                    ng-disabled="tag.down" ng-class="{btn: true, 'btn-default': true,
+                    'da-bg-green': tag.up}">
                 <span class="glyphicon glyphicon-chevron-up"></span>
               </button>
-              <button type="button" class="btn btn-default">{{tag.get("name")}}</button>
-              <button type="button" class="btn btn-default" data-ng-click="toggleTagDown(tag)">
+              <button type="button" class="btn btn-default" ng-click="resetTag(tag)">{{tag.get("name")}}</button>
+              <button type="button" data-ng-click="tag.down = !tag.down"
+                    ng-disabled="tag.up" ng-class="{btn: true, 'btn-default': true,
+                    'da-bg-red': tag.down}">
                 <span class="glyphicon glyphicon-chevron-down"></span>
               </button>
             </script> 
@@ -139,7 +143,7 @@
               </div>
             </div>
           </div>
-          <form role="form" data-ng-hide="loginService.state == 0">
+          <form role="form" data-ng-hide="loginService.stateLoggedIn == loginService.LOGGED_IN">
             <button data-ng-click="loginService.logout();" class="btn btn-default">Logga ut</button>
           </form>
         </div>

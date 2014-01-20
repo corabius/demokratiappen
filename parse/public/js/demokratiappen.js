@@ -104,8 +104,6 @@ angular.module('democracy-app', [])
   var obj = {}
   obj.url = '';
   obj.title = '';
-  obj.upTags = [];
-  obj.downTags = [];
 
   return obj;
 })
@@ -121,10 +119,20 @@ angular.module('democracy-app', [])
       var page = new Page();
       var currentUser = Parse.User.current();
 
-      var upTags = $scope.addPageService.upTags;
-      var downTags = $scope.addPageService.downTags;
-
-      if (upTags.length > 0) {
+      var tagCount = $scope.tags.length;
+      var upTags = [];
+      var downTags = [];
+      for (var index = 0; index < tagCount; index++) {
+        var tag = $scope.tags[index];
+        if (tag.up) {
+          upTags = upTags.concat(tag);
+        } else if (tag.down) {
+          downTags = downTags.concat(tag);
+        }
+        delete tag.up;
+        delete tag.down;
+      }
+      if (upTags.length > 0) { 
         var positiveTags = page.relation("positive_tags");
         positiveTags.add(upTags);
       }
@@ -203,10 +211,6 @@ angular.module('democracy-app', [])
           // Clear the entry from
           $scope.addPageService.title = "";
           $scope.addPageService.url = "";
-          $scope.addPageService.upTags = [];
-          $scope.addPageService.downTags = [];
-
-          // Remove any "error markers" from the form
           $scope.addPageForm.$setPristine();
           $rootScope.pageAddCount++;
           $scope.$apply();
@@ -220,12 +224,10 @@ angular.module('democracy-app', [])
     }
   };
 
-  $scope.toggleTagUp = function(tag) {
-    $scope.addPageService.upTags = $scope.addPageService.upTags.concat(tag);
-  }
-  $scope.toggleTagDown = function(tag) {
-    $scope.addPageService.downTags = $scope.addPageService.downTags.concat(tag);
-  }
+  $scope.resetTag = function(tag) {
+    tag.up = false;
+    tag.down = false;
+  };
 
   var query = new Parse.Query("Tag");
   query.find().then(function(tags) {
