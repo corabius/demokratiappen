@@ -110,8 +110,10 @@ angular.module('democracy-app', [])
   return obj;
 })
 
-.controller('AddPageController', function($scope, AddPageService) {
+.controller('AddPageController', function($scope, $rootScope, AddPageService) {
   $scope.addPageService = AddPageService;
+  $rootScope.pageAddCount = 0;
+
   $scope.post = function () {
     if (($scope.addPageService.title.length > 0)
         && ($scope.addPageService.url.length > 0)) {
@@ -141,6 +143,7 @@ angular.module('democracy-app', [])
           $scope.addPageService.downTags = [];
 
           $scope.addPageForm.$setPristine();
+          $rootScope.pageAddCount++;
           $scope.$apply();
         },
         error: function(page, error) {
@@ -166,41 +169,45 @@ angular.module('democracy-app', [])
   });
 })
 
-.controller('ListController', function($scope) {
-  var query = new Parse.Query("Page");
-  query.find().then(function(articles) {
-    $scope.articles = _.map(articles, function(article) {
-      var a = {
-        title: article.get("title"),
-        url: article.get("url"),
-        tags: [ ]
-      };
+.controller('ListController', function($scope, $rootScope) {
+  function queryPage() {
+    var query = new Parse.Query("Page");
+    query.find().then(function(articles) {
+      $scope.articles = _.map(articles, function(article) {
+        var a = {
+          title: article.get("title"),
+          url: article.get("url"),
+          tags: [ ]
+        };
 
-      var positiveRelation = article.relation("positive_tags");
-      positiveRelation.query().find().then(function(ptags) {
-        a.tags = a.tags.concat(_.map(ptags, function(tag) {
-          return {name: tag.get("name"), type: 'success' };
-        }));
-        $scope.$apply();
+        var positiveRelation = article.relation("positive_tags");
+        positiveRelation.query().find().then(function(ptags) {
+          a.tags = a.tags.concat(_.map(ptags, function(tag) {
+            return {name: tag.get("name"), type: 'success' };
+          }));
+          $scope.$apply();
+        });
+
+        var negativeRelation = article.relation("negative_tags");
+        negativeRelation.query().find().then(function(ntags) {
+          a.tags = a.tags.concat(_.map(ntags, function(tag) {
+            return {name: tag.get("name"), type: 'danger' };
+          }));
+          $scope.$apply();
+        });
+
+        return a;
       });
 
-      var negativeRelation = article.relation("negative_tags");
-      negativeRelation.query().find().then(function(ntags) {
-        a.tags = a.tags.concat(_.map(ntags, function(tag) {
-          return {name: tag.get("name"), type: 'danger' };
-        }));
-        $scope.$apply();
-      });
-
-      return a;
+      $scope.$apply();
     });
-
-    $scope.$apply();
-  });
-
+  }
+  
+  queryPage();
+  $rootScope.$watch('pageAddCount', queryPage);
 })
 
-.controller('StatisticsController', function($scope) {
+.controller('StatisticsController', function($scope, $rootScope) {
   $scope.positiveTags = [];
   $scope.negativeTags = [];
   $scope.tagCounts = [];
@@ -214,28 +221,33 @@ angular.module('democracy-app', [])
     }).value();
   };
  
-  var Page = Parse.Object.extend("Page"); 
-  var query = new Parse.Query(Page);
-  query.find({
-    success: function(articles) {
-    for (var i = 0; i < articles.length; i++) {
-      try {
-        var article = articles[i];
-        var positiveRelation = article.relation("positive_tags");
-        positiveRelation.query().find().then(function(ptags) {
-          $scope.positiveTags = $scope.positiveTags.concat(ptags);
-          updateUI();
-          $scope.$apply();
-        });
+  function queryPage() {
+    var Page = Parse.Object.extend("Page"); 
+    var query = new Parse.Query(Page);
+    query.find({
+      success: function(articles) {
+      for (var i = 0; i < articles.length; i++) {
+        try {
+          var article = articles[i];
+          var positiveRelation = article.relation("positive_tags");
+          positiveRelation.query().find().then(function(ptags) {
+            $scope.positiveTags = $scope.positiveTags.concat(ptags);
+            updateUI();
+            $scope.$apply();
+          });
 
-        var negativeRelation = article.relation("negative_tags");
-        negativeRelation.query().find().then(function(ntags) {
-          $scope.negativeTags = $scope.negativeTags.concat(ntags);
-          updateUI();
-          $scope.$apply();
-        });
-      } catch(err) {}
-    }
-  }});
+          var negativeRelation = article.relation("negative_tags");
+          negativeRelation.query().find().then(function(ntags) {
+            $scope.negativeTags = $scope.negativeTags.concat(ntags);
+            updateUI();
+            $scope.$apply();
+          });
+        } catch(err) {}
+      }
+    }});
+  }
+
+  queryPage();
+  $rootScope.$watch('pageAddCount', queryPage);
 });
 
