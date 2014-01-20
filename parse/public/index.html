@@ -62,8 +62,34 @@
           </form>
         </div>
 
+        <div data-ng-controller="StatisticsController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
+          <h2>Statistik</h2>
+          <table>
+          <thead>
+            <tr>
+              <th>Tag</th>
+              <th>Negativt</th>
+              <th>/</th>
+              <th>Positivt</th>
+            </tr>
+          </thead>
+          <tbody data-ng-repeat="tag in tags">
+          <tr>
+            <td data-ng-bind="tag.name">
+            </td>
+            <td>
+              <div style="float:right; width: {{250*tag.negativeCount/tagCount}}px; background-color: red; height: 1em;"></div>
+            </td>
+	    <td></td>
+            <td>
+              <div style="width: {{250*tag.positiveCount/tagCount}}px; background-color: green; height: 1em;"></div>
+            </td>
+          </tbody>
+          </table>
+        </div>
+
         <div data-ng-controller="ListController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
-          <h2>Dina artiklar</h2>
+          <h2>Dina senaste artiklar</h2>
           <div data-ng-repeat="article in articles" class="article">
             <h2>
               <a href="{{article.url}}" data-ng-bind="article.title"></a>
@@ -74,30 +100,6 @@
               </span>
             </div>
           </div>
-        </div>
-
-        <div data-ng-controller="StatisticsController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
-          <h2>Statistik</h2>
-          <table>
-          <thead>
-            <tr>
-              <th>Namn</th>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody data-ng-repeat="tag in tags">
-          <tr>
-            <td data-ng-bind="tag.name">
-            </td>
-            <td>
-              <div style="float:right; width: {{250*tag.negativeCount/tagCount}}px; background-color: red; height: 1em;"></div>
-            </td>
-            <td>
-              <div style="width: {{250*tag.positiveCount/tagCount}}px; background-color: green; height: 1em;"></div>
-            </td>
-          </tbody>
-          </table>
         </div>
 
         <div data-ng-controller="LoginController">
