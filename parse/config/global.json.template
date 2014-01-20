@@ -1,8 +1,11 @@
 {
     "applications": {
         "Demokratiappen": {
-            "applicationId": "ENTER-APPLICATION-ID-HERE",
-            "masterKey": "ENTER-MASTER-KEY-HERE"
+            "applicationId":   "ENTER_APPLICATION_ID_HERE",
+            "masterKey":       "ENTER_MASTER_KEY_HERE",
+            "javascriptKey":   "JAVASCRIPT_KEY",
+            "saploApiKey":     "SAPLO_API_KEY",
+            "saploSecretKey":  "SAPLO_SECTRET_KEY"
         },
         "_default": {
             "link": "Demokratiappen"
