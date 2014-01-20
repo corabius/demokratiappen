@@ -236,8 +236,12 @@ angular.module('democracy-app', [])
   });
 })
 
-.controller('ListController', function($scope, $rootScope) {
+.controller('ListController', function($scope, $rootScope, LoginService) {
   function queryPage() {
+    if (LoginService.stateLoggedIn != LoginService.LOGGED_IN) {
+      return;
+    }
+
     var currentUser = Parse.User.current();
 
     var query = new Parse.Query("Page");
@@ -275,15 +279,19 @@ angular.module('democracy-app', [])
     });
   }
   
-  queryPage();
+  $rootScope.$watch(function() { return LoginService.stateLoggedIn; }, queryPage);
   $rootScope.$watch('pageAddCount', queryPage);
 })
 
-.controller('StatisticsController', function($scope, $rootScope) {
+.controller('StatisticsController', function($scope, $rootScope, LoginService) {
   $scope.tags = [];
   $scope.tagCount = 0;
 
   function queryPage() {
+    if (LoginService.stateLoggedIn != LoginService.LOGGED_IN) {
+      return;
+    }
+
     var UserTag = Parse.Object.extend("UserTag");
 
     var currentUser = Parse.User.current();
@@ -309,6 +317,6 @@ angular.module('democracy-app', [])
     });
   }
 
-  queryPage();
+  $rootScope.$watch(function() { return LoginService.stateLoggedIn; }, queryPage);
   $rootScope.$watch('pageAddCount', queryPage);
 });
