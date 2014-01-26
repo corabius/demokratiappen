@@ -1,3 +1,15 @@
+.da-bg-green, .da-bg-green:hover, .da-bg-green:focus {
+  background-color: #4F4;
+}
+
+.da-bg-red, .da-bg-red:hover, .da-bg-red:focus {
+  background-color: #F44;
+}
+
+.btn-default[disabled] {
+  background-color: #BBB;
+}
+
 .md-modal {
     max-width: 480px;
     max-height: 100%;
