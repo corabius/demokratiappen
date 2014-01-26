@@ -3,7 +3,7 @@ var dbg = (typeof console !== 'undefined') ? function(s) {
 } : function() {};
 
 /*
- * Scrape: Readability script stripped to return just the page title and main text.
+ * Scrape: Readability script stripped to return just the page title and main text for Demokratiappen.
  * 
  * Use bookmark link:
  * javascript:(function(){_readability_script=document.createElement('SCRIPT');_readability_script.type='text/javascript';_readability_script.src='path/to/Scrape.js';document.getElementsByTagName('head')[0].appendChild(_readability_script);})();
@@ -24,7 +24,6 @@ var readability = {
     version:                '1.7.1',
     emailSrc:               'http://lab.arc90.com/experiments/readability/email.php',
     iframeLoads:             0,
-    // Sven convertLinksToFootnotes: false,
     frameHack:               false, /**
                                       * The frame hack is to workaround a firefox bug where if you
                                       * pull content out of a frame and stick it into the parent element, the scrollbar won't appear.
@@ -79,31 +78,35 @@ var readability = {
      * @return void
      **/
     init: function() {
-       
-        /* Make sure this document is added to the list of parsed pages first, so we don't double up on the first page */
+
+        // /* Make sure this document is added to the list of parsed pages first, so we don't double up on the first page */
         readability.parsedPages[window.location.href.replace(/\/$/, '')] = true;
 
         /* Pull out any possible next page link first */
         var nextPageLink = readability.findNextPageLink(document.body);
         
-        var bestframe = readability.prepDocument();
-        dbg(bestframe);
+        readability.prepDocument();
 
-        /* Build (part of) readability's DOM tree */
+        /* Build readability's DOM tree */
         var articleTitle   = readability.getArticleTitle();
-        var articleContent = readability.grabArticle(bestframe);
-     
+        var articleContent = readability.grabArticle();
 
-// Sven ----------------
-var content = articleContent.innerHTML;
-scrapeResult = {
-   "title" : articleTitle.innerHTML,
-   "text" : content
-};
+        // Demokratiappen
+        var content = articleContent.innerHTML;
+        content = content.replace(/<\/?div[^>]*>/gi, ''); 
+        //content = content.replace(/<\/div>/gi, ''); 
+        content = content.replace(/<br>/gi, ' '); 
+        content = content.replace(/<\/?p>/gi, ' ');
+        content = content.replace(/<\/?strong>/gi, '');
+        content = content.replace(/<\/?a[^>]*>/gi, ''); 
+        // content = content + " - slut";
+        scrapeResult = {
+           "title" : articleTitle.innerHTML,
+           "text" : content
+        };
 
-dbg(scrapeResult.title);
-dbg(scrapeResult.text);
-// ---------------------
+        return scrapeResult
+        // Demokratiappen
 
     } // init
     ,
@@ -152,6 +155,7 @@ dbg(scrapeResult.text);
         }
 
         curTitle = curTitle.replace( readability.regexps.trim, "" );
+
         if(curTitle.split(' ').length <= 4) {
             curTitle = origTitle;
         }
@@ -173,19 +177,19 @@ dbg(scrapeResult.text);
          * In some cases a body element can't be found (if the HTML is totally hosed for example)
          * so we create a new body node and append it to the document.
          */
-        // if(document.body === null)
-        // {
-        //     var body = document.createElement("body");
-        //     try {
-        //         document.body = body;       
-        //     }
-        //     catch(e) {
-        //         document.documentElement.appendChild(body);
-        //         dbg(e);
-        //     }
-        // }
+        if(document.body === null)
+        {
+            var body = document.createElement("body");
+            try {
+                document.body = body;       
+            }
+            catch(e) {
+                document.documentElement.appendChild(body);
+                dbg(e);
+            }
+        }
 
-        // document.body.id = "readabilityBody";
+        document.body.id = "readabilityBody";
 
         var frames = document.getElementsByTagName('frame');
         if(frames.length > 0)
@@ -221,45 +225,34 @@ dbg(scrapeResult.text);
 
             if(bestFrame)
             {
-                // var newBody = document.createElement('body');
-                // newBody.innerHTML = bestFrame.contentWindow.document.body.innerHTML;
-                // newBody.style.overflow = 'scroll';
-                // document.body = newBody;
+                var newBody = document.createElement('body');
+                newBody.innerHTML = bestFrame.contentWindow.document.body.innerHTML;
+                newBody.style.overflow = 'scroll';
+                document.body = newBody;
                 
-                // var frameset = document.getElementsByTagName('frameset')[0];
-                // if(frameset) {
-                //     frameset.parentNode.removeChild(frameset); }
-
-                //var best = document.createElement(bestFrame.contentWindow.document.body.innerHTML);
-                //return best; // bestFrame.contentWindow.document.body.innerHTML
+                var frameset = document.getElementsByTagName('frameset')[0];
+                if(frameset) {
+                    frameset.parentNode.removeChild(frameset); }
             }
         }
 
-        // /* Remove all stylesheets */
-        // for (var k=0;k < document.styleSheets.length; k++) {
-        //     if (document.styleSheets[k].href !== null && document.styleSheets[k].href.lastIndexOf("readability") == -1) {
-        //         document.styleSheets[k].disabled = true;
-        //     }
-        // }
+        /* Remove all stylesheets */
+        for (var k=0;k < document.styleSheets.length; k++) {
+            if (document.styleSheets[k].href !== null && document.styleSheets[k].href.lastIndexOf("readability") == -1) {
+                document.styleSheets[k].disabled = true;
+            }
+        }
 
-        // /* Remove all style tags in head (not doing this on IE) - TODO: Why not? */
-        // var styleTags = document.getElementsByTagName("style");
-        // for (var st=0;st < styleTags.length; st++) {
-        //     styleTags[st].textContent = "";
-        // }
+        /* Remove all style tags in head (not doing this on IE) - TODO: Why not? */
+        var styleTags = document.getElementsByTagName("style");
+        for (var st=0;st < styleTags.length; st++) {
+            styleTags[st].textContent = "";
+        }
 
-        // /* Turn all double br's into p's */
-        // /* Note, this is pretty costly as far as processing goes. Maybe optimize later. */
-        // document.body.innerHTML = document.body.innerHTML.replace(readability.regexps.replaceBrs, '</p><p>').replace(readability.regexps.replaceFonts, '<$1span>');
+        /* Turn all double br's into p's */
+        /* Note, this is pretty costly as far as processing goes. Maybe optimize later. */
+        document.body.innerHTML = document.body.innerHTML.replace(readability.regexps.replaceBrs, '</p><p>').replace(readability.regexps.replaceFonts, '<$1span>');
     },
-
-    /**
-     * For easier reading, convert this document to have footnotes at the bottom rather than inline links.
-     * @see http://www.roughtype.com/archives/2010/05/experiments_in.php
-     *
-     * @return void
-    **/
-
 
     /**
      * Prepare the article node for display. Clean out any inline styles,
@@ -1178,7 +1171,6 @@ dbg(scrapeResult.text);
         }
     },
 
-    
     htmlspecialchars: function (s) {
         if (typeof(s) == "string") {
             s = s.replace(/&/g, "&amp;");
@@ -1205,6 +1197,28 @@ dbg(scrapeResult.text);
     
 };
 
-readability.init();
+// readability.init();
+// End of Readability (originally line 1830)
 
-// Ursprungligen rad c:a 1830
+var demokratiappen = {
+    init: function() {
+      var scrapeResult = readability.init();
+
+      window.setTimeout(
+        function() { demokratiappen.visa(scrapeResult); },
+        100
+      );        
+    },
+    visa: function(scrapeResult){
+      // TODO: Use the result
+      dbg(scrapeResult.title);
+      dbg(scrapeResult.text);
+
+      // TODO: Reload original page
+      //window.location.reload();
+    }
+};
+
+demokratiappen.init();
+
+// EOF
