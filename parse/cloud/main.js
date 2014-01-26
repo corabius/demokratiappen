@@ -1,3 +1,4 @@
+var saplo = require('cloud/saplo');  // relative to root path of parse
 
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // For example:
@@ -23,6 +24,11 @@ For questions ask Rasmus or Sven
 */
 
 
+Parse.Cloud.define("taggaMer",
+  function(request, response) {
+    saplo.extractTags(request, response);
+  }
+);
 
 
 Parse.Cloud.define("tagga",

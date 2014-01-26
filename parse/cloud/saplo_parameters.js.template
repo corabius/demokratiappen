@@ -1,0 +1,6 @@
+var saploKeys = {
+  "saploApiKey":    "SAPLO_API_KEY",
+  "saploSecretKey": "SAPLO_SECTRET_KEY"
+};
+
+exports.saploKeys = saploKeys;
