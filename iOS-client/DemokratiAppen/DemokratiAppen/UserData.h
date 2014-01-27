@@ -13,10 +13,13 @@
 // These will not change, I think. Change to NSArray?
 @property NSMutableArray *partyArray;
 @property NSMutableArray *pageArray;
+@property NSMutableArray *userTagsArray;
+
 
 + (UserData*) sharedUserData;
 
 -(int) getNumURLs;
+-(int) getNumUserTags;
 -(NSString*) getURLAtIndex:(int)index;
 -(NSString*) getTitleAtIndex:(int)index;
 -(NSArray*) getPartyData;

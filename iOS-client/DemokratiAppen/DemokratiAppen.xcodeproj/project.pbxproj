@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B04EF8D1896D9E900A1F456 /* UserTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04EF8C1896D9E900A1F456 /* UserTag.m */; };
 		3BC79278188298C8005C9BBA /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC79277188298C8005C9BBA /* Page.m */; };
 		3BC7927B1882A054005C9BBA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927218829516005C9BBA /* FacebookSDK.framework */; };
 		3BC7927C1882A05B005C9BBA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927318829516005C9BBA /* Parse.framework */; };
@@ -49,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B04EF8B1896D9E900A1F456 /* UserTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTag.h; sourceTree = "<group>"; };
+		3B04EF8C1896D9E900A1F456 /* UserTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTag.m; sourceTree = "<group>"; };
 		3BC7927218829516005C9BBA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3BC7927318829516005C9BBA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		3BC79276188298C7005C9BBA /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				55A82E54188170A9004F2383 /* AppDelegate.m */,
 				3BC792871882D502005C9BBA /* Tag.h */,
 				3BC792881882D502005C9BBA /* Tag.m */,
+				3B04EF8B1896D9E900A1F456 /* UserTag.h */,
+				3B04EF8C1896D9E900A1F456 /* UserTag.m */,
 				3BC79276188298C7005C9BBA /* Page.h */,
 				3BC79277188298C8005C9BBA /* Page.m */,
 				55A82E56188170A9004F2383 /* Main.storyboard */,
@@ -326,6 +331,7 @@
 				3BC792891882D502005C9BBA /* Tag.m in Sources */,
 				55A82E5B188170A9004F2383 /* URLListViewController.m in Sources */,
 				55A82E7E1881742A004F2383 /* UserData.m in Sources */,
+				3B04EF8D1896D9E900A1F456 /* UserTag.m in Sources */,
 				55A82E51188170A9004F2383 /* main.m in Sources */,
 				55A82E8418819BEB004F2383 /* Party.m in Sources */,
 				3BC7928C1882D730005C9BBA /* LoginViewController.m in Sources */,

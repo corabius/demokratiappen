@@ -10,6 +10,7 @@
 #import "Party.h"
 #import <Parse/Parse.h>
 #import "Tag.h"
+#import "UserTag.h"
 #import "Page.h"
 
 @implementation UserData
@@ -35,6 +36,7 @@
     [self populatePartyArray];
 
     [self queryAllTagsAndPages];
+    [self queryAllUserTags];
     [self queryAllPages];
     
     return self;
@@ -44,6 +46,10 @@
 -(int) getNumURLs {
     return [_pageArray count];
 }
+-(int) getNumUserTags {
+    return [_userTagsArray count];
+}
+
 
 -(NSString*) getURLAtIndex:(int)index {
     Page *page = (Page*)[_pageArray objectAtIndex:index];
@@ -130,10 +136,6 @@
         else {
 
             [self networkError];
-
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Tillfälligt Avbrott" message:@"Ingen förbindelse" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-
-            [alert show];
             return;
         }
 
@@ -143,6 +145,29 @@
 
 
 
+- (void) queryAllUserTags {
+
+    PFQuery *allUserTagsQuery = [PFQuery queryWithClassName:@"UserTags"];
+
+
+    [allUserTagsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+
+
+        if (error == nil) {
+            self.userTagsArray = [NSMutableArray arrayWithArray:objects];
+
+            /*for (PFObject *object in objects) {
+             }*/
+        }
+        else {
+
+            [self networkError];
+            return;
+        }
+        
+    }];
+
+}
 
 
  
