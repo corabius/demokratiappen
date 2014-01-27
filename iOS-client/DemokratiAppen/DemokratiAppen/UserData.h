@@ -19,9 +19,15 @@
 + (UserData*) sharedUserData;
 
 -(int) getNumURLs;
--(int) getNumUserTags;
 -(NSString*) getURLAtIndex:(int)index;
 -(NSString*) getTitleAtIndex:(int)index;
+
+
+-(int) getNumUserTags;
+-(int) getPositiveCount:(int)index;
+-(int) getNegativeCount:(int)index;
+-(NSString*) getNameAtIndex:(int)index;
+
 -(NSArray*) getPartyData;
 
 @end

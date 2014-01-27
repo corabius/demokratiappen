@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "Page.h"
 #import "Tag.h"
+#import "UserTag.h"
 
 @implementation AppDelegate
 
@@ -19,6 +20,7 @@
     // Registrera våra klasser
     [Page registerSubclass];
     [Tag registerSubclass];
+    [UserTag registerSubclass];
 
     [Parse setApplicationId:@"p7Nu6RZkIlnGUfofyOvms99yDnehPjzHg18OuFra"
                   clientKey:@"jGbdwHMTsG4KRT96YjNf8fr1vEXdKuj94zF2p4wf"];

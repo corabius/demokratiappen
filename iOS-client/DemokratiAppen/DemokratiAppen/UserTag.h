@@ -8,12 +8,13 @@
 
 
 #import <Parse/Parse.h>
+#import "UserTag.h"
 
 @interface UserTag : PFObject <PFSubclassing>
 
 @property NSString *name;
-@property int *negativeCount;
-@property int *positiveCount;
+@property int negativeCount;
+@property int positiveCount;
 //@property Tag *tag;
 //@property User *user;
 

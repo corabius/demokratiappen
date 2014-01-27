@@ -107,6 +107,63 @@
             </objects>
             <point key="canvasLocation" x="1569" y="-138"/>
         </scene>
+        <!--User Tags List View Controller - Taggar-->
+        <scene sceneID="tw5-mx-gjW">
+            <objects>
+                <tableViewController id="kqJ-78-Xr4" customClass="UserTagsListViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="s1e-1Y-ISf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserTagCell" textLabel="Rtv-y5-SAB" detailTextLabel="do8-EW-MfQ" style="IBUITableViewCellStyleSubtitle" id="zM8-QD-tXn">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zM8-QD-tXn" id="gBk-IW-cR0">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rtv-y5-SAB">
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="do8-EW-MfQ">
+                                            <rect key="frame" x="15" y="25" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Taggar" id="UtC-Pc-SUS"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TiI-lu-ruM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-24" y="1044"/>
+        </scene>
+        <!--Navigation Controller - Tagglista-->
+        <scene sceneID="09q-Ja-GZv">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="MlA-Xw-vDs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Tagglista" id="z85-Ar-P7p"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7yT-C3-DPn">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="kqJ-78-Xr4" kind="relationship" relationship="rootViewController" id="xE6-uh-dHM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HtP-6D-c7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-558" y="1044"/>
+        </scene>
         <!--Login View Controller - Logga in-->
         <scene sceneID="8Hb-tg-yHI">
             <objects>
@@ -247,12 +304,13 @@
                     <connections>
                         <segue destination="QUy-BD-bpt" kind="relationship" relationship="viewControllers" id="Zx4-Cs-si1"/>
                         <segue destination="3lY-bp-gJC" kind="relationship" relationship="viewControllers" id="O9V-0i-3m8"/>
+                        <segue destination="MlA-Xw-vDs" kind="relationship" relationship="viewControllers" id="hz4-h0-roh"/>
                         <segue destination="Qa6-m4-wM7" kind="relationship" relationship="viewControllers" id="n4j-uG-BVd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="180"/>
+            <point key="canvasLocation" x="140" y="86"/>
         </scene>
         <!--Navigation Controller - URL List-->
         <scene sceneID="m0j-Hl-c9d">

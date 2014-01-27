@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B04EF8D1896D9E900A1F456 /* UserTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04EF8C1896D9E900A1F456 /* UserTag.m */; };
+		3B04EF901896E0D700A1F456 /* UserTagsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */; };
 		3BC79278188298C8005C9BBA /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC79277188298C8005C9BBA /* Page.m */; };
 		3BC7927B1882A054005C9BBA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927218829516005C9BBA /* FacebookSDK.framework */; };
 		3BC7927C1882A05B005C9BBA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927318829516005C9BBA /* Parse.framework */; };
@@ -52,6 +53,8 @@
 /* Begin PBXFileReference section */
 		3B04EF8B1896D9E900A1F456 /* UserTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTag.h; sourceTree = "<group>"; };
 		3B04EF8C1896D9E900A1F456 /* UserTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTag.m; sourceTree = "<group>"; };
+		3B04EF8E1896E0D700A1F456 /* UserTagsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTagsListViewController.h; sourceTree = "<group>"; };
+		3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTagsListViewController.m; sourceTree = "<group>"; };
 		3BC7927218829516005C9BBA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3BC7927318829516005C9BBA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		3BC79276188298C7005C9BBA /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
@@ -178,8 +181,6 @@
 				55A82E56188170A9004F2383 /* Main.storyboard */,
 				3BC7928A1882D730005C9BBA /* LoginViewController.h */,
 				3BC7928B1882D730005C9BBA /* LoginViewController.m */,
-				55A82E59188170A9004F2383 /* URLListViewController.h */,
-				55A82E5A188170A9004F2383 /* URLListViewController.m */,
 				55A5270318828FF8009207E2 /* UIGraphView.xib */,
 				55A5270418828FF8009207E2 /* UIGraphViewController.h */,
 				55A5270518828FF8009207E2 /* UIGraphViewController.m */,
@@ -193,6 +194,10 @@
 				55A82E8318819BEB004F2383 /* Party.m */,
 				55A82E7F18818932004F2383 /* URLDetailViewController.h */,
 				55A82E8018818932004F2383 /* URLDetailViewController.m */,
+				55A82E59188170A9004F2383 /* URLListViewController.h */,
+				55A82E5A188170A9004F2383 /* URLListViewController.m */,
+				3B04EF8E1896E0D700A1F456 /* UserTagsListViewController.h */,
+				3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */,
 			);
 			path = DemokratiAppen;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55A5270718828FF8009207E2 /* UIGraphViewController.m in Sources */,
+				3B04EF901896E0D700A1F456 /* UserTagsListViewController.m in Sources */,
 				55A82E5E188170A9004F2383 /* PartyGraphViewController.m in Sources */,
 				55A82E55188170A9004F2383 /* AppDelegate.m in Sources */,
 				3BC79278188298C8005C9BBA /* Page.m in Sources */,

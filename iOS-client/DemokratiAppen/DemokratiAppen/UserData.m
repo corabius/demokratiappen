@@ -46,11 +46,6 @@
 -(int) getNumURLs {
     return [_pageArray count];
 }
--(int) getNumUserTags {
-    return [_userTagsArray count];
-}
-
-
 -(NSString*) getURLAtIndex:(int)index {
     Page *page = (Page*)[_pageArray objectAtIndex:index];
     return page.url;
@@ -59,6 +54,25 @@
     Page *page = (Page*)[_pageArray objectAtIndex:index];
     return page.title;
 }
+
+
+
+-(int) getNumUserTags {
+    return [_userTagsArray count];
+}
+-(NSString*) getNameAtIndex:(int)index {
+    UserTag *userTag = (UserTag*)[_userTagsArray objectAtIndex:index];
+    return userTag.name;
+}
+-(int) getPositiveCount:(int)index{
+    UserTag *userTag = (UserTag*)[_userTagsArray objectAtIndex:index];
+    return userTag.positiveCount;
+}
+-(int) getNegativeCount:(int)index{
+    UserTag *userTag = (UserTag*)[_userTagsArray objectAtIndex:index];
+    return userTag.negativeCount;
+}
+
 
 
 -(NSArray*) getPartyData {
@@ -147,17 +161,18 @@
 
 - (void) queryAllUserTags {
 
-    PFQuery *allUserTagsQuery = [PFQuery queryWithClassName:@"UserTags"];
-
+    PFQuery *allUserTagsQuery = [UserTag query];
 
     [allUserTagsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-
 
         if (error == nil) {
             self.userTagsArray = [NSMutableArray arrayWithArray:objects];
 
+            NSLog(@"userTagsArray, %lu", (unsigned long)[objects count]);
+
             /*for (PFObject *object in objects) {
-             }*/
+                 NSLog(@"queryAllUsrTags @%", object.updatedAt);
+            }*/
         }
         else {
 
