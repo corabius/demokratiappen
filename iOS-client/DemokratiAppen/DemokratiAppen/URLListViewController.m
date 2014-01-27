@@ -45,9 +45,12 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
     }
-    
-    NSString *text = [[UserData sharedUserData] getURLAtIndex:[indexPath row]];
-    cell.textLabel.text = text;
+
+    NSString *title = [[UserData sharedUserData] getTitleAtIndex:[indexPath row]];
+    NSString *url = [[UserData sharedUserData] getURLAtIndex:[indexPath row]];
+
+    cell.textLabel.text = title;
+    cell.detailTextLabel.text = url;
     
     return cell;
 }

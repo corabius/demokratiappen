@@ -49,6 +49,11 @@
     Page *page = (Page*)[_pageArray objectAtIndex:index];
     return page.url;
 }
+-(NSString*) getTitleAtIndex:(int)index {
+    Page *page = (Page*)[_pageArray objectAtIndex:index];
+    return page.title;
+}
+
 
 -(NSArray*) getPartyData {
     return [NSArray arrayWithArray:_partyArray];

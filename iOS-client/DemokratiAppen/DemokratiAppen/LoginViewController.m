@@ -23,8 +23,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *userAccountLabel;
 
 
-- (IBAction)loginAction:(id)sender;
-- (IBAction)logoutAction:(id)sender;
+- (IBAction)loginFBAction:(id)sender;
+- (IBAction)logoutFBAction:(id)sender;
+- (IBAction)loginAccountAction:(id)sender;
+- (IBAction)logoutAccountAction:(id)sender;
+
 
 @end
 
@@ -50,26 +53,51 @@
 - (void) updateCurrentUser{
 
     PFUser* user = [PFUser currentUser];
-    
-    //BOOL fbConnection = NO;
 
-    if(user != nil){
-        //fbConnection = [PFFacebookUtils isLinkedWithUser: user];
-        self.userLabel.text = user.username;
+    BOOL fbConnection = false;
 
-        self.userLabel.hidden = false;
-        self.logoutBtn.hidden = false;
-        self.loginBtn.hidden = true;
+    if(fbConnection == true){
+        if(user != nil){
+            //fbConnection = [PFFacebookUtils isLinkedWithUser: user];
+            self.userFBLabel.text = user.username;
+
+            self.userFBLabel.hidden = false;
+            self.logoutFBBtn.hidden = false;
+            self.loginFBBtn.hidden = true;
+
+        }
+
+        else{
+            self.userFBLabel.hidden = true;
+            self.logoutFBBtn.hidden = true;
+            self.loginFBBtn.hidden = false;
+            
+        }
+
+    }
+    else{  //login parse-account
+        if(user != nil){
+            //fbConnection = [PFFacebookUtils isLinkedWithUser: user];
+            self.userAccountLabel.text = user.username;
+
+            self.userAccountLabel.hidden = false;
+            self.logoutAccountBtn.hidden = false;
+            self.loginAccountBtn.hidden = true;
+
+        }
+
+        else{
+            self.userAccountLabel.hidden = true;
+            self.logoutAccountBtn.hidden = true;
+            self.loginAccountBtn.hidden = false;
+            
+        }
 
     }
 
-    else{
-        self.userLabel.hidden = true;
-        self.logoutBtn.hidden = true;
-        self.loginBtn.hidden = false;
+
 
     }
-}
 
 
 - (void)didReceiveMemoryWarning
@@ -79,7 +107,7 @@
 }
 
 
-- (IBAction)loginAction:(id)sender {
+- (IBAction)loginFBAction:(id)sender {
 
     PFUser* user = [PFUser currentUser];
 
@@ -128,6 +156,27 @@
 */
 }
 
+- (IBAction)logoutFBAction:(id)sender {
+
+    [PFUser logOut];
+    [self updateCurrentUser];
+}
+
+
+- (IBAction)loginAccountAction:(id)sender {
+
+    self.parseLoginController = [[PFLogInViewController alloc] init];
+    self.parseLoginController.delegate = self;
+    [self presentViewController: self.parseLoginController animated:YES completion:nil];
+
+
+}
+
+- (IBAction)logoutAccountAction:(id)sender {
+    [PFUser logOut];
+    [self updateCurrentUser];
+}
+
 
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
 
@@ -166,9 +215,6 @@
 
 
 
-- (IBAction)logoutAction:(id)sender {
 
-    [PFUser logOut];
-    [self updateCurrentUser];
-}
+
 @end

@@ -18,6 +18,7 @@
 
 -(int) getNumURLs;
 -(NSString*) getURLAtIndex:(int)index;
+-(NSString*) getTitleAtIndex:(int)index;
 -(NSArray*) getPartyData;
 
 @end
