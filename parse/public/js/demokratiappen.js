@@ -108,9 +108,20 @@ angular.module('democracy-app', [])
   return obj;
 })
 
-.controller('AddPageController', function($scope, $rootScope, AddPageService) {
+.controller('AddPageController', function($scope, $rootScope, AddPageService, $location) {
   $scope.addPageService = AddPageService;
   $rootScope.pageAddCount = 0;
+
+  $scope.$watch(function() {
+    return $location.search();
+  }, function() {
+    if ($location.search().title) {
+      $scope.addPageService.title = $location.search().title;
+    }
+    if ($location.search().url) {
+      $scope.addPageService.url = $location.search().url;
+    }
+  });
 
   var indexOf = function(array, x) {
     var result = -1;
