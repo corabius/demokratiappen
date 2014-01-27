@@ -197,6 +197,11 @@ angular.module('democracy-app', [])
       var page = new Page();
       var currentUser = Parse.User.current();
 
+      page.set("title", $scope.addPageService.title);
+      page.set("url", $scope.addPageService.url);
+      page.set("user", currentUser);
+      page.setACL(new Parse.ACL(currentUser));
+
       // Create upTags or downTags array from the tags the user pressed
       var tagCount = $scope.tags.length;
       var upTags = [];
@@ -212,19 +217,8 @@ angular.module('democracy-app', [])
         delete tag.up;
         delete tag.down;
       }
-      if (upTags.length > 0) { 
-        var positiveTags = page.relation("positive_tags");
-        positiveTags.add(upTags);
-      }
-      if (downTags.length > 0) {
-        var negativeTags = page.relation("negative_tags");
-        negativeTags.add(downTags);
-      }
-
-      page.set("title", $scope.addPageService.title);
-      page.set("url", $scope.addPageService.url);
-      page.set("user", currentUser);
-      page.setACL(new Parse.ACL(currentUser));
+      page.set("positive_tags", upTags);
+      page.set("negative_tags", downTags);
 
       updateUserTags(upTags, downTags);
 
@@ -268,6 +262,8 @@ angular.module('democracy-app', [])
 
     var query = new Parse.Query("Page");
     query.equalTo("user", currentUser);
+    query.include(["positive_tags"]);
+    query.include(["negative_tags"]);
     query.limit(20);
 
     query.find().then(function(articles) {
@@ -278,21 +274,14 @@ angular.module('democracy-app', [])
           tags: [ ]
         };
 
-        var positiveRelation = article.relation("positive_tags");
-        positiveRelation.query().find().then(function(ptags) {
-          a.tags = a.tags.concat(_.map(ptags, function(tag) {
+        a.tags = a.tags.concat(_.map(article.get("positive_tags"),
+          function(tag) {
             return {name: tag.get("name"), type: 'success' };
           }));
-          $scope.$apply();
-        });
-
-        var negativeRelation = article.relation("negative_tags");
-        negativeRelation.query().find().then(function(ntags) {
-          a.tags = a.tags.concat(_.map(ntags, function(tag) {
+        a.tags = a.tags.concat(_.map(article.get("negative_tags"),
+          function(tag) {
             return {name: tag.get("name"), type: 'danger' };
           }));
-          $scope.$apply();
-        });
 
         return a;
       });
