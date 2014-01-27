@@ -1,6 +1,7 @@
 var saploKeys = {
-  "saploApiKey":    "SAPLO_API_KEY",
-  "saploSecretKey": "SAPLO_SECTRET_KEY"
+  "saploApiKey":       "SAPLO_API_KEY",
+  "saploSecretKey":    "SAPLO_SECTRET_KEY",
+  "DemokratiArtiklar": "10393"
 };
 
 exports.saploKeys = saploKeys;
