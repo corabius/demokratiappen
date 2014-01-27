@@ -104,43 +104,142 @@ angular.module('democracy-app', [])
   var obj = {}
   obj.url = '';
   obj.title = '';
-  obj.upTags = [];
-  obj.downTags = [];
 
   return obj;
 })
 
-.controller('AddPageController', function($scope, AddPageService) {
+.controller('AddPageController', function($scope, $rootScope, AddPageService, $location) {
   $scope.addPageService = AddPageService;
+  $rootScope.pageAddCount = 0;
+
+  $scope.$watch(function() {
+    return $location.search();
+  }, function() {
+    if ($location.search().title) {
+      $scope.addPageService.title = $location.search().title;
+    }
+    if ($location.search().url) {
+      $scope.addPageService.url = $location.search().url;
+    }
+  });
+
+  var indexOf = function(array, x) {
+    var result = -1;
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].id === x.id) {
+        result = i;
+        break;
+      }
+    }
+    return result;
+  }
+
+  updateUserTags = function(positiveTags, negativeTags) {
+    // Add tags to the user object, first update the tags we already have
+    var UserTag = Parse.Object.extend("UserTag");
+    var currentUser = Parse.User.current();
+    var allTags = positiveTags.concat(negativeTags);
+
+    var query = new Parse.Query("UserTag");
+    query.containedIn("tag", allTags);
+    query.equalTo("user", currentUser);
+    query.limit(allTags.length + 1);
+    
+    query.find({
+      success: function(userTags) {
+        for (var t = 0; t < userTags.length; t++) {
+          var userTag = userTags[t];
+          var tag = userTag.get("tag");
+
+          // Check if this tag is positive
+          var isPositive = (indexOf(positiveTags, tag) >= 0);
+          var isNegative = (indexOf(negativeTags, tag) >= 0);
+
+          // Update the user tag
+          if (isPositive) {
+            userTag.set("positiveCount", userTag.get("positiveCount") + 1);
+          }
+          if (isNegative) {
+            userTag.set("negativeCount", userTag.get("negativeCount") + 1);
+          }
+          userTag.save();
+        }
+
+        // Create new user tags for the ones not contained in returned set.
+        for (var i = 0; i < allTags.length; i++) {
+          var tag = allTags[i];
+
+          var needNewObject = true;
+          for (var j = 0; needNewObject && (j < userTags.length); j++) {
+            var userTag = userTags[j];
+            var userTagTag = userTag.get("tag");
+            needNewObject = !(userTagTag.id === tag.id);
+          }
+
+          if (needNewObject) {
+            // Check if this tag is positive 
+            var isPositive = (indexOf(positiveTags, tag) >= 0);
+            var isNegative = (indexOf(negativeTags, tag) >= 0);
+
+            // Create new UserTag object and initialize
+            var userTag = new UserTag();
+            userTag.set("tag", tag);
+            userTag.set("name", tag.get("name"));
+            userTag.set("positiveCount", isPositive ? 1 : 0);
+            userTag.set("negativeCount", isPositive ? 0 : 1);
+            userTag.set("user", currentUser);
+            userTag.setACL(new Parse.ACL(currentUser));
+            userTag.save();
+          }
+        }
+
+        $rootScope.pageAddCount++;
+        $scope.$apply();
+      }
+    });
+  }
+
+
   $scope.post = function () {
     if (($scope.addPageService.title.length > 0)
         && ($scope.addPageService.url.length > 0)) {
+      // Create new page object to fill in
       var Page = Parse.Object.extend("Page");
       var page = new Page();
       var currentUser = Parse.User.current();
-
-      if ($scope.addPageService.upTags.length > 0) { 
-        var positiveTags = page.relation("positive_tags");
-        positiveTags.add($scope.addPageService.upTags);
-      }
-      if ($scope.addPageService.downTags.length > 0) {
-        var negativeTags = page.relation("negative_tags");
-        negativeTags.add($scope.addPageService.downTags);
-      }
 
       page.set("title", $scope.addPageService.title);
       page.set("url", $scope.addPageService.url);
       page.set("user", currentUser);
       page.setACL(new Parse.ACL(currentUser));
 
+      // Create upTags or downTags array from the tags the user pressed
+      var tagCount = $scope.tags.length;
+      var upTags = [];
+      var downTags = [];
+      for (var index = 0; index < tagCount; index++) {
+        var tag = $scope.tags[index];
+        if (tag.up) {
+          upTags = upTags.concat(tag);
+        }
+        else if (tag.down) {
+          downTags = downTags.concat(tag);
+        }
+        delete tag.up;
+        delete tag.down;
+      }
+      page.set("positive_tags", upTags);
+      page.set("negative_tags", downTags);
+
+      updateUserTags(upTags, downTags);
+
       page.save(null, {
         success: function(page) {
+          // Clear the entry from
           $scope.addPageService.title = "";
           $scope.addPageService.url = "";
-          $scope.addPageService.upTags = [];
-          $scope.addPageService.downTags = [];
-
           $scope.addPageForm.$setPristine();
+          $rootScope.pageAddCount++;
           $scope.$apply();
         },
         error: function(page, error) {
@@ -152,12 +251,10 @@ angular.module('democracy-app', [])
     }
   };
 
-  $scope.toggleTagUp = function(tag) {
-    $scope.addPageService.upTags = $scope.addPageService.upTags.concat(tag);
-  }
-  $scope.toggleTagDown = function(tag) {
-    $scope.addPageService.downTags = $scope.addPageService.downTags.concat(tag);
-  }
+  $scope.resetTag = function(tag) {
+    tag.up = false;
+    tag.down = false;
+  };
 
   var query = new Parse.Query("Tag");
   query.find().then(function(tags) {
@@ -166,76 +263,82 @@ angular.module('democracy-app', [])
   });
 })
 
-.controller('ListController', function($scope) {
-  var query = new Parse.Query("Page");
-  query.find().then(function(articles) {
-    $scope.articles = _.map(articles, function(article) {
-      var a = {
-        title: article.get("title"),
-        url: article.get("url"),
-        tags: [ ]
-      };
+.controller('ListController', function($scope, $rootScope, LoginService) {
+  function queryPage() {
+    if (LoginService.stateLoggedIn != LoginService.LOGGED_IN) {
+      return;
+    }
 
-      var positiveRelation = article.relation("positive_tags");
-      positiveRelation.query().find().then(function(ptags) {
-        a.tags = a.tags.concat(_.map(ptags, function(tag) {
-          return {name: tag.get("name"), type: 'success' };
-        }));
-        $scope.$apply();
+    var currentUser = Parse.User.current();
+
+    var query = new Parse.Query("Page");
+    query.equalTo("user", currentUser);
+    query.include(["positive_tags"]);
+    query.include(["negative_tags"]);
+    query.limit(20);
+
+    query.find().then(function(articles) {
+      $scope.articles = _.map(articles, function(article) {
+        var a = {
+          title: article.get("title"),
+          url: article.get("url"),
+          tags: [ ]
+        };
+
+        a.tags = a.tags.concat(_.map(article.get("positive_tags"),
+          function(tag) {
+            return {name: tag.get("name"), type: 'success' };
+          }));
+        a.tags = a.tags.concat(_.map(article.get("negative_tags"),
+          function(tag) {
+            return {name: tag.get("name"), type: 'danger' };
+          }));
+
+        return a;
       });
 
-      var negativeRelation = article.relation("negative_tags");
-      negativeRelation.query().find().then(function(ntags) {
-        a.tags = a.tags.concat(_.map(ntags, function(tag) {
-          return {name: tag.get("name"), type: 'danger' };
-        }));
-        $scope.$apply();
-      });
-
-      return a;
+      $scope.$apply();
     });
-
-    $scope.$apply();
-  });
-
+  }
+  
+  $rootScope.$watch(function() { return LoginService.stateLoggedIn; }, queryPage);
+  $rootScope.$watch('pageAddCount', queryPage);
 })
 
-.controller('StatisticsController', function($scope) {
-  $scope.positiveTags = [];
-  $scope.negativeTags = [];
-  $scope.tagCounts = [];
+.controller('StatisticsController', function($scope, $rootScope, LoginService) {
+  $scope.tags = [];
+  $scope.tagCount = 0;
 
-  var updateUI = function() {
-    var allTags = $scope.negativeTags.concat($scope.positiveTags);
-    $scope.tagCounts = _.chain(allTags).flatten().countBy(function(el) {
-      return el.get("name");
-    }).pairs().sortBy(function(el) {
-      return -el[1];
-    }).value();
-  };
- 
-  var Page = Parse.Object.extend("Page"); 
-  var query = new Parse.Query(Page);
-  query.find({
-    success: function(articles) {
-    for (var i = 0; i < articles.length; i++) {
-      try {
-        var article = articles[i];
-        var positiveRelation = article.relation("positive_tags");
-        positiveRelation.query().find().then(function(ptags) {
-          $scope.positiveTags = $scope.positiveTags.concat(ptags);
-          updateUI();
-          $scope.$apply();
-        });
-
-        var negativeRelation = article.relation("negative_tags");
-        negativeRelation.query().find().then(function(ntags) {
-          $scope.negativeTags = $scope.negativeTags.concat(ntags);
-          updateUI();
-          $scope.$apply();
-        });
-      } catch(err) {}
+  function queryPage() {
+    if (LoginService.stateLoggedIn != LoginService.LOGGED_IN) {
+      return;
     }
-  }});
-});
 
+    var UserTag = Parse.Object.extend("UserTag");
+
+    var currentUser = Parse.User.current();
+    var query = new Parse.Query(UserTag);
+    query.equalTo("user", currentUser);
+
+    query.find({
+      success: function(tags) {
+        var tagCount = 0;
+        for (var i = 0; i < tags.length; i++) {
+          var tag = tags[i];
+          $scope.tags[i] = {
+            name: tag.get("name"),
+            positiveCount: tag.get("positiveCount"),
+            negativeCount: tag.get("negativeCount")
+          };
+          tagCount += $scope.tags[i].positiveCount
+            + $scope.tags[i].negativeCount;
+        }
+        $scope.tagCount = tagCount;
+        $scope.$apply();
+      }
+    });
+  }
+
+  $rootScope.$watch(function() { return LoginService.stateLoggedIn; }, queryPage);
+  $rootScope.$watch('pageAddCount', queryPage);
+});
