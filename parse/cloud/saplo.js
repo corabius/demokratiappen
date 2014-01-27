@@ -1,5 +1,8 @@
 var saploKeys = require('cloud/saplo_parameters').saploKeys; // relative to root path of parse
 
+// Supported parameters in request object:
+// text: The text to be tagged
+// url:  The url for the text (uesd for cache:ing)
 function extractTags(request, response){
   var textToBeParsed = JSON.parse(request.body).text;
   var textUrl = JSON.parse(request.body).url;
@@ -26,7 +29,7 @@ function extractTags(request, response){
   	"params": { 
   		"body":          textToBeParsed, 
   		"collection_id": saploKeys.DemokratiArtiklar//, 
-  		//"ext_text_id":   "url" 
+  		//"ext_text_id":   "url" (Set in accessSuccess if it exists)
   	}, 
   	"id": 0 
   };
@@ -76,6 +79,11 @@ function extractTags(request, response){
     var accessToken = resultObject.access_token;
     urlWithToken = urlWithToken + accessToken;
     
+    // TODO: Start by trying to find the ext_text_id (textUrl) in the collection.
+    //       If we don't find it add it as a new text.
+    //       In both cases return the text_id of the text.
+    //       (now we always add the text)
+
     if( textUrl ) {
       textIdRequest.ext_text_id = textUrl;
     }
