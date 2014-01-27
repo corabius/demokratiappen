@@ -144,15 +144,15 @@ angular.module('democracy-app', [])
           var isPositive = (indexOf(positiveTags, tag) >= 0);
           var isNegative = (indexOf(negativeTags, tag) >= 0);
 
-	  // Update the user tag
+          // Update the user tag
           if (isPositive) {
-	    userTag.set("positiveCount", userTag.get("positiveCount") + 1);
+            userTag.set("positiveCount", userTag.get("positiveCount") + 1);
           }
           if (isNegative) {
-	    userTag.set("negativeCount", userTag.get("negativeCount") + 1);
+            userTag.set("negativeCount", userTag.get("negativeCount") + 1);
           }
-	  userTag.save();
-	}
+          userTag.save();
+        }
 
         // Create new user tags for the ones not contained in returned set.
         for (var i = 0; i < allTags.length; i++) {
@@ -161,8 +161,8 @@ angular.module('democracy-app', [])
           var needNewObject = true;
           for (var j = 0; needNewObject && (j < userTags.length); j++) {
             var userTag = userTags[j];
-            var tag2 = userTag.get("tag");
-            needNewObject = !(tag2.id === tag.id);
+            var userTagTag = userTag.get("tag");
+            needNewObject = !(userTagTag.id === tag.id);
           }
 
           if (needNewObject) {
@@ -171,15 +171,15 @@ angular.module('democracy-app', [])
             var isNegative = (indexOf(negativeTags, tag) >= 0);
 
             // Create new UserTag object and initialize
-	    var userTag = new UserTag();
-	    userTag.set("tag", tag);
-	    userTag.set("name", tag.get("name"));
-	    userTag.set("positiveCount", isPositive ? 1 : 0);
-	    userTag.set("negativeCount", isPositive ? 0 : 1);
-	    userTag.set("user", currentUser);
-	    userTag.setACL(new Parse.ACL(currentUser));
-	    userTag.save();
-	  }
+            var userTag = new UserTag();
+            userTag.set("tag", tag);
+            userTag.set("name", tag.get("name"));
+            userTag.set("positiveCount", isPositive ? 1 : 0);
+            userTag.set("negativeCount", isPositive ? 0 : 1);
+            userTag.set("user", currentUser);
+            userTag.setACL(new Parse.ACL(currentUser));
+            userTag.save();
+          }
         }
 
         $rootScope.pageAddCount++;
@@ -322,18 +322,18 @@ angular.module('democracy-app', [])
 
     query.find({
       success: function(tags) {
-	var tagCount = 0;
-	for (var i = 0; i < tags.length; i++) {
-	  var tag = tags[i];
-	  $scope.tags[i] = {
-	    name: tag.get("name"),
-	    positiveCount: tag.get("positiveCount"),
-	    negativeCount: tag.get("negativeCount")
-	  };
-	  tagCount += $scope.tags[i].positiveCount
-	    + $scope.tags[i].negativeCount;
+        var tagCount = 0;
+        for (var i = 0; i < tags.length; i++) {
+          var tag = tags[i];
+          $scope.tags[i] = {
+            name: tag.get("name"),
+            positiveCount: tag.get("positiveCount"),
+            negativeCount: tag.get("negativeCount")
+          };
+          tagCount += $scope.tags[i].positiveCount
+            + $scope.tags[i].negativeCount;
         }
-	$scope.tagCount = tagCount;
+        $scope.tagCount = tagCount;
         $scope.$apply();
       }
     });
