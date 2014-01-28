@@ -167,7 +167,7 @@
     for (int i = 0; i < nEntries; i++) {
         Party *p = (Party*)[data objectAtIndex:i];
 
-        float barThickness = xInterval/3;
+        float barThickness = xInterval/8;
         float x0 = xMargin + (i+1)*xInterval/(nEntries+1) - barThickness/2;
         float barLength = (p.plusScore + p.minusScore)/(2*maxVal) * yInterval;
         float y0 = yMargin + yInterval/2 - p.minusScore/maxVal*yInterval/2;

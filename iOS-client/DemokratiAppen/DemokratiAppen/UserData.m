@@ -253,14 +253,14 @@
 
     [array addObject:[[Party alloc] initWithName:@"Socialdemokraterna" acronym:@"S" plusScore:0 minusScore:0 color:@"ff0000"]];
     [array addObject:[[Party alloc] initWithName:@"Moderaterna" acronym:@"M" plusScore:0 minusScore:0 color:@"0000aa"]];
-    [array addObject:[[Party alloc] initWithName:@"Folkpartiet" acronym:@"FP" plusScore:0 minusScore:0 color:@"0088ff"]];
+    [array addObject:[[Party alloc] initWithName:@"Folkpartiet" acronym:@"FP" plusScore:0 minusScore:0 color:@"583EEB"]];
     [array addObject:[[Party alloc] initWithName:@"Centerpartiet" acronym:@"C" plusScore:0 minusScore:0 color:@"00aa00"]];
     [array addObject:[[Party alloc] initWithName:@"Miljöpartiet" acronym:@"MP" plusScore:0 minusScore:0 color:@"315819"]];
     [array addObject:[[Party alloc] initWithName:@"Piratpartiet" acronym:@"PP" plusScore:0 minusScore:0 color:@"000000"]];
     [array addObject:[[Party alloc] initWithName:@"Feministiskt initiativ" acronym:@"FI" plusScore:0 minusScore:0 color:@"C64F91"]];
-    [array addObject:[[Party alloc] initWithName:@"Sverigedemokraterna" acronym:@"SD" plusScore:0 minusScore:0 color:@"00ff00"]];
-    [array addObject:[[Party alloc] initWithName:@"Kristdemokraterna" acronym:@"KD" plusScore:0 minusScore:0 color:@"00ff00"]];
-    [array addObject:[[Party alloc] initWithName:@"Vänsterpartiet" acronym:@"V" plusScore:0 minusScore:0 color:@"00ff00"]];
+    [array addObject:[[Party alloc] initWithName:@"Sverigedemokraterna" acronym:@"SD" plusScore:0 minusScore:0 color:@"583E25"]];
+    [array addObject:[[Party alloc] initWithName:@"Kristdemokraterna" acronym:@"KD" plusScore:0 minusScore:0 color:@"47EBDA"]];
+    [array addObject:[[Party alloc] initWithName:@"Vänsterpartiet" acronym:@"V" plusScore:0 minusScore:0 color:@"EB8EB4"]];
 
     return array;
 }
