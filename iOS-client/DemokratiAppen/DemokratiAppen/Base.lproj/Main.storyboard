@@ -307,10 +307,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="QUy-BD-bpt" kind="relationship" relationship="viewControllers" id="Zx4-Cs-si1"/>
+                        <segue destination="Qa6-m4-wM7" kind="relationship" relationship="viewControllers" id="n4j-uG-BVd"/>
                         <segue destination="3lY-bp-gJC" kind="relationship" relationship="viewControllers" id="O9V-0i-3m8"/>
                         <segue destination="MlA-Xw-vDs" kind="relationship" relationship="viewControllers" id="hz4-h0-roh"/>
-                        <segue destination="Qa6-m4-wM7" kind="relationship" relationship="viewControllers" id="n4j-uG-BVd"/>
+                        <segue destination="QUy-BD-bpt" kind="relationship" relationship="viewControllers" id="Zx4-Cs-si1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>

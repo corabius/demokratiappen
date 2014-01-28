@@ -58,7 +58,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"getNumUserTags %d", [[UserData sharedUserData] getNumUserTags]);
+    //NSLog(@"getNumUserTags %d", [[UserData sharedUserData] getNumUserTags]);
     return [[UserData sharedUserData] getNumUserTags];
 }
 

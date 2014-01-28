@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "Tag.h"
 #import "UserTag.h"
+#import "UserData.h"
 #import "Page.h"
 
 @implementation UserData
@@ -33,7 +34,9 @@
     self = [super init];
 
     _partyArray = [[NSMutableArray alloc] init];
-    [self populatePartyArray];
+    //[self populatePartyArray];
+    [self queryAllPartyTags];
+
 
     [self queryAllTagsAndPages];
     [self queryAllUserTags];
@@ -89,7 +92,7 @@
 
 - (void) queryAllPages {
 
-    PFUser* user = [PFUser currentUser];
+    //PFUser* user = [PFUser currentUser];
 
     PFQuery *allPagesQuery = [Page query];
     [allPagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -102,7 +105,7 @@
 
         //NSLog(user);
         //NSLog(@"pageArray, %@", objects);
-        NSLog(@"pageArray, %lu", (unsigned long)[objects count]);
+        //NSLog(@"pageArray, %lu", (unsigned long)[objects count]);
 
     }];
 }
@@ -168,11 +171,11 @@
         if (error == nil) {
             self.userTagsArray = [NSMutableArray arrayWithArray:objects];
 
-            NSLog(@"userTagsArray, %lu", (unsigned long)[objects count]);
+            //NSLog(@"userTagsArray, %lu", (unsigned long)[objects count]);
 
-            /*for (PFObject *object in objects) {
-                 NSLog(@"queryAllUsrTags @%", object.updatedAt);
-            }*/
+            for (UserTag *object in objects) {
+                NSLog(@"queryAllUserTags %@", object);
+            }
         }
         else {
 
@@ -185,14 +188,66 @@
 }
 
 
+- (void) queryAllPartyTags {
+
+    //PFQuery *allTagsQuery = [Tag query];  //TODO: change UserTag to Tag!
+    PFQuery *allTagsQuery = [UserTag query];
+
+    [allTagsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+
+        if (error == nil) {
+            //NSLog(@"userTagsArray, %lu", (unsigned long)[objects count]);
+
+            for (UserTag *object in objects) {
+                //NSLog(@"queryAllUserTags %@", object);
+
+                NSString *name = object.name;
+                int plusScore = object.positiveCount;
+                int minusScore = object.negativeCount;
+
+                 [self.partyArray addObject:[[Party alloc] initWithName:name acronym:@"S" plusScore:plusScore minusScore:minusScore color:@"ff0000"]];
+             }
+
+        }
+        else {
+
+            [self networkError];
+            return;
+        }
+        
+    }];
+    
+}
+
+
+
  
 - (void) populatePartyArray{
 
+    NSLog(@"populatePartyData %d", [self.partyArray count]);
+
+    for(int i=0; i< [self.partyArray count]; i++){
+
+        //Party *party = [[Party alloc] init];
+
+        NSString *name = [[UserData sharedUserData] getNameAtIndex: i];
+        int plusScore = [[UserData sharedUserData] getPositiveCount: i];
+        int minusScore = [[UserData sharedUserData] getPositiveCount: i];
+
+        NSLog(@"populatePartyData %@ %d %d", name, plusScore, minusScore);
+        //[self.partyArray addObject:party];
+
+        [self.partyArray addObject:[[Party alloc] initWithName:name acronym:@"S" plusScore:plusScore minusScore:minusScore color:@"ff0000"]];
+    }
+
+/*
     [_partyArray addObject:[[Party alloc] initWithName:@"Socialdemokraterna" acronym:@"S" plusScore:4 minusScore:2 color:@"ff0000"]];
     [_partyArray addObject:[[Party alloc] initWithName:@"Moderaterna" acronym:@"M" plusScore:2 minusScore:3 color:@"0000aa"]];
     [_partyArray addObject:[[Party alloc] initWithName:@"Folkpartiet" acronym:@"FP" plusScore:4 minusScore:0 color:@"0088ff"]];
     [_partyArray addObject:[[Party alloc] initWithName:@"Centerpartiet" acronym:@"C" plusScore:1 minusScore:2 color:@"00aa00"]];
     [_partyArray addObject:[[Party alloc] initWithName:@"Miljöpartiet" acronym:@"MP" plusScore:3 minusScore:1 color:@"00ff00"]];
+ */
+
 }
 
 

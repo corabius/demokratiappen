@@ -28,6 +28,7 @@
 -(int) getNegativeCount:(int)index;
 -(NSString*) getNameAtIndex:(int)index;
 
+
 -(NSArray*) getPartyData;
 
 @end

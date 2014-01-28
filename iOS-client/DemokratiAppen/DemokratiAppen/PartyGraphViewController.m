@@ -23,7 +23,7 @@
     UIGraphViewController *viewInsideOfContainer = (UIGraphViewController*)([self childViewControllers].lastObject);
     [viewInsideOfContainer setDelegate:self];
 
-    [[UserData sharedUserData] addObserver:self forKeyPath:@"FIXME" options:0 context:nil];
+    [[UserData sharedUserData] addObserver:self forKeyPath:@"partyArray" options:0 context:nil];
 }
 
 - (void)didReceiveMemoryWarning
