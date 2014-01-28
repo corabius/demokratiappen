@@ -70,12 +70,12 @@
     
     NSString *name = [[UserData sharedUserData] getNameAtIndex:[indexPath row]];
     int positiveCounts = [[UserData sharedUserData] getPositiveCount:[indexPath row]];
-    int negativeCounts = [[UserData sharedUserData] getPositiveCount:[indexPath row]];
+    int negativeCounts = [[UserData sharedUserData] getNegativeCount:[indexPath row]];
 
 
     cell.textLabel.text = name;
 
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"+%@ / -%@", [NSString stringWithFormat:@"%d", negativeCounts], [NSString stringWithFormat:@"%d", positiveCounts]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"+%d / -%d", positiveCounts, negativeCounts];
     
     return cell;
 }
