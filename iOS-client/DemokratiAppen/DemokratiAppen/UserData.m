@@ -14,7 +14,10 @@
 #import "UserData.h"
 #import "Page.h"
 
-@implementation UserData
+@implementation UserData{
+
+    bool _networkError;
+}
 
 // Does the pragma thing do anything? (-> Yes, click on the purple-c-symbol on top of this page to see all methods collected under the mark)
 #pragma mark Singleton Methods
@@ -84,9 +87,14 @@
 
 
 - (void) networkError {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Tillfälligt Avbrott" message:@"Ingen förbindelse" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    
-    [alert show];
+
+    if(!_networkError){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Tillfälligt Avbrott" message:@"Ingen förbindelse till servern" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+
+        _networkError = true;
+
+        [alert show];
+    }
 }
 
 
@@ -190,6 +198,8 @@
 
 - (void) queryAllPartyTags {
 
+    NSLog(@"HERE1");
+
     //PFQuery *allTagsQuery = [Tag query];  //TODO: change UserTag to Tag!
     PFQuery *allTagsQuery = [UserTag query];
 
@@ -205,9 +215,24 @@
                 int plusScore = object.positiveCount;
                 int minusScore = object.negativeCount;
 
-                 [self.partyArray addObject:[[Party alloc] initWithName:name acronym:@"S" plusScore:plusScore minusScore:minusScore color:@"ff0000"]];
-             }
+                NSMutableArray *partiesArray = [self swedishPartyNameArray];
 
+                Party *party;
+                NSString *acronym;
+                NSString *color;
+
+                for(int i=0; i<[partiesArray count]; i++){
+
+                    party = partiesArray[i];
+                    if([party.name isEqualToString:name]){
+                        acronym = party.acronym;
+                        color = [party uiColorToHexString: party.color];
+
+                        //NSLog(@"color %@ %@ %@", party.name, party.color, color);
+                    }
+                }
+                [self.partyArray addObject:[[Party alloc] initWithName:name acronym:acronym plusScore:plusScore minusScore:minusScore color:color]];
+             }
         }
         else {
 
@@ -221,7 +246,28 @@
 
 
 
- 
+
+- (NSMutableArray*) swedishPartyNameArray{
+
+    NSMutableArray *array = [[NSMutableArray alloc] init];;
+
+    [array addObject:[[Party alloc] initWithName:@"Socialdemokraterna" acronym:@"S" plusScore:0 minusScore:0 color:@"ff0000"]];
+    [array addObject:[[Party alloc] initWithName:@"Moderaterna" acronym:@"M" plusScore:0 minusScore:0 color:@"0000aa"]];
+    [array addObject:[[Party alloc] initWithName:@"Folkpartiet" acronym:@"FP" plusScore:0 minusScore:0 color:@"0088ff"]];
+    [array addObject:[[Party alloc] initWithName:@"Centerpartiet" acronym:@"C" plusScore:0 minusScore:0 color:@"00aa00"]];
+    [array addObject:[[Party alloc] initWithName:@"Miljöpartiet" acronym:@"MP" plusScore:0 minusScore:0 color:@"315819"]];
+    [array addObject:[[Party alloc] initWithName:@"Piratpartiet" acronym:@"PP" plusScore:0 minusScore:0 color:@"000000"]];
+    [array addObject:[[Party alloc] initWithName:@"Feministiskt initiativ" acronym:@"FI" plusScore:0 minusScore:0 color:@"C64F91"]];
+    [array addObject:[[Party alloc] initWithName:@"Sverigedemokraterna" acronym:@"SD" plusScore:0 minusScore:0 color:@"00ff00"]];
+    [array addObject:[[Party alloc] initWithName:@"Kristdemokraterna" acronym:@"KD" plusScore:0 minusScore:0 color:@"00ff00"]];
+    [array addObject:[[Party alloc] initWithName:@"Vänsterpartiet" acronym:@"V" plusScore:0 minusScore:0 color:@"00ff00"]];
+
+    return array;
+}
+
+
+
+
 - (void) populatePartyArray{
 
     NSLog(@"populatePartyData %d", [self.partyArray count]);
@@ -246,7 +292,7 @@
     [_partyArray addObject:[[Party alloc] initWithName:@"Folkpartiet" acronym:@"FP" plusScore:4 minusScore:0 color:@"0088ff"]];
     [_partyArray addObject:[[Party alloc] initWithName:@"Centerpartiet" acronym:@"C" plusScore:1 minusScore:2 color:@"00aa00"]];
     [_partyArray addObject:[[Party alloc] initWithName:@"Miljöpartiet" acronym:@"MP" plusScore:3 minusScore:1 color:@"00ff00"]];
- */
+*/
 
 }
 

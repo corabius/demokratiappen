@@ -17,6 +17,10 @@
 @property int minusScore;
 @property UIColor *color;
 
+
 - (id) initWithName: (NSString*)aName acronym:(NSString*)anAcronym plusScore:(int)aPlusScore minusScore:(int)aMinusScore color: (NSString*)aColor;
+
+- (UIColor*) hexStringToUIColor: (NSString*)aColor;
+- (NSString*) uiColorToHexString: (UIColor*)aColor;
 
 @end

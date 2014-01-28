@@ -284,11 +284,17 @@
                                     <segue destination="vvS-0j-Gb2" kind="embed" id="lhc-Mz-thH"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pMC-Mu-YTX">
+                                <rect key="frame" x="0.0" y="457" width="320" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Partigraf" image="second" id="Z7h-1E-pvt"/>
                     <connections>
+                        <outlet property="acronymView" destination="pMC-Mu-YTX" id="8i2-6h-L17"/>
                         <outlet property="container" destination="TMs-Py-Id9" id="b88-MO-eAc"/>
                     </connections>
                 </viewController>

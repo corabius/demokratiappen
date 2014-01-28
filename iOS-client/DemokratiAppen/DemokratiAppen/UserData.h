@@ -10,8 +10,9 @@
 
 @interface UserData : NSObject
 
+
 // These will not change, I think. Change to NSArray?
-@property NSMutableArray *partyArray;
+@property NSMutableArray *partyArray;  //consist of UserTag. TODO: consist of Tag
 @property NSMutableArray *pageArray;
 @property NSMutableArray *userTagsArray;
 

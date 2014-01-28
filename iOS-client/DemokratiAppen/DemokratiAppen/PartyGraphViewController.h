@@ -11,6 +11,10 @@
 #import "UIGraphViewController.h"
 
 @interface SecondViewController : UIViewController <GraphViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIView *container;
+@property (weak, nonatomic) IBOutlet UIView *acronymView;
+
 - (NSArray*)getGraphData;
+
 @end

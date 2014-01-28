@@ -180,7 +180,7 @@
         float y0_src = 128;
         float y1_src = 615;
         CGRect srcRect = CGRectMake(x0_src, y0_src, 128, y1_src - y0_src);
-        
+        //NSLog(@"color %@", p.color);
         CGColorRef color = [p.color CGColor];
 
         [self drawInContext:context fromImage:srcIm fromRect:srcRect toRect:dstRect inColor:color];
