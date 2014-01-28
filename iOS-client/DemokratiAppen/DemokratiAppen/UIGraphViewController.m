@@ -185,6 +185,34 @@
 
         [self drawInContext:context fromImage:srcIm fromRect:srcRect toRect:dstRect inColor:color];
     }
+
+
+    // draw tagText
+    srcIm = [UIImage imageNamed:@"blobb.png"].CGImage;
+
+    for (int i = 0; i < nEntries; i++) {
+
+        Party *p = (Party*)[data objectAtIndex:i];
+        float barThickness = xInterval/20;
+        float x0 = xMargin + (i+1)*xInterval/(nEntries+1) - barThickness/2;
+        float y0 = yMargin + yInterval/2 + p.minusScore/maxVal*yInterval/2;
+/*
+        CGRect dstRect = CGRectMake(x0, y0-20, barThickness, 15);
+        CGRect srcRect = CGRectMake(0, 0, 140, 140);
+*/
+        UILabel *tagLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(x0, y0, barThickness+5, 15)];
+        tagLabel.textAlignment =  NSTextAlignmentCenter;
+        tagLabel.adjustsFontSizeToFitWidth = YES;
+        tagLabel.textColor = p.color;
+        //tagLabel.backgroundColor = [UIColor blackColor];
+        tagLabel.minimumScaleFactor = 0.5;
+        tagLabel.font = [UIFont fontWithName:@"Arial Rounded MT Bold" size:(15.0)];
+        [_graphView addSubview:tagLabel];
+        tagLabel.text = [NSString stringWithFormat: p.acronym];
+
+        //CGColorRef color = [p.color CGColor];
+        //[self drawInContext:context fromImage:srcIm fromRect:srcRect toRect:dstRect inColor:color];
+    }
 }
 
 @end
