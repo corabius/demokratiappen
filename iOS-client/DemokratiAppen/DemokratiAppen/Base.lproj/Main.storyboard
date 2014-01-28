@@ -152,7 +152,7 @@
         <scene sceneID="09q-Ja-GZv">
             <objects>
                 <navigationController definesPresentationContext="YES" id="MlA-Xw-vDs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tagglista" id="z85-Ar-P7p"/>
+                    <tabBarItem key="tabBarItem" title="Tagglista" image="first" id="z85-Ar-P7p"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7yT-C3-DPn">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
