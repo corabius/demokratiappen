@@ -11,13 +11,16 @@
 #import "Page.h"
 #import "Tag.h"
 #import "UserTag.h"
+#import "TestFlight.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    // Registrera våra klasser
+    [TestFlight takeOff:@"8dcf0abe-9e39-4391-8f94-a54d059674dd"];
+
+    // Register classes to parse
     [Page registerSubclass];
     [Tag registerSubclass];
     [UserTag registerSubclass];
@@ -25,14 +28,13 @@
     [Parse setApplicationId:@"p7Nu6RZkIlnGUfofyOvms99yDnehPjzHg18OuFra"
                   clientKey:@"jGbdwHMTsG4KRT96YjNf8fr1vEXdKuj94zF2p4wf"];
 
-
     [PFFacebookUtils initializeFacebook];
-
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
