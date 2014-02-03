@@ -6,9 +6,13 @@ var saploKeys = require('cloud/saplo_parameters').saploKeys; // relative to root
 function extractTags(request, response){
   var textToBeParsed = JSON.parse(request.body).text;
   var textUrl = JSON.parse(request.body).url;
+  var urlExists = false;
+  var textHeadline = JSON.parse(request.body).headline;
+  // var textDate = JSON.parse(request.body).date;
+
 
   if ( !textToBeParsed ){
-    // Meddela att det texten saknas
+    // Meddela att det saknas texten.
   }
 
   // Request object to ask for a auth token
@@ -17,23 +21,35 @@ function extractTags(request, response){
   	"params": {
   		"api_key":    saploKeys.saploApiKey,
   		"secret_key": saploKeys.saploSecretKey
-  	  }
+    }
   };
   
-  // Ad text to "our" collection 
+  // Add text to "our" collection 
   // should we also tag the text? We shouldn't add the same url more than once.
   // We should store the text's in "our" database with url, text, language, (collection-id), saplo-id
   // then we can do straight to call text.tags(id)
-  var textIdRequest = { 
+  // When we create a text we /can/ add the following properties:
+  //  headline (used), url (used), publish_date, authors and ext_text_id
+  var textIdCreate = { 
   	"method": "text.create",  
   	"params": { 
-  		"body":          textToBeParsed, 
+      "body":          textToBeParsed, 
   		"collection_id": saploKeys.DemokratiArtiklar//, 
-  		//"ext_text_id":   "url" (Set in accessSuccess if it exists)
+  		//"url":         "url" (Set in accessSuccess if it exists)
   	}, 
   	"id": 0 
   };
   
+  var textIdGet = { 
+    "method": "text.get",  
+    "params": { 
+      "text_id":       0, 
+      "collection_id": saploKeys.DemokratiArtiklar//, 
+      //"url":         "url" (Set in accessSuccess if it exists)
+    }, 
+    "id": 0 
+  };
+
   // Object to use to post the text id and get back the tags
   var tagRequest = {
   	"method": "text.tags", 
@@ -49,11 +65,25 @@ function extractTags(request, response){
 
   // Inner functions 
   function textIdSuccess(httpResponse) {
-    var resultObject = JSON.parse(httpResponse.text).result;
+    var requestObject = JSON.parse(httpResponse.text).result;
 
-    var textId = resultObject.text_id;                   
+    // TODO: Ibland kommer vi hit och det är fel från Saplo
+    //       Hur ska vi hantera det?
+    //       Då blir requestObject.text_id "undefined"
+
+    var textId = requestObject.text_id;     
+
+    if( !textId ){
+      response.success(httpResponse);  // Eller kan man sätta response.error()?
+      return;
+    }
+
     tagRequest.params.text_id = textId;
-                   
+    
+    if( !urlExists ){ // If the text_id isn't in our database then add it:
+      addUrl(textUrl, textId);
+    }
+
     Parse.Cloud.httpRequest( 
     {
       url: urlWithToken,
@@ -75,19 +105,30 @@ function extractTags(request, response){
   } // textIdSuccess
 
   function accessSuccess(httpResponse) {
-    var resultObject = JSON.parse(httpResponse.text).result;
-    var accessToken = resultObject.access_token;
+    var requestObject = JSON.parse(httpResponse.text).result;
+    var accessToken = requestObject.access_token;
     urlWithToken = urlWithToken + accessToken;
     
-    // TODO: Start by trying to find the ext_text_id (textUrl) in the collection.
-    //       If we don't find it add it as a new text.
-    //       In both cases return the text_id of the text.
-    //       (now we always add the text)
+    var newRequest = textIdCreate;
 
     if( textUrl ) {
-      textIdRequest.ext_text_id = textUrl;
+      textIdCreate.url = textUrl;
+    }
+    if( textHeadline ) {
+      textIdCreate.headline = textHeadline;
     }
 
+    // Store the url + collection id + text id in a parse object. 
+    //var query = new Parse.Query("Url");
+    //query.equalTo("url", textUrl);
+    //query.find().then(function(url) {     // Fast detta är en asynkron funktion 
+    //  urlExists = true;
+    //
+    //  textIdCreate.text_id = url.text_id;
+    //
+    //  newRequest = textIdGet;
+    //});
+    
     Parse.Cloud.httpRequest( 
     {
       url: urlWithToken,
@@ -95,7 +136,7 @@ function extractTags(request, response){
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(textIdRequest),
+      body: JSON.stringify(newRequest),
       success: textIdSuccess,
       error: function(httpResponse){
         console.error('Request failed with response code ' + httpResponse.status);
@@ -120,5 +161,15 @@ function extractTags(request, response){
   } // Main request
   );
 };
+
+function addUrl(textUrl, textId){
+  var Url = Parse.Object.extend("Url");
+  var url = new Url();
+
+  url.set("url", textUrl);
+  url.set("text_id", textId);
+
+  url.save(null, function(url) {}, function(url, error) {});
+}
 
 exports.extractTags = extractTags;
