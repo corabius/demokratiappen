@@ -50,10 +50,10 @@
 
     [self updateCurrentUser];
 
-    NSString *text1 = @"\nAnvänd samma testkonto som du skapar för både appen och webbgränssnittet \nhttp://demokratiappen.parseapp.com";
-    NSString *text2 = @"\n\nTänk på att Demokratiappen är under utveckling. Databasen med användare kommer då och då att tömmas. Räkna inte med att spara ner något och sen återfinna det. Observera också att vi ännu inte lagt på något säkerhetslager så vi kan i nuläget öppet se alla dina taggmarkeringar.";
-    NSString *text3 = @"\n\nMejla gärna och ge oss feedback: demokratiappen@gmail.com";
-    NSString *text4 = @"\n\nDu kan också ta kontakt med en av våra projektledare: Adam Svensson, adam@audita.se, 070 - 603 12 53";
+    NSString *text1 = @"\nAnvänd samma testkonto som du skapar för både appen och webbgränssnittet \n";
+    NSString *text2 = @"\n\nDemokratiappen är under utveckling. Databasen med användare kommer då och då att tömmas. Räkna inte med att spara ner något och sen återfinna det. Observera också att vi ännu inte lagt på något säkerhetslager så vi kan i nuläget öppet se alla dina taggmarkeringar.";
+    NSString *text3 = @"\n\nMejla gärna och ge oss feedback!";
+    NSString *text4 = @"\nDu kan också ta kontakt med en av våra projektledare: Adam Svensson, 070 - 603 12 53";
 
     self.instructionsTextView.text = [NSString stringWithFormat:@"%@ %@ %@ %@", text1, text2, text3, text4];
 }
