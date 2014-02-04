@@ -30,6 +30,7 @@
 - (IBAction)openInSafariAction:(id)sender;
 - (IBAction)sendEmailAction:(id)sender;
 
+- (IBAction)sendToFBAction:(id)sender;
 
 - (IBAction)loginFBAction:(id)sender;
 - (IBAction)logoutFBAction:(id)sender;
@@ -151,7 +152,15 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)sendToFBAction:(id)sender {
 
+    NSURL *url = [NSURL URLWithString:@"fb://profile/744880375539876"];  //to fb-group: demokratiappen
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+
+
+#pragma mark Login/Logout
 
 - (IBAction)loginFBAction:(id)sender {
 
@@ -265,7 +274,11 @@
 
 - (IBAction)testBtnAction:(id)sender {
 
-     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"demokratiappen://test_page/one?token=12345&domain=foo.com"]];
+    NSLog(@"inne i testBtnAction");
+
+    //Using Custom URL Scheme to Launch Application
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"demokratiappen://test_page/one?token=12345&domain=foo.com"]];
+
 }
 
 @end

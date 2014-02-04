@@ -63,7 +63,8 @@
 }
 
 
-//enabling other apps to open this app (with the schema: demokratiappen) => demokratiappen://some/path 
+//Using Custom URL Scheme to Launch Application
+//enabling other apps to open this app (with the schema: demokratiappen) => demokratiappen://some/path
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
     // Do something with the url here
     if (!url) {
