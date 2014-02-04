@@ -100,9 +100,9 @@
 
 - (void) queryAllPages {
 
-    //PFUser* user = [PFUser currentUser];
-
     PFQuery *allPagesQuery = [Page query];
+    allPagesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+
     [allPagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             [self networkError];
@@ -148,6 +148,7 @@
     
     PFQuery *allPagesQuery = [PFQuery queryWithClassName:@"Page"];
 
+    allPagesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
     [allPagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
@@ -174,6 +175,8 @@
 
     PFQuery *allUserTagsQuery = [UserTag query];
 
+    allUserTagsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+
     [allUserTagsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
         if (error == nil) {
@@ -182,7 +185,7 @@
             //NSLog(@"userTagsArray, %lu", (unsigned long)[objects count]);
 
             for (UserTag *object in objects) {
-                NSLog(@"queryAllUserTags %@", object);
+                //NSLog(@"queryAllUserTags %@", object);
             }
         }
         else {
@@ -198,10 +201,10 @@
 
 - (void) queryAllPartyTags {
 
-    NSLog(@"HERE1");
-
     //PFQuery *allTagsQuery = [Tag query];  //TODO: change UserTag to Tag!
     PFQuery *allTagsQuery = [UserTag query];
+
+    allTagsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
 
     [allTagsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
@@ -245,7 +248,19 @@
 }
 
 
+-(void)reloadData: (NSString*) className{
 
+    NSLog(@"inne i reloadData");
+
+    if ([className isEqualToString:@"UserTag"]){
+        [self queryAllUserTags];
+    }
+    else if ([className isEqualToString:@"Page"]){
+        [self queryAllPages];
+    }
+
+
+}
 
 - (NSMutableArray*) swedishPartyNameArray{
 
@@ -270,7 +285,7 @@
 
 - (void) populatePartyArray{
 
-    NSLog(@"populatePartyData %d", [self.partyArray count]);
+    //NSLog(@"populatePartyData %d", [self.partyArray count]);
 
     for(int i=0; i< [self.partyArray count]; i++){
 
@@ -280,7 +295,7 @@
         int plusScore = [[UserData sharedUserData] getPositiveCount: i];
         int minusScore = [[UserData sharedUserData] getPositiveCount: i];
 
-        NSLog(@"populatePartyData %@ %d %d", name, plusScore, minusScore);
+        //NSLog(@"populatePartyData %@ %d %d", name, plusScore, minusScore);
         //[self.partyArray addObject:party];
 
         [self.partyArray addObject:[[Party alloc] initWithName:name acronym:@"S" plusScore:plusScore minusScore:minusScore color:@"ff0000"]];

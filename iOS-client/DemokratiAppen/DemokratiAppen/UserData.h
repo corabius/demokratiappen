@@ -18,6 +18,7 @@
 
 
 + (UserData*) sharedUserData;
+-(void)reloadData: (NSString*)className;
 
 -(int) getNumURLs;
 -(NSString*) getURLAtIndex:(int)index;

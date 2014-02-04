@@ -18,11 +18,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 
-    //UserData *myuser = [UserData sharedUserData];
     [[UserData sharedUserData] addObserver:self forKeyPath:@"pageArray" options:0 context:nil];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+
+    [super viewDidAppear:animated];
+
+    [[UserData sharedUserData] reloadData:@"Page"];
+    [self.urlTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

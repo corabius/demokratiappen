@@ -25,6 +25,7 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,12 +34,45 @@
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    //UserData *myuser = [UserData sharedUserData];
+    //Not needed...
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+
     [[UserData sharedUserData] addObserver:self forKeyPath:@"userTagsArray" options:0 context:nil];
 
 }
+
+
+- (void)viewDidAppear:(BOOL)animated{
+
+    [super viewDidAppear:animated];
+
+    /*if(firstTime){
+     //show it
+     firstTime = NO;
+     }*/
+
+
+    [[UserData sharedUserData] reloadData:@"UserTag"];
+    [self.tableView reloadData];
+}
+
+/*- (void)objectsDidLoad:(NSError *)error {  //if inherit from PFQueryTableViewController
+    NSLog(@"inne i objectsDidLoad");
+    //[super objectsDidLoad:error];
+}*/
+
+/*
+ -(void)tabBecomeActive:(NSNotification *)notification {
+
+    // only respond if the selected tab is our current tab
+    if (self.tabBarController.selectedIndex == 0) { // Tab 1 is 0 index
+        [self viewDidAppear:YES];
+    }
+
+ }*/
+
 
 - (void)didReceiveMemoryWarning
 {
