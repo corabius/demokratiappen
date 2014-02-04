@@ -267,6 +267,9 @@
                                         <state key="normal" title="adam@audita.se">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sendEmailAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="Q1X-BU-VC0"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9z-Hm-zbo">
                                         <rect key="frame" x="0.0" y="241" width="192" height="30"/>
