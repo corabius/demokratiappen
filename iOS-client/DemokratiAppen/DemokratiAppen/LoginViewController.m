@@ -8,9 +8,10 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
+#import <MessageUI/MessageUI.h>
 
 
-@interface LoginViewController () <PFLogInViewControllerDelegate>
+@interface LoginViewController () <PFLogInViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property PFLogInViewController* parseLoginController;  //jag blir delegerad till från PF-login-kod
 
@@ -126,12 +127,26 @@
     if([sender tag] == 10){
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://demokratiappen.parseapp.com"]];
     }
-
-
 }
 
 - (IBAction)sendEmailAction:(id)sender {
+
+    MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+    mailComposer.mailComposeDelegate = self;
+
+    [mailComposer setToRecipients:[NSArray arrayWithObjects: ((UIButton*)sender).currentTitle,nil]];
+
+    [self presentViewController:mailComposer animated:YES completion:nil];
 }
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+#pragma mark Login
 
 - (IBAction)loginFBAction:(id)sender {
 

@@ -13,6 +13,7 @@
 		3B2B444D18984B3400FC1DEC /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B2B444718984B3400FC1DEC /* release_notes.md */; };
 		3B2B444F18984B9E00FC1DEC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B444E18984B9E00FC1DEC /* libz.dylib */; };
 		3B2B445018986C8300FC1DEC /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B444518984B3400FC1DEC /* libTestFlight.a */; };
+		3B7C84ED18A12F5A0076DA14 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7C84EC18A12F5A0076DA14 /* MessageUI.framework */; };
 		3BC79278188298C8005C9BBA /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC79277188298C8005C9BBA /* Page.m */; };
 		3BC7927B1882A054005C9BBA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927218829516005C9BBA /* FacebookSDK.framework */; };
 		3BC7927C1882A05B005C9BBA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927318829516005C9BBA /* Parse.framework */; };
@@ -66,6 +67,7 @@
 		3B2B444918984B3400FC1DEC /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		3B2B444A18984B3400FC1DEC /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		3B2B444E18984B9E00FC1DEC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3B7C84EC18A12F5A0076DA14 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3BC7927218829516005C9BBA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3BC7927318829516005C9BBA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		3BC79276188298C7005C9BBA /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B7C84ED18A12F5A0076DA14 /* MessageUI.framework in Frameworks */,
 				3B2B445018986C8300FC1DEC /* libTestFlight.a in Frameworks */,
 				3B2B444F18984B9E00FC1DEC /* libz.dylib in Frameworks */,
 				3BC792861882A1D8005C9BBA /* MobileCoreServices.framework in Frameworks */,
@@ -186,6 +189,7 @@
 		55A82E43188170A9004F2383 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B7C84EC18A12F5A0076DA14 /* MessageUI.framework */,
 				3B2B444E18984B9E00FC1DEC /* libz.dylib */,
 				3BC792851882A1D8005C9BBA /* MobileCoreServices.framework */,
 				3BC792831882A1B1005C9BBA /* QuartzCore.framework */,
