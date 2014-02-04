@@ -275,14 +275,20 @@
                                         <state key="normal" title="demokratiappen@gmail.com">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sendEmailAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="rfb-O2-kQH"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mm-on-xQV">
+                                    <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mm-on-xQV">
                                         <rect key="frame" x="0.0" y="55" width="249" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="http://demokratiappen.parseapp.com">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="openInSafariAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="WxQ-1e-hFP"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -295,11 +301,14 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Logga in" image="second" id="hSi-WU-nkO"/>
                     <connections>
+                        <outlet property="emailContactPersonBtn" destination="VRw-7s-Qba" id="pZu-oI-nrc"/>
+                        <outlet property="emailGmailBtn" destination="r9z-Hm-zbo" id="DjH-BN-hsT"/>
                         <outlet property="instructionsTextView" destination="DHJ-Bn-X91" id="2xW-HI-JzY"/>
                         <outlet property="loginAccountBtn" destination="duG-nb-nPQ" id="UbT-B2-up2"/>
                         <outlet property="loginFBBtn" destination="VRn-Dy-Hzu" id="St6-Rk-gTx"/>
                         <outlet property="logoutAccountBtn" destination="Jtl-qr-O4q" id="utY-yK-EBE"/>
                         <outlet property="logoutFBBtn" destination="9BE-L7-SD1" id="sdJ-6K-IwS"/>
+                        <outlet property="openParseAccountBtn" destination="6Mm-on-xQV" id="n0o-tR-3Gs"/>
                         <outlet property="userAccountLabel" destination="u9S-iP-iwS" id="3NU-b2-q32"/>
                         <outlet property="userFBLabel" destination="s6L-t0-K3L" id="JX4-bK-HYs"/>
                     </connections>

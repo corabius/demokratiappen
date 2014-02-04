@@ -23,6 +23,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *userAccountLabel;
 
 @property (weak, nonatomic) IBOutlet UITextView *instructionsTextView;
+@property (weak, nonatomic) IBOutlet UIButton *openParseAccountBtn;
+@property (weak, nonatomic) IBOutlet UIButton *emailContactPersonBtn;
+@property (weak, nonatomic) IBOutlet UIButton *emailGmailBtn;
+- (IBAction)openInSafariAction:(id)sender;
+- (IBAction)sendEmailAction:(id)sender;
 
 
 - (IBAction)loginFBAction:(id)sender;
@@ -115,6 +120,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (IBAction)openInSafariAction:(id)sender {
+
+    if([sender tag] == 10){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://demokratiappen.parseapp.com"]];
+    }
+
+
+}
+
+- (IBAction)sendEmailAction:(id)sender {
+}
 
 - (IBAction)loginFBAction:(id)sender {
 
