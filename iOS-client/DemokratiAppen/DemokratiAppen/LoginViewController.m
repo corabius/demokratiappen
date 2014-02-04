@@ -37,6 +37,11 @@
 - (IBAction)logoutAccountAction:(id)sender;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *testBtn;
+
+- (IBAction)testBtnAction:(id)sender;
+
+
 @end
 
 @implementation LoginViewController
@@ -257,5 +262,10 @@
 
 
 
+
+- (IBAction)testBtnAction:(id)sender {
+
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"demokratiappen://test_page/one?token=12345&domain=foo.com"]];
+}
 
 @end

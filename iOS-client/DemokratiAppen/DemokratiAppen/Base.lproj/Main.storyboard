@@ -296,6 +296,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnr-vN-8AN">
+                                <rect key="frame" x="184" y="360" width="79" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="TestBtn">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testBtnAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="ecb-Kd-VXM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -312,6 +322,7 @@
                         <outlet property="logoutAccountBtn" destination="Jtl-qr-O4q" id="utY-yK-EBE"/>
                         <outlet property="logoutFBBtn" destination="9BE-L7-SD1" id="sdJ-6K-IwS"/>
                         <outlet property="openParseAccountBtn" destination="6Mm-on-xQV" id="n0o-tR-3Gs"/>
+                        <outlet property="testBtn" destination="cnr-vN-8AN" id="gWT-qX-O1p"/>
                         <outlet property="userAccountLabel" destination="u9S-iP-iwS" id="3NU-b2-q32"/>
                         <outlet property="userFBLabel" destination="s6L-t0-K3L" id="JX4-bK-HYs"/>
                     </connections>
