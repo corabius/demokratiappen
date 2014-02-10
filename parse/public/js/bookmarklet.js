@@ -1,1 +1,15 @@
-javascript:function iprl5(){var d=document,l=d.location;document.location=l.protocol+'//demokratiappen.parseapp.com/#/?title='+d.title+'&url='+encodeURIComponent(l.href);}iprl5();void(0)
+javascript:function dar1() {
+  var d = document, z, b = d.body, l = d.location;
+
+  try {
+    if (!b) throw(0);
+    d.title='(Saving...) ' + d.title;
+
+    z = d.createElement('script');
+    z.setAttribute('src', l.protocol + '//demokratiappen.parseapp.com/scripts/Scrape.js');
+    b.appendChild(z);
+  }
+  catch(e) {
+    alert('Please wait until the page has loaded.');
+  }
+} dar1(); void(0)
