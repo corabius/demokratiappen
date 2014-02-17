@@ -175,7 +175,9 @@ function extractTags(request, response){
           // Return promise that is triggered when all tags have been saved.
           return Parse.Promise.when(newTagPromises);
         }).then(function () {
-          // 
+          // TODO: Save the tags on the Url object
+
+          // Return the result tag objects to the requester
           response.success(resultTags);
         }, function (error) {
           response.error("Finding demokratiappen tags failed");
