@@ -264,6 +264,7 @@ angular.module('democracy-app', [])
     tag.down = false;
   };
 
+  // TODO: Replace this by lookup tag objects from tag ids which we got as input
   Parse.Cloud.run('getTags', { url: 'My_URL', title: 'MY title', body: 'MY BODY' }, {
     success: function(tags) {
       $scope.tags = tags;
