@@ -1,39 +1,55 @@
 var saploKeys = require('cloud/saplo_parameters').saploKeys; // relative to root path of parse
 
 // Supported parameters in request object:
-// text: The text to be tagged
-// url:  The url for the text (uesd for cache:ing)
+// text:     The text to be tagged
+// url:      The url for the text (uesd for cache:ing)
+// headline: The text's headline
 function extractTags(request, response){
   var textToBeParsed = JSON.parse(request.body).text;
   var textUrl = JSON.parse(request.body).url;
+  var textHeadline = JSON.parse(request.body).headline;
+  // var textDate = JSON.parse(request.body).date;
+  var urlExists = false;
 
   if ( !textToBeParsed ){
-    // Meddela att det texten saknas
+    // Meddela att texten saknas.
   }
 
-  // Request object to ask for a auth token
+  // Request object to ask for a authorization token
   var accessTokenRequest = {
   	"method": "auth.accessToken",
   	"params": {
   		"api_key":    saploKeys.saploApiKey,
   		"secret_key": saploKeys.saploSecretKey
-  	  }
+    }
   };
   
-  // Ad text to "our" collection 
-  // should we also tag the text? We shouldn't add the same url more than once.
-  // We should store the text's in "our" database with url, text, language, (collection-id), saplo-id
+  // Add text to "our" collection 
+  // We store the text's in "our" database with url, text, language, (collection-id), saplo-id
   // then we can do straight to call text.tags(id)
-  var textIdRequest = { 
+  // When we create a text in Saplo we /can/ add the following properties:
+  //  headline (used), url (used), publish_date, authors and ext_text_id
+  var textIdCreate = { 
   	"method": "text.create",  
   	"params": { 
-  		"body":          textToBeParsed, 
+      "body":          textToBeParsed, 
   		"collection_id": saploKeys.DemokratiArtiklar//, 
-  		//"ext_text_id":   "url" (Set in accessSuccess if it exists)
+  		//"url":         "url" (Set in accessSuccess if it exists)
   	}, 
   	"id": 0 
   };
   
+  // Get the text from "our" collection
+  var textIdGet = { 
+    "method": "text.get",  
+    "params": { 
+      "text_id":       0, 
+      "collection_id": saploKeys.DemokratiArtiklar//, 
+      //"url":         "url" (Set in accessSuccess if it exists)
+    }, 
+    "id": 0 
+  };
+
   // Object to use to post the text id and get back the tags
   var tagRequest = {
   	"method": "text.tags", 
@@ -45,26 +61,43 @@ function extractTags(request, response){
   	"id": 0 
   };
 
-  var urlWithToken = 'http://api.saplo.com/rpc/json?access_token=';
+  var saploUrlWithToken = 'http://api.saplo.com/rpc/json?access_token=';
 
   // Inner functions 
+  // Get the Saplo tags from the text object requestObject.text_id
   function textIdSuccess(httpResponse) {
-    var resultObject = JSON.parse(httpResponse.text).result;
+    var requestObject = JSON.parse(httpResponse.text).result;
 
-    var textId = resultObject.text_id;                   
+    // TODO: Ibland kommer vi hit och det är fel från Saplo
+    if( !requestObject ){
+      httpResponse.source = "textIdSuccess: (no requestObject)";
+      response.success(httpResponse);  // Eller kan man sätta response.error()?
+      return;
+    }
+
+    var textId = requestObject.text_id;
+    if( !textId ){
+      httpResponse.source = "textIdSuccess: (no textId)";
+      response.success(httpResponse);  // Eller kan man sätta response.error()?
+      return;
+    }
+
     tagRequest.params.text_id = textId;
-                   
+
+    if( !urlExists ){
+      addUrl(textUrl, textId, textToBeParsed, textHeadline);
+    }
+    
     Parse.Cloud.httpRequest( 
     {
-      url: urlWithToken,
+      url: saploUrlWithToken,
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(tagRequest),
       success: function(httpResponse){
         var tagResultObject = JSON.parse(httpResponse.text).result;
         tagResultObject.source = "textIdSuccess";
+        tagResultObject.found = urlExists;  // Debug: Show if we added or found the url
         response.success(tagResultObject);
       },
       error: function(httpResponse){
@@ -74,51 +107,83 @@ function extractTags(request, response){
     );          
   } // textIdSuccess
 
+  // We have access to Saplo, try to find the text in our database
+  // if we have it, get the ID to get the tags from Saplo
+  // if not, add it to Saplo, get the ID and add the url to our database
   function accessSuccess(httpResponse) {
-    var resultObject = JSON.parse(httpResponse.text).result;
-    var accessToken = resultObject.access_token;
-    urlWithToken = urlWithToken + accessToken;
+    var requestObject = JSON.parse(httpResponse.text).result;
+    var accessToken = requestObject.access_token;
+
+    saploUrlWithToken = saploUrlWithToken + accessToken;
     
-    // TODO: Start by trying to find the ext_text_id (textUrl) in the collection.
-    //       If we don't find it add it as a new text.
-    //       In both cases return the text_id of the text.
-    //       (now we always add the text)
-
     if( textUrl ) {
-      textIdRequest.ext_text_id = textUrl;
+      textIdCreate.url = textUrl;
+    }
+    if( textHeadline ) {
+      textIdCreate.headline = textHeadline;
     }
 
-    Parse.Cloud.httpRequest( 
-    {
-      url: urlWithToken,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(textIdRequest),
-      success: textIdSuccess,
-      error: function(httpResponse){
-        console.error('Request failed with response code ' + httpResponse.status);
+    // Start a thread to find the url in our database, and get the tags
+    var query = new Parse.Query("Url");
+    query.equalTo("url", textUrl);
+    query.find().then( function( url ) {
+      var textId = url.text_id;
+      if( !textId ){
+        // If we _don't_ have the url, add it:
+        Parse.Cloud.httpRequest( {
+          url: saploUrlWithToken,
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(textIdCreate),
+          success: textIdSuccess,
+          error: function(httpResponse){ console.error('Request failed with response code ' + httpResponse.status); }
+        }); 
+
+      } else {
+        textIdGet.text_id = textId;
+        urlExists = true;
+
+        // Get the tags from Saplo or from Parse?
+        // Now from Saplo (=> we must have the Saplo accessToken)
+        // If we change this, we _could_ move the saplo login from the main request.
+        Parse.Cloud.httpRequest( {
+          url: saploUrlWithToken,
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(textIdGet),
+          success: textIdSuccess,
+          error: function(httpResponse){ console.error('Request failed with response code ' + httpResponse.status); }
+        });    
       }
-    }
-    );    
+    
+    }); 
   }  // accessSuccess
 
   // Main request, sends the others as "result functions" to the httpResult's success function.
-  Parse.Cloud.httpRequest(
-  {
+  Parse.Cloud.httpRequest({
+    // First connect to Saplo (we need an access token to get the tags)
     url: 'http://api.saplo.com/rpc/json',
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(accessTokenRequest),
     success: accessSuccess,
     error: function(httpResponse){
       console.error('Request failed with response code ' + httpResponse.status);
     }
-  } // Main request
-  );
-};
+  });  // Main request
+
+}; // extractTags
+
+function addUrl(textUrl, textId, textToBeParsed, textHeadline){
+  var Url = Parse.Object.extend("Url");
+  var url = new Url();
+
+  url.set("url", textUrl);
+  url.set("text_id", textId);
+  url.set("text", textToBeParsed);
+  url.set("headline", textHeadline);
+
+  url.save(null, function(url) {}, function(url, error) {});
+}; // addUrl
 
 exports.extractTags = extractTags;

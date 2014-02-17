@@ -256,10 +256,14 @@ angular.module('democracy-app', [])
     tag.down = false;
   };
 
-  var query = new Parse.Query("Tag");
-  query.find().then(function(tags) {
-    $scope.tags = tags;
-    $scope.$apply();
+  Parse.Cloud.run('getTags', { url: 'My_URL', title: 'MY title', body: 'MY BODY' }, {
+    success: function(tags) {
+      $scope.tags = tags;
+      $scope.$apply();
+    },
+    error: function(error) {
+      alert("Connection to Parse failed, no tags");
+    }
   });
 })
 

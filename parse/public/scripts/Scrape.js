@@ -1204,18 +1204,50 @@ var demokratiappen = {
     init: function() {
       var scrapeResult = readability.init();
 
+      // Wait for scrape to do its magic
       window.setTimeout(
         function() { demokratiappen.visa(scrapeResult); },
         100
-      );        
+      ); 
     },
-    visa: function(scrapeResult){
-      // TODO: Use the result
-      dbg(scrapeResult.title);
-      dbg(scrapeResult.text);
+    visa: function(scrapeResult) {
+      // Send document contents to our backend
+      var url = "https://api.parse.com/1/functions/getTags";
+      var method = "POST";
 
-      // TODO: Reload original page
-      //window.location.reload();
+      var request = new XMLHttpRequest();
+      request.onload = function () {
+        if (request.status == 200) {
+          // Extract the tag ids
+          resultJSON = JSON.parse(request.responseText);
+
+          var tagIds = "";
+          for (var i = 0; i < resultJSON.result.length; i++) {
+            tagIds = tagIds.concat(",", resultJSON.result[i].objectId);
+          }
+
+          // Remove the modification we made to the title when the bookmarklet
+          // was triggererd
+          var title = scrapeResult.title;
+          if (title.substr(0, 12) == "(Saving...) ") {
+            title = title.substr(12);
+          }
+
+          // We have our tags, redirect to our page
+          document.location = 'https://demokratiappen.parseapp.com/#/?title=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(document.location.href) + '&tags=' + encodeURIComponent(tagIds);
+        }
+        else {
+          alert("Error retrieving tags from demokratiappen. Sorry :(");
+        }
+      }
+
+      request.open("POST", url, true);
+      request.setRequestHeader("X-Parse-Application-Id", "p7Nu6RZkIlnGUfofyOvms99yDnehPjzHg18OuFra");
+      request.setRequestHeader("X-Parse-REST-API-Key", "W3seCkw5eOmPU3UhBM0zlzbSJ6W7fgAEGRtMpTzH");
+      request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+      // Send the request to the server.
+      request.send(JSON.stringify(scrapeResult));
     }
 };
 
