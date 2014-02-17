@@ -1234,7 +1234,7 @@ var demokratiappen = {
           }
 
           // We have our tags, redirect to our page
-          document.location = 'https://demokratiappen.parseapp.com/#/?title=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(document.location.href) + '&tags=' + encodeURIComponent(tagIds);
+          document.location = 'https://demokratiappen.parseapp.com/tag.html#/?title=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(document.location.href) + '&tags=' + encodeURIComponent(tagIds);
         }
         else {
           alert("Error retrieving tags from demokratiappen. Sorry :(");
