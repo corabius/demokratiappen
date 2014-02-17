@@ -264,16 +264,23 @@ angular.module('democracy-app', [])
     tag.down = false;
   };
 
-  // TODO: Replace this by lookup tag objects from tag ids which we got as input
-  Parse.Cloud.run('getTags', { url: 'My_URL', title: 'MY title', body: 'MY BODY' }, {
-    success: function(tags) {
+  function getTags() {
+    var Tag = Parse.Object.extend("Tag");
+
+    // Convert tag id to Tag objects with a name
+    var tagIds = $location.search().tags.split(",");
+
+    var query = new Parse.Query("Tag");
+    query.containedIn("objectId", tagIds);
+    query.find().then(function (tags) {
       $scope.tags = tags;
       $scope.$apply();
-    },
-    error: function(error) {
+    }, function (error) {
       alert("Connection to Parse failed, no tags");
-    }
-  });
+    });
+  }
+
+  getTags();
 })
 
 .controller('ListController', function($scope, $rootScope, LoginService) {
