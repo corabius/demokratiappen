@@ -22,7 +22,6 @@ angular.module('democracy-app', [])
   obj.setStateLoggedIn = function(newState) {
     obj.stateLoggedIn = newState;
 
-    obj.username = '';
     obj.password = '';
     obj.setStateLoginProcess(obj.INITIAL);
   };
@@ -59,6 +58,7 @@ angular.module('democracy-app', [])
       {
         success: function(user) {
           obj.setStateLoggedIn(obj.LOGGED_IN);
+          obj.username = user.getUsername();
           $rootScope.$apply();
         },
         error: function(user, error) {
@@ -69,9 +69,12 @@ angular.module('democracy-app', [])
   };
 
   obj.logout = function() {
+    obj.username = '';
     Parse.User.logOut();
     obj.setStateLoggedIn(obj.NOT_LOGGED_IN);
   };
+
+  obj.username = (Parse.User.current() ? Parse.User.current().getUsername() : '');
 
   return obj;
 })
@@ -108,7 +111,7 @@ angular.module('democracy-app', [])
   return obj;
 })
 
-.controller('AddPageController', function($scope, $rootScope, AddPageService, $location) {
+.controller('AddPageController', function($scope, $rootScope, AddPageService, $location, $window) {
   $scope.addPageService = AddPageService;
   $rootScope.pageAddCount = 0;
 
@@ -241,14 +244,19 @@ angular.module('democracy-app', [])
           $scope.addPageForm.$setPristine();
           $rootScope.pageAddCount++;
           $scope.$apply();
+          $window.history.back();
         },
         error: function(page, error) {
           // Execute any logic that should take place if the save fails.
           // error is a Parse.Error with an error code and description.
-          alert('Failed to create new object, with error code: ' + error.description);
+          alert('Failed to create new object, with error code: ' + error.message);
         }
       });
     }
+  };
+
+  $scope.abort = function() {
+    $window.history.back();
   };
 
   $scope.resetTag = function(tag) {
