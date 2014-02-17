@@ -1217,9 +1217,8 @@ var demokratiappen = {
 
      // Remove the modification we made to the title when the bookmarklet
      // was triggererd
-     var title = scrapeResult.title;
      if (scrapeResult.title.substr(0, 12) == "(Saving...) ") {
-       scrapeResult.title = title.substr(12);
+       scrapeResult.title = scrapeResult.title.substr(12);
      }
      scrapeResult.url = document.location.href;
 
@@ -1235,7 +1234,7 @@ var demokratiappen = {
           }
 
           // We have our tags, redirect to our page
-          document.location = 'https://demokratiappen.parseapp.com/tag.html#/?title=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(document.location.href) + '&tags=' + encodeURIComponent(tagIds);
+          document.location = 'https://demokratiappen.parseapp.com/tag.html#/?title=' + encodeURIComponent(scrapeResult.title) + '&url=' + encodeURIComponent(document.location.href) + '&tags=' + encodeURIComponent(tagIds);
         }
         else {
           console.log("Error retrieving tags:");
