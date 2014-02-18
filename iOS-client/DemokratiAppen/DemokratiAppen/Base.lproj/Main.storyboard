@@ -75,7 +75,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Xm4-AJ-FXL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tgg-qH-458">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ar-e1-Laf" userLabel="URLLabel">
@@ -112,7 +112,7 @@
             <objects>
                 <tableViewController id="kqJ-78-Xr4" customClass="UserTagsListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="s1e-1Y-ISf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -152,7 +152,7 @@
         <scene sceneID="09q-Ja-GZv">
             <objects>
                 <navigationController definesPresentationContext="YES" id="MlA-Xw-vDs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tagglista" image="first" id="z85-Ar-P7p"/>
+                    <tabBarItem key="tabBarItem" title="Tagglista" image="third" id="z85-Ar-P7p"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7yT-C3-DPn">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -173,7 +173,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0zu-0s-J5a"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QEb-us-Cf8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LuK-8Z-tBr">
@@ -319,7 +319,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Logga in" image="second" id="hSi-WU-nkO"/>
+                    <tabBarItem key="tabBarItem" title="Logga in" image="first" id="hSi-WU-nkO"/>
                     <connections>
                         <outlet property="emailContactPersonBtn" destination="VRw-7s-Qba" id="pZu-oI-nrc"/>
                         <outlet property="emailGmailBtn" destination="r9z-Hm-zbo" id="DjH-BN-hsT"/>
@@ -347,11 +347,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Q8K-IL-wRK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="frw-w9-Apz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TMs-Py-Id9">
-                                <rect key="frame" x="0.0" y="129" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="129" width="320" height="271"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -361,7 +361,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Partigraf" image="second" id="Z7h-1E-pvt"/>
+                    <tabBarItem key="tabBarItem" title="Partigraf" image="fourth" id="Z7h-1E-pvt"/>
                     <connections>
                         <outlet property="container" destination="TMs-Py-Id9" id="b88-MO-eAc"/>
                     </connections>
@@ -374,8 +374,8 @@
         <scene sceneID="Vex-rW-GRa">
             <objects>
                 <tabBarController id="8YX-ce-x5E" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="JQR-rB-NYL">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="JQR-rB-NYL">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -395,7 +395,7 @@
         <scene sceneID="m0j-Hl-c9d">
             <objects>
                 <navigationController title="URL List" automaticallyAdjustsScrollViewInsets="NO" id="3lY-bp-gJC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Länklista" image="first" id="u1e-5L-l1D"/>
+                    <tabBarItem key="tabBarItem" title="Länklista" image="second" id="u1e-5L-l1D"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0p8-Fg-f0i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -422,8 +422,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="first" width="32" height="32"/>
+        <image name="fourth" width="32" height="32"/>
+        <image name="second" width="32" height="32"/>
+        <image name="third" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
