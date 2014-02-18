@@ -9,8 +9,8 @@
             <objects>
                 <viewController title="URL List2" id="CZ4-MO-1fc" userLabel="URLListViewController" customClass="FirstViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="50X-16-Edk"/>
-                        <viewControllerLayoutGuide type="bottom" id="5U1-yJ-Gjf"/>
+                        <viewControllerLayoutGuide type="top" id="Jx2-ON-j7b"/>
+                        <viewControllerLayoutGuide type="bottom" id="kDZ-gz-Is5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2VE-Yg-loa">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
@@ -71,8 +71,8 @@
             <objects>
                 <viewController id="syB-ti-4h1" userLabel="URLDetailViewController" customClass="URLDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2qN-0j-Tv2"/>
-                        <viewControllerLayoutGuide type="bottom" id="Xm4-AJ-FXL"/>
+                        <viewControllerLayoutGuide type="top" id="gw5-eY-lGw"/>
+                        <viewControllerLayoutGuide type="bottom" id="2sv-va-3Hq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tgg-qH-458">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -169,15 +169,15 @@
             <objects>
                 <viewController id="Qa6-m4-wM7" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="k3A-7v-uth"/>
-                        <viewControllerLayoutGuide type="bottom" id="0zu-0s-J5a"/>
+                        <viewControllerLayoutGuide type="top" id="Adr-NI-d1a"/>
+                        <viewControllerLayoutGuide type="bottom" id="bxl-eS-NnO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QEb-us-Cf8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LuK-8Z-tBr">
-                                <rect key="frame" x="8" y="425" width="301" height="78"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LuK-8Z-tBr">
+                                <rect key="frame" x="8" y="433" width="301" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Inloggad som:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7W-ab-oox">
@@ -215,6 +215,9 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.734995621705127" green="1" blue="0.47185634146240041" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="78" id="PsW-sE-y1J"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRn-Dy-Hzu">
                                 <rect key="frame" x="20" y="111" width="134" height="30"/>
@@ -249,19 +252,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSp-KH-jkD">
-                                <rect key="frame" x="8" y="20" width="301" height="361"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSp-KH-jkD">
+                                <rect key="frame" x="8" y="20" width="301" height="394"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Instruktionstext" translatesAutoresizingMaskIntoConstraints="NO" id="DHJ-Bn-X91">
-                                        <rect key="frame" x="0.0" y="0.0" width="301" height="324"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Instruktionstext" translatesAutoresizingMaskIntoConstraints="NO" id="DHJ-Bn-X91">
+                                        <rect key="frame" x="0.0" y="0.0" width="301" height="194"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="194" id="ln6-JC-MMj"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRw-7s-Qba">
-                                        <rect key="frame" x="0.0" y="261" width="107" height="29"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRw-7s-Qba">
+                                        <rect key="frame" x="0.0" y="263" width="107" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="adam@audita.se">
@@ -271,8 +277,8 @@
                                             <action selector="sendEmailAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="Q1X-BU-VC0"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9z-Hm-zbo">
-                                        <rect key="frame" x="0.0" y="241" width="184" height="29"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9z-Hm-zbo">
+                                        <rect key="frame" x="0.0" y="243" width="184" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="demokratiappen@gmail.com">
@@ -282,8 +288,8 @@
                                             <action selector="sendEmailAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="rfb-O2-kQH"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mm-on-xQV">
-                                        <rect key="frame" x="0.0" y="55" width="249" height="30"/>
+                                    <button opaque="NO" tag="10" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mm-on-xQV">
+                                        <rect key="frame" x="0.0" y="358" width="242" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="http://demokratiappen.parseapp.com">
@@ -294,7 +300,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnr-vN-8AN">
-                                        <rect key="frame" x="222" y="261" width="79" height="30"/>
+                                        <rect key="frame" x="222" y="176" width="79" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="TestBtn">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -303,9 +309,10 @@
                                             <action selector="testBtnAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="ecb-Kd-VXM"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udn-y4-A2I">
-                                        <rect key="frame" x="0.0" y="325" width="208" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udn-y4-A2I">
+                                        <rect key="frame" x="0.0" y="299" width="195" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Demokratiappen på Facebook">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -313,11 +320,31 @@
                                             <action selector="sendToFBAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="D9o-2M-UF1"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Kz-mt-Znp">
+                                        <rect key="frame" x="0.0" y="329" width="128" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Installera js-booklet">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="FPc-aB-Gg4" kind="modal" identifier="InformationSeque" id="8Xp-Xu-Khw"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="r9z-Hm-zbo" firstAttribute="height" secondItem="VRw-7s-Qba" secondAttribute="height" id="7Mi-Ci-yY9"/>
+                                    <constraint firstAttribute="bottom" secondItem="6Mm-on-xQV" secondAttribute="bottom" constant="10" id="DCY-BQ-UBp"/>
+                                    <constraint firstItem="Udn-y4-A2I" firstAttribute="height" secondItem="3Kz-mt-Znp" secondAttribute="height" id="h2Q-md-XLV"/>
+                                    <constraint firstItem="Udn-y4-A2I" firstAttribute="height" secondItem="VRw-7s-Qba" secondAttribute="height" id="rtv-fT-pLJ"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LuK-8Z-tBr" firstAttribute="top" secondItem="pSp-KH-jkD" secondAttribute="bottom" constant="19" id="UUa-U8-mqZ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Logga in" image="second" id="hSi-WU-nkO"/>
                     <connections>
@@ -343,8 +370,8 @@
             <objects>
                 <viewController title="Party graph" id="QUy-BD-bpt" userLabel="PartyGraphViewController" customClass="SecondViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Aha-Bi-stz"/>
-                        <viewControllerLayoutGuide type="bottom" id="Q8K-IL-wRK"/>
+                        <viewControllerLayoutGuide type="top" id="3VM-yD-FlR"/>
+                        <viewControllerLayoutGuide type="bottom" id="BIp-FA-AVR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="frw-w9-Apz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -369,6 +396,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qq-4t-Ow8" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1179" y="498"/>
+        </scene>
+        <!--Information View Controller-->
+        <scene sceneID="Ker-j9-xzk">
+            <objects>
+                <viewController id="FPc-aB-Gg4" customClass="InformationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bca-9T-tdU"/>
+                        <viewControllerLayoutGuide type="bottom" id="54B-40-YoX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cpe-rJ-Xp1" customClass="informationviewcontroller">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxU-eW-UR1">
+                                <rect key="frame" x="254" y="509" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="OK">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="zLj-LM-3dg" kind="unwind" unwindAction="unwindController:" id="Vhe-Fg-o53"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLj-nM-OKs">
+                                <rect key="frame" x="20" y="471" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Kopiera URL för Bokmärke till Clipboard">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="jsBookmarkletAction:" destination="FPc-aB-Gg4" eventType="touchUpInside" id="bsr-Bb-cOp"/>
+                                </connections>
+                            </button>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E7p-zn-MGE">
+                                <rect key="frame" x="0.0" y="38" width="320" height="407"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4Qw-NF-1rA"/>
+                    <connections>
+                        <outlet property="jsBookmarkletBtn" destination="yLj-nM-OKs" id="JgY-Cm-gzw"/>
+                        <outlet property="jsBookmarkletWebView" destination="E7p-zn-MGE" id="iV6-AC-kb1"/>
+                        <outlet property="okBtn" destination="dxU-eW-UR1" id="lXD-kC-n5e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jiH-aT-qdH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zLj-LM-3dg" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1025" y="1440"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vex-rW-GRa">
