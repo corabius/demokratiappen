@@ -268,16 +268,20 @@ angular.module('democracy-app', [])
     var Tag = Parse.Object.extend("Tag");
 
     // Convert tag id to Tag objects with a name
-    var tagIds = $location.search().tags.split(",");
+    $scope.tags = []; 
+    var tagsArg = $location.search().tags;
+    if (tagsArg) {
+      var tagIds = tagsArg.split(",");
 
-    var query = new Parse.Query("Tag");
-    query.containedIn("objectId", tagIds);
-    query.find().then(function (tags) {
-      $scope.tags = tags;
-      $scope.$apply();
-    }, function (error) {
-      alert("Connection to Parse failed, no tags");
-    });
+      var query = new Parse.Query("Tag");
+      query.containedIn("objectId", tagIds);
+      query.find().then(function (tags) {
+        $scope.tags = tags;
+        $scope.$apply();
+      }, function (error) {
+        alert("Connection to Parse failed, no tags");
+      });
+    }
   }
 
   getTags();
