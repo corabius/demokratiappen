@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "InformationViewController.h"
 #import <Parse/Parse.h>
 #import <MessageUI/MessageUI.h>
 
@@ -63,7 +64,7 @@
     [self updateCurrentUser];
 
     NSString *text1 = @"\nAnvänd samma testkonto som du skapar för både appen och webbgränssnittet \n";
-    NSString *text2 = @"\n\nDemokratiappen är under utveckling. Databasen med användare kommer då och då att tömmas. Räkna inte med att spara ner något och sen återfinna det. Observera också att vi ännu inte lagt på något säkerhetslager så vi kan i nuläget öppet se alla dina taggmarkeringar.";
+    NSString *text2 = @"\nDemokratiappen är under utveckling. Databasen med användare kommer då och då att tömmas. Räkna inte med att spara ner något och sen återfinna det. Observera också att vi ännu inte lagt på något säkerhetslager så vi kan i nuläget öppet se alla dina taggmarkeringar.";
     NSString *text3 = @"\n\nMejla gärna och ge oss feedback!";
     NSString *text4 = @"\nDu kan också ta kontakt med en av våra projektledare: Adam Svensson, 070 - 603 12 53";
 
@@ -220,6 +221,7 @@
 
 - (IBAction)loginAccountAction:(id)sender {
 
+    //tutorial custom login-view https://parse.com/tutorials/login-and-signup-views
     self.parseLoginController = [[PFLogInViewController alloc] init];
     self.parseLoginController.delegate = self;
     [self presentViewController: self.parseLoginController animated:YES completion:nil];
@@ -266,6 +268,31 @@
             //            [alert show];
         }
     }];
+}
+
+
+
+
+#pragma mark - Navigation
+
+// In a story board-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+
+    if ([segue.identifier isEqualToString:@"InformationSeque"]){
+    }
+
+}
+
+
+- (IBAction)unwindController:(UIStoryboardSegue*)sender{
+
+    UIViewController* sourceViewController = sender.sourceViewController;
+
+    if ([sourceViewController isKindOfClass:[InformationViewController class]]){
+    }
 }
 
 

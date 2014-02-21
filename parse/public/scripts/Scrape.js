@@ -1212,8 +1212,15 @@ var demokratiappen = {
     },
     visa: function(scrapeResult) {
       // Send document contents to our backend
-      var url = "https://api.parse.com/1/functions/getTags";
+      var url = "https://api.parse.com/1/functions/tagga";
       var method = "POST";
+
+     // Remove the modification we made to the title when the bookmarklet
+     // was triggererd
+     if (scrapeResult.title.substr(0, 12) == "(Saving...) ") {
+       scrapeResult.title = scrapeResult.title.substr(12);
+     }
+     scrapeResult.url = document.location.href;
 
       var request = new XMLHttpRequest();
       request.onload = function () {
@@ -1226,17 +1233,12 @@ var demokratiappen = {
             tagIds = tagIds.concat(",", resultJSON.result[i].objectId);
           }
 
-          // Remove the modification we made to the title when the bookmarklet
-          // was triggererd
-          var title = scrapeResult.title;
-          if (title.substr(0, 12) == "(Saving...) ") {
-            title = title.substr(12);
-          }
-
           // We have our tags, redirect to our page
-          document.location = 'https://demokratiappen.parseapp.com/#/?title=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(document.location.href) + '&tags=' + encodeURIComponent(tagIds);
+          document.location = 'https://demokratiappen.parseapp.com/tag.html#/?title=' + encodeURIComponent(scrapeResult.title) + '&url=' + encodeURIComponent(document.location.href) + '&tags=' + encodeURIComponent(tagIds);
         }
         else {
+          console.log("Error retrieving tags:");
+          console.log(request);
           alert("Error retrieving tags from demokratiappen. Sorry :(");
         }
       }
