@@ -111,7 +111,7 @@ function extractTags(request, response){
     {
       url: saploUrlWithToken,
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
       body: JSON.stringify(tagRequest),
       success: function(httpResponse) {
         if (httpResponse.status != 200) {
@@ -152,7 +152,8 @@ function extractTags(request, response){
           for (var i = 0; i < saploTags.tags.length; i++) {
             var foundTag = false;
             for (var j = 0; j < parseTags.length; j++) {
-              if (parseTags[j].get("name") == saploTags.tags[i].tag) {
+              if (parseTags[j].get("name") == saploTags.tags[i].tag
+                  && parseTags[j].get("type") == saploTags.tags[i].category) {
                 foundTag = true;
                 break;
               }
@@ -222,7 +223,7 @@ function extractTags(request, response){
         Parse.Cloud.httpRequest({
           url: saploUrlWithToken,
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
           body: JSON.stringify(textIdCreate),
           success: textIdSuccess,
           error: function(httpResponse) { 
@@ -248,7 +249,7 @@ function extractTags(request, response){
         Parse.Cloud.httpRequest({
           url: saploUrlWithToken,
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
           body: JSON.stringify(textIdGet),
           success: textIdSuccess,
           error: function(httpResponse) {
@@ -267,7 +268,7 @@ function extractTags(request, response){
     // First connect to Saplo (we need an access token to get the tags)
     url: 'http://api.saplo.com/rpc/json',
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
     body: JSON.stringify(accessTokenRequest),
     success: accessSuccess,
     error: function(httpResponse){
