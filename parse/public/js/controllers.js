@@ -1,89 +1,11 @@
+var democracyControllers = angular.module('democracy.controller', ['democracy.service']);
 
-
-angular.module('democracy-app', [])
-
-.factory('ParseInitializer', function() {
-  init_demokratiappen();
-})
-
-.factory('LoginService', function($rootScope, ParseInitializer) {
-  var obj = {
-    LOGGED_IN: 0,
-    NOT_LOGGED_IN: 1,
-    INITIAL: 0,
-    LOADING: 1,
-    LOGIN_FAILED: 2,
-    REGISTRATION_FAILED: 3
-  };
-
-  obj.stateLoggedIn = (Parse.User.current() ? obj.LOGGED_IN : obj.NOT_LOGGED_IN);
-  obj.stateLoginProcess = obj.INITIAL;
-  
-  obj.setStateLoggedIn = function(newState) {
-    obj.stateLoggedIn = newState;
-
-    obj.password = '';
-    obj.setStateLoginProcess(obj.INITIAL);
-  };
-
-  obj.setStateLoginProcess = function(newState) {
-    obj.stateLoginProcess = newState;
-  };
-
-  obj.login = function() {
-    obj.setStateLoginProcess(obj.LOADING);
-
-    Parse.User.logIn(
-      obj.username,
-      obj.password,
-      {
-        success: function(user) {
-          obj.setStateLoggedIn(obj.LOGGED_IN);
-          $rootScope.$apply();
-        },
-        error: function(user, error) {
-          obj.setStateLoginProcess(obj.LOGIN_FAILED);
-          $rootScope.$apply();
-        }
-      });
-  };
-
-  obj.signUp = function(scope) {
-    obj.setStateLoginProcess(obj.LOADING);
-
-    Parse.User.signUp(
-      obj.username,
-      obj.password,
-      { ACL: new Parse.ACL() },
-      {
-        success: function(user) {
-          obj.setStateLoggedIn(obj.LOGGED_IN);
-          obj.username = user.getUsername();
-          $rootScope.$apply();
-        },
-        error: function(user, error) {
-          obj.setStateLoginProcess(obj.REGISTRATION_FAILED);
-          $rootScope.$apply();
-        }
-      });
-  };
-
-  obj.logout = function() {
-    obj.username = '';
-    Parse.User.logOut();
-    obj.setStateLoggedIn(obj.NOT_LOGGED_IN);
-  };
-
-  obj.username = (Parse.User.current() ? Parse.User.current().getUsername() : '');
-
-  return obj;
-})
-
-.controller('MainController', function($scope, LoginService) {
+democracyControllers.controller('MainController', [ '$scope', 'LoginService', function($scope, LoginService) {
   $scope.loginService = LoginService;
-})
+}]);
 
-.controller('LoginController', function($scope, LoginService) {
+
+democracyControllers.controller('LoginController', ['$scope', 'LoginService', function($scope, LoginService) {
   $scope.oldFillerHeight = 0;
 
   window.onresize = function() {
@@ -101,28 +23,21 @@ angular.module('democracy-app', [])
   };
 
   $scope.loginService = LoginService;
-})
+}]);
 
-.factory('AddPageService', function($rootScope) {
-  var obj = {}
-  obj.url = '';
-  obj.title = '';
 
-  return obj;
-})
-
-.controller('AddPageController', function($scope, $rootScope, AddPageService, $location, $window) {
-  $scope.addPageService = AddPageService;
+democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$location', '$window', 'LoginService', function($scope, $rootScope, $location, $window, LoginService) {
+  $scope.loginService = LoginService
   $rootScope.pageAddCount = 0;
 
   $scope.$watch(function() {
     return $location.search();
   }, function() {
     if ($location.search().title) {
-      $scope.addPageService.title = $location.search().title;
+      $scope.title = $location.search().title;
     }
     if ($location.search().url) {
-      $scope.addPageService.url = $location.search().url;
+      $scope.url = $location.search().url;
     }
   });
 
@@ -204,15 +119,14 @@ angular.module('democracy-app', [])
 
 
   $scope.post = function () {
-    if (($scope.addPageService.title.length > 0)
-        && ($scope.addPageService.url.length > 0)) {
+    if (($scope.title.length > 0) && ($scope.url.length > 0)) {
       // Create new page object to fill in
       var Page = Parse.Object.extend("Page");
       var page = new Page();
       var currentUser = Parse.User.current();
 
-      page.set("title", $scope.addPageService.title);
-      page.set("url", $scope.addPageService.url);
+      page.set("title", $scope.title);
+      page.set("url", $scope.url);
       page.set("user", currentUser);
       page.setACL(new Parse.ACL(currentUser));
 
@@ -239,8 +153,8 @@ angular.module('democracy-app', [])
       page.save(null, {
         success: function(page) {
           // Clear the entry from
-          $scope.addPageService.title = "";
-          $scope.addPageService.url = "";
+          $scope.title = "";
+          $scope.url = "";
           $scope.addPageForm.$setPristine();
           $rootScope.pageAddCount++;
           $scope.$apply();
@@ -285,9 +199,12 @@ angular.module('democracy-app', [])
   }
 
   getTags();
-})
+}]);
 
-.controller('ListController', function($scope, $rootScope, LoginService) {
+
+democracyControllers.controller('ListPagesController', ['$scope', '$rootScope', 'LoginService', function($scope, $rootScope, LoginService) {
+  $scope.loginService = LoginService;
+
   function queryPage() {
     if (LoginService.stateLoggedIn != LoginService.LOGGED_IN) {
       return;
@@ -327,9 +244,10 @@ angular.module('democracy-app', [])
   
   $rootScope.$watch(function() { return LoginService.stateLoggedIn; }, queryPage);
   $rootScope.$watch('pageAddCount', queryPage);
-})
+}]);
 
-.controller('StatisticsController', function($scope, $rootScope, LoginService) {
+democracyControllers.controller('StatisticsController', ['$scope', '$rootScope', 'LoginService', function($scope, $rootScope, LoginService) {
+  $scope.loginService = LoginService;
   $scope.tags = [];
   $scope.tagCount = 0;
 
@@ -365,4 +283,5 @@ angular.module('democracy-app', [])
 
   $rootScope.$watch(function() { return LoginService.stateLoggedIn; }, queryPage);
   $rootScope.$watch('pageAddCount', queryPage);
-});
+}]);
+

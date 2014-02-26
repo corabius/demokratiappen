@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="democracy-app">
+<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="democracyApp">
   <head>
     <meta charset="utf-8">
     <title>Demokratiappen - Web - BETA</title>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/demokratiappen.css" rel="stylesheet" type="text/css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
-    <script type="text/javascript" src="https://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
-    <script type="text/javascript" src="js/initialize_parse.js"></script>
-    <script src="js/demokratiappen.js"></script>
 
-    <meta name="description" content="Demokratiappen - web">
+    <!-- External script dependencies -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.js"></script>
+     <script type="text/javascript" src="https://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
+
+    <!-- Scripts that make up our application -->
+    <script type="text/javascript" src="js/initialize_parse.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
+
+    <meta name="description" content="Demokratiappen - BETA">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -27,140 +34,13 @@
   <body>
     <div class="container">
       <h1>Demokratiappen - BETA</h1>
-      <div class="well">Här är demokratiappens beta-gränssnitt. Prova gärna att skapa en användare och at lägga in taggar, men observera att allt är under utveckling och vi FÖRVÄNTAR oss att vi kommer behöva tömma databasen med registrerade användare och inmatade taggar. Det finns i dagsläget inga garantier för att inmatad data sparas på ett integritetsäkert sätt (detta kommer naturligtvis förbättras till slutversionen).<br/>
+      <div class="well">Här är demokratiappens beta-gränssnitt. Prova gärna att skapa en användare och tt lägga in taggar, men observera att allt är under utveckling och vi FÖRVÄNTAR oss att vi kommer behöva tömma databasen med registrerade användare och inmatade taggar. Det finns i dagsläget inga garantier för att inmatad data sparas på ett integritetsäkert sätt (detta kommer naturligtvis förbättras till slutversionen).<br/>
 /Demokratiappens teknikgrupp
       </div>
-      <div data-ng-controller="MainController" ng-cloak>
-         <div data-ng-controller="AddPageController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
-          <form name="addPageForm" role="form">
-            <div class="form-group">
-              <label for="titleInput">Titel</label>
-              <input type="text" class="form-control" data-ng-model="addPageService.title" id="titleInput" placeholder="Skriv titeln här" required/>
-            </div>
-            <div class="form-group">
-              <label for="urlInput">URL</label>
-              <input type="text" class="form-control" data-ng-model="addPageService.url" id="urlInput" placeholder="Skriv URL:en här" required/>
-            </div>
 
-            <label style="margin-top: 20px">Taggar</label>
-            <script type="text/ng-template" id="tag.html">
-              <div style="margin: 16px">
-              <button data-ng-click="tag.up = !tag.up"
-                      ng-disabled="tag.down"
-                      ng-class="{btn: true, 'btn-default': true,
-                        'da-bg-green': tag.up}"
-                      style="margin-right: -6px">
-                <span class="glyphicon glyphicon-chevron-up"></span>
-              </button>
-              <button class="btn btn-default" ng-click="resetTag(tag)">
-                {{tag.get("name")}}
-              </button>
-              <button data-ng-click="tag.down = !tag.down"
-                      ng-disabled="tag.up"
-                      ng-class="{btn: true, 'btn-default': true,
-                        'da-bg-red': tag.down}"
-                      style="margin-left: -6px">
-                <span class="glyphicon glyphicon-chevron-down"></span>
-              </button>
-              </div>
-            </script> 
+      <div ng-include="'view/login.html'"></div>
+      <div ng-view></div>
 
-            <div>
-               <div class="btn-group" data-ng-repeat="tag in tags" ng-include="'tag.html'">
-               </div>
-            </div>
-
-            <button data-ng-click="post();" class="btn btn-default" style="margin-top: 20px">
-              Spara
-            </button>
-          </form>
-        </div>
-
-        <div data-ng-controller="StatisticsController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
-          <h2>Statistik</h2>
-          <table>
-          <thead>
-            <tr>
-              <th>Tag</th>
-              <th>Negativt</th>
-              <th>/</th>
-              <th>Positivt</th>
-            </tr>
-          </thead>
-          <tbody data-ng-repeat="tag in tags">
-          <tr>
-            <td data-ng-bind="tag.name">
-            </td>
-            <td>
-              <div style="float:right; width: {{250*tag.negativeCount/tagCount}}px; background-color: red; height: 1em;"></div>
-            </td>
-	    <td></td>
-            <td>
-              <div style="width: {{250*tag.positiveCount/tagCount}}px; background-color: green; height: 1em;"></div>
-            </td>
-          </tbody>
-          </table>
-        </div>
-
-        <div data-ng-controller="ListController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
-          <h2>Dina senaste artiklar</h2>
-          <div data-ng-repeat="article in articles" class="article">
-            <h2>
-              <a href="{{article.url}}" data-ng-bind="article.title"></a>
-            </h2>
-            <div class="tags">
-              <span data-ng-repeat="tag in article.tags" class="label label-{{tag.type}}" style="margin-right: 0.5em;">
-                {{tag.name}}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-controller="LoginController">
-          <div ng-class="{'md-overlay': true,
-                             'md-show': loginService.stateLoggedIn != loginService.LOGGED_IN}">
-
-            <div ng-style="fillerHeight()"></div>
-
-            <div id="modallogin"
-              ng-class="{'md-modal': true,
-                          'md-show': loginService.stateLoggedIn != loginService.LOGGED_IN}">
-
-              <div class="md-content">
-                <h3 ng-show="loginService.stateLoginProcess == loginService.LOADING">
-                  Laddar...
-                </h3>
-                <h3 class="md-failure" ng-show="loginService.stateLoginProcess == loginService.LOGIN_FAILED">
-                  Inloggning misslyckades
-                </h3>
-                <h3 class="md-failure" ng-show="loginService.stateLoginProcess == loginService.REGISTRATION_FAILED">
-                  Registrering misslyckades
-                </h3>
-
-                <form role="form" ng-show="loginService.stateLoginProcess != loginService.LOADING">
-                  <div class="form-group">
-                    <label for="loginUsernameInput">Användarnamn</label>
-                    <input type="text" class="form-control" data-ng-model="loginService.username" id="loginUsernameInput" placeholder="Ange användarnamn">
-                  </div>
-                  <div class="form-group">
-                    <label for="loginPasswordInput">Lösenord</label>
-                    <input type="password" data-ng-model="loginService.password" id="loginPasswordInput" class="form-control" placeholder="Ange lösenord">
-                  </div>
-
-                  <button data-ng-click="loginService.login()" class="btn btn-primary" style="margin-left: 100px">Logga in</button>
-                  <button data-ng-click="loginService.signUp()" class="btn btn-default" style="margin-right: 100px; float: right">Registrera</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <form role="form" data-ng-show="loginService.stateLoggedIn == loginService.LOGGED_IN">
-            <button data-ng-click="loginService.logout();" class="btn btn-default">Logga ut</button>
-          </form>
-        </div>
-      </div>
     </div>
-    <br />
-    <br />
-    <br />
   </body>
 </html>

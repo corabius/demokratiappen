@@ -1213,42 +1213,34 @@ var demokratiappen = {
       var url = "https://api.parse.com/1/functions/tagga";
       var method = "POST";
 
-     // Remove the modification we made to the title when the bookmarklet
-     // was triggererd
-     if (scrapeResult.title.substr(0, 12) == "(Saving...) ") {
-       scrapeResult.title = scrapeResult.title.substr(12);
-     }
-     scrapeResult.url = document.location.href;
+      // Remove the modification we made to the title when the bookmarklet
+      // was triggererd
+      if (scrapeResult.title.substr(0, 12) == "(Saving...) ") {
+        scrapeResult.title = scrapeResult.title.substr(12);
+      }
+      scrapeResult.url = document.location.href;
 
       var request = new XMLHttpRequest();
       request.onload = function () {
+        // We have received tags from saplo, redirect the user to our site
+        // together with the tags so we can present them in the UI.
         if (request.status == 200) {
-          // Extract the tag ids
-          resultJSON = JSON.parse(request.responseText);
-
+          // Extract the tag ids and encode as comma separated string for our
+          // GET request.
+          var resultJSON = JSON.parse(request.responseText);
           var tagIds = "";
           for (var i = 0; i < resultJSON.result.length; i++) {
-            tagIds = tagIds.concat(",", resultJSON.result[i].objectId);
+            if (i > 0) {
+              tagIds = tagIds.concat(",");
+            }
+            tagIds = tagIds.concat(resultJSON.result[i].objectId);
           }
 
-<<<<<<< HEAD
-          // Remove the modification we made to the title when the bookmarklet
-          // was triggererd
-          var title = scrapeResult.title;
-          if (title.substr(0, 12) == "(Saving...) ") {
-            title = title.substr(12);
-          }
-
-          var title_part = '?title=' + encodeURIComponent(title);
+          var title_part = '?title=' + encodeURIComponent(scrapeResult.title);
           var url_part = '&url=' + encodeURIComponent(document.location.href);
           var tags_part = '&tags=' + encodeURIComponent(tagIds);
           // We have our tags, redirect to our page
-          document.location = 'https://demokratiappen.parseapp.com/tag.html#/' + title_part + url_part + tags_part;
-
-=======
-          // We have our tags, redirect to our page
-          document.location = 'https://demokratiappen.parseapp.com/tag.html#/?title=' + encodeURIComponent(scrapeResult.title) + '&url=' + encodeURIComponent(document.location.href) + '&tags=' + encodeURIComponent(tagIds);
->>>>>>> 237c7e96fbf6194d515e163d5eed9ccc51ae1e11
+          document.location = 'https://demokratiappen.parseapp.com#/addPage' + title_part + url_part + tags_part;
         }
         else {
           console.log("Error retrieving tags:");
@@ -1264,7 +1256,7 @@ var demokratiappen = {
 
       console.log(scrapeResult);
 
-      // Send the request to the server.
+      // Send request for extracting tags from the current page
       request.send(JSON.stringify(scrapeResult));
     }
 };
