@@ -33,11 +33,13 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
   $scope.$watch(function() {
     return $location.search();
   }, function() {
-    if ($location.search().title) {
-      $scope.title = $location.search().title;
+    var title = $location.search().title; 
+    if (title) {
+      $scope.title = title;
     }
-    if ($location.search().url) {
-      $scope.url = $location.search().url;
+    var url = $location.search().url; 
+    if (url) {
+      $scope.url = url;
     }
   });
 

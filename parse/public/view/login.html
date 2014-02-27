@@ -1,41 +1,38 @@
 <div ng-controller="LoginController">
-          <div ng-class="{'md-overlay': true,
+  <div ng-class="{'md-overlay': true,
                              'md-show': loginService.stateLoggedIn != loginService.LOGGED_IN}">
 
-            <div ng-style="fillerHeight()"></div>
+    <div ng-style="fillerHeight()"></div>
 
-            <div id="modallogin"
-              ng-class="{'md-modal': true,
-                          'md-show': loginService.stateLoggedIn != loginService.LOGGED_IN}">
+    <div id="modallogin"
+      ng-class="{'md-modal': true,
+                 'md-show': loginService.stateLoggedIn != loginService.LOGGED_IN}">
 
-              <div class="md-content">
-                <h3 ng-show="loginService.stateLoginProcess == loginService.LOADING">
-                  Laddar...
-                </h3>
-                <h3 class="md-failure" ng-show="loginService.stateLoginProcess == loginService.LOGIN_FAILED">
-                  Inloggning misslyckades
-                </h3>
-                <h3 class="md-failure" ng-show="loginService.stateLoginProcess == loginService.REGISTRATION_FAILED">
-                  Registrering misslyckades
-                </h3>
+      <div class="md-content">
+        <h3 ng-show="loginService.stateLoginProcess == loginService.LOADING">
+          Laddar...
+        </h3>
+        <h3 class="md-failure" ng-show="loginService.stateLoginProcess == loginService.LOGIN_FAILED">
+          Inloggning misslyckades
+        </h3>
+        <h3 class="md-failure" ng-show="loginService.stateLoginProcess == loginService.REGISTRATION_FAILED">
+          Registrering misslyckades
+        </h3>
 
-                <form role="form" ng-show="loginService.stateLoginProcess != loginService.LOADING">
-                  <div class="form-group">
-                    <label for="loginUsernameInput">Användarnamn</label>
-                    <input type="text" class="form-control" data-ng-model="loginService.username" id="loginUsernameInput" placeholder="Ange användarnamn">
-                  </div>
-                  <div class="form-group">
-                    <label for="loginPasswordInput">Lösenord</label>
-                    <input type="password" data-ng-model="loginService.password" id="loginPasswordInput" class="form-control" placeholder="Ange lösenord">
-                  </div>
-
-                  <button data-ng-click="loginService.login()" class="btn btn-primary" style="margin-left: 100px">Logga in</button>
-                  <button data-ng-click="loginService.signUp()" class="btn btn-default" style="margin-right: 100px; float: right">Registrera</button>
-                </form>
-              </div>
-            </div>
+        <form role="form" ng-show="loginService.stateLoginProcess != loginService.LOADING">
+          <div class="form-group">
+            <label for="loginUsernameInput">Användarnamn</label>
+            <input type="text" class="form-control" data-ng-model="loginService.username" id="loginUsernameInput" placeholder="Ange användarnamn">
           </div>
-          <form role="form" data-ng-show="loginService.stateLoggedIn == loginService.LOGGED_IN">
-            <button data-ng-click="loginService.logout();" class="btn btn-default">Logga ut</button>
-          </form>
+          <div class="form-group">
+            <label for="loginPasswordInput">Lösenord</label>
+            <input type="password" data-ng-model="loginService.password" id="loginPasswordInput" class="form-control" placeholder="Ange lösenord">
+          </div>
+
+          <button data-ng-click="loginService.login()" class="btn btn-primary" style="margin-left: 100px">Logga in</button>
+          <button data-ng-click="loginService.signUp()" class="btn btn-default" style="margin-right: 100px; float: right">Registrera</button>
+        </form>
+      </div>
+    <div>
+  </div>
 </div>

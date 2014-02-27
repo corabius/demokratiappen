@@ -32,15 +32,23 @@
 
   </head>
   <body>
-    <div class="container">
-      <h1>Demokratiappen - BETA</h1>
-      <div class="well">Här är demokratiappens beta-gränssnitt. Prova gärna att skapa en användare och tt lägga in taggar, men observera att allt är under utveckling och vi FÖRVÄNTAR oss att vi kommer behöva tömma databasen med registrerade användare och inmatade taggar. Det finns i dagsläget inga garantier för att inmatad data sparas på ett integritetsäkert sätt (detta kommer naturligtvis förbättras till slutversionen).<br/>
-/Demokratiappens teknikgrupp
+    <div data-ng-controller="MainController" ng-cloak class="container content" class="base">
+      <div class="content" style="height: 60px">
+        <h2 style="text-align: center">Demokratiappen</h2>
+        <h4 style="margin-left: 30px; float: left; display: inline">{{loginService.username}}</h4>
+        <h4 style="margin-right: 30px; float: right; display: inline"><a ng-clik="loginService.logout();" href="#">Logga ut</a></h4>
+      </div>
+
+      <div class="panel panel-danger">
+        <div class="panel-heading">Observera</div>
+        <div class="panel-body"><p>Här är demokratiappens beta-gränssnitt. Prova gärna att skapa en användare och tt lägga in taggar, men observera att allt är under utveckling och vi FÖRVÄNTAR oss att vi kommer behöva tömma databasen med registrerade användare och inmatade taggar. Det finns i dagsläget inga garantier för att inmatad data sparas på ett integritetsäkert sätt (detta kommer naturligtvis förbättras till slutversionen).</p>
+<p>Vänlig hälsning<br/>
+/Demokratiappens teknikgrupp</p>
+        </div>
       </div>
 
       <div ng-include="'view/login.html'"></div>
       <div ng-view></div>
-
     </div>
   </body>
 </html>
