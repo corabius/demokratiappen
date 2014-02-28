@@ -23,6 +23,7 @@
 		3BC792861882A1D8005C9BBA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC792851882A1D8005C9BBA /* MobileCoreServices.framework */; };
 		3BC792891882D502005C9BBA /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC792881882D502005C9BBA /* Tag.m */; };
 		3BC7928C1882D730005C9BBA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7928B1882D730005C9BBA /* LoginViewController.m */; };
+		3BD8EE2118A9558D008EC595 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD8EE2018A9558D008EC595 /* InformationViewController.m */; };
 		55A5270618828FF8009207E2 /* UIGraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55A5270318828FF8009207E2 /* UIGraphView.xib */; };
 		55A5270718828FF8009207E2 /* UIGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A5270518828FF8009207E2 /* UIGraphViewController.m */; };
 		55A82E45188170A9004F2383 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A82E44188170A9004F2383 /* Foundation.framework */; };
@@ -81,6 +82,8 @@
 		3BC792881882D502005C9BBA /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		3BC7928A1882D730005C9BBA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		3BC7928B1882D730005C9BBA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		3BD8EE1F18A9558D008EC595 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
+		3BD8EE2018A9558D008EC595 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
 		55A5270318828FF8009207E2 /* UIGraphView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIGraphView.xib; sourceTree = "<group>"; };
 		55A5270418828FF8009207E2 /* UIGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGraphViewController.h; sourceTree = "<group>"; };
 		55A5270518828FF8009207E2 /* UIGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGraphViewController.m; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 				3BC79276188298C7005C9BBA /* Page.h */,
 				3BC79277188298C8005C9BBA /* Page.m */,
 				55A82E56188170A9004F2383 /* Main.storyboard */,
+				3BD8EE1F18A9558D008EC595 /* InformationViewController.h */,
+				3BD8EE2018A9558D008EC595 /* InformationViewController.m */,
 				3BC7928A1882D730005C9BBA /* LoginViewController.h */,
 				3BC7928B1882D730005C9BBA /* LoginViewController.m */,
 				55A5270318828FF8009207E2 /* UIGraphView.xib */,
@@ -379,6 +384,7 @@
 				55A82E5E188170A9004F2383 /* PartyGraphViewController.m in Sources */,
 				55A82E55188170A9004F2383 /* AppDelegate.m in Sources */,
 				3BC79278188298C8005C9BBA /* Page.m in Sources */,
+				3BD8EE2118A9558D008EC595 /* InformationViewController.m in Sources */,
 				3BC792891882D502005C9BBA /* Tag.m in Sources */,
 				55A82E5B188170A9004F2383 /* URLListViewController.m in Sources */,
 				55A82E7E1881742A004F2383 /* UserData.m in Sources */,

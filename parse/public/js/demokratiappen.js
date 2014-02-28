@@ -264,15 +264,27 @@ angular.module('democracy-app', [])
     tag.down = false;
   };
 
-  Parse.Cloud.run('getTags', { url: 'My_URL', title: 'MY title', body: 'MY BODY' }, {
-    success: function(tags) {
-      $scope.tags = tags;
-      $scope.$apply();
-    },
-    error: function(error) {
-      alert("Connection to Parse failed, no tags");
+  function getTags() {
+    var Tag = Parse.Object.extend("Tag");
+
+    // Convert tag id to Tag objects with a name
+    $scope.tags = []; 
+    var tagsArg = $location.search().tags;
+    if (tagsArg) {
+      var tagIds = tagsArg.split(",");
+
+      var query = new Parse.Query("Tag");
+      query.containedIn("objectId", tagIds);
+      query.find().then(function (tags) {
+        $scope.tags = tags;
+        $scope.$apply();
+      }, function (error) {
+        alert("Connection to Parse failed, no tags");
+      });
     }
-  });
+  }
+
+  getTags();
 })
 
 .controller('ListController', function($scope, $rootScope, LoginService) {
