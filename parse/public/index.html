@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="democracyApp">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"/>
+    <meta http-equiv="content-language" content="sv"/>
     <title>Demokratiappen - Web - BETA</title>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/demokratiappen.css" rel="stylesheet" type="text/css"/>
@@ -9,8 +10,8 @@
     <!-- External script dependencies -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.min.js"></script>
      <script type="text/javascript" src="https://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
 
     <!-- Scripts that make up our application -->
@@ -33,10 +34,10 @@
   </head>
   <body>
     <div data-ng-controller="MainController" ng-cloak class="container content" class="base">
-      <div class="content" style="height: 60px">
-        <h2 style="text-align: center">Demokratiappen</h2>
-        <h4 style="margin-left: 30px; float: left; display: inline">{{loginService.username}}</h4>
-        <h4 style="margin-right: 30px; float: right; display: inline"><a ng-clik="loginService.logout();" href="#">Logga ut</a></h4>
+      <div class="header content">
+        <h1>Demokratiappen</h1>
+        <span id="loginName">{{loginService.username}}</span>
+        <span id="logout"><a ng-click="loginService.logout();" href="#">Logga ut</a></span>
       </div>
 
       <div class="panel panel-danger">
@@ -46,6 +47,11 @@
 /Demokratiappens teknikgrupp</p>
         </div>
       </div>
+
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#/statistics">Statistik</a></li>
+        <li><a href="#/listPages">List pages</a></li>
+      </ul>
 
       <div ng-include="'view/login.html'"></div>
       <div ng-view></div>

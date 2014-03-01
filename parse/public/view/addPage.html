@@ -1,44 +1,45 @@
-        <div data-ng-controller="AddPageController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
-          <form name="addPageForm" role="form">
-            <div class="form-group">
-              <label for="titleInput">Titel</label>
-              <input type="text" class="form-control" data-ng-model="title" id="titleInput" placeholder="Skriv titeln här" required/>
-            </div>
-            <div class="form-group">
-              <label for="urlInput">URL</label>
-              <input type="text" class="form-control" data-ng-model="url" id="urlInput" placeholder="Skriv URL:en här" required/>
-            </div>
+<div data-ng-controller="AddPageController" data-ng-hide="loginService.stateLoggedIn != loginService.LOGGED_IN" class="well">
+  <form name="addPageForm" role="form">
+    <div class="form-group">
+      <label for="titleInput">Titel</label>
+      <input type="text" class="form-control" data-ng-model="title" id="titleInput" placeholder="Skriv titeln här" required/>
+    </div>
+    <div class="form-group">
+      <label for="urlInput">URL</label>
+      <input type="text" class="form-control" data-ng-model="url" id="urlInput" placeholder="Skriv URL:en här" required/>
+    </div>
 
-            <label style="margin-top: 20px">Taggar</label>
-            <script type="text/ng-template" id="tag.html">
-              <div style="margin: 16px">
-              <button data-ng-click="tag.up = !tag.up"
-                      ng-disabled="tag.down"
-                      ng-class="{btn: true, 'btn-default': true,
-                        'da-bg-green': tag.up}"
-                      style="margin-right: -6px">
-                <span class="glyphicon glyphicon-chevron-up"></span>
-              </button>
-              <button class="btn btn-default" ng-click="resetTag(tag)">
-                {{tag.get("name")}}
-              </button>
-              <button data-ng-click="tag.down = !tag.down"
-                      ng-disabled="tag.up"
-                      ng-class="{btn: true, 'btn-default': true,
-                        'da-bg-red': tag.down}"
-                      style="margin-left: -6px">
-                <span class="glyphicon glyphicon-chevron-down"></span>
-              </button>
-              </div>
-            </script> 
+    <script type="text/ng-template" id="tag.html">
+      <div style="margin: 16px auto">
+        <button data-ng-click="tag.up = !tag.up"
+              ng-disabled="tag.down"
+              ng-class="{btn: true, 'btn-default': true,
+                'da-bg-green': tag.up}"
+              style="margin-right: -6px">
+          <span class="glyphicon glyphicon-chevron-up"></span>
+        </button>
+        <button class="btn btn-default" ng-click="resetTag(tag)" style="align:center; width: 300px">
+          {{tag.get("name")}}
+        </button>
+        <button data-ng-click="tag.down = !tag.down"
+              ng-disabled="tag.up"
+              ng-class="{btn: true, 'btn-default': true,
+                'da-bg-red': tag.down}"
+              style="margin-left: -6px">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        </button>
+      </div>
+    </script> 
 
-            <div>
-               <div class="btn-group" data-ng-repeat="tag in tags" ng-include="'tag.html'">
-               </div>
-            </div>
+    <div>
+       <div class="btn-group" data-ng-repeat="tag in tags" ng-include="'tag.html'" style="text-align: center; margin: auto">
+       </div>
+    </div>
 
-            <button data-ng-click="post();" class="btn btn-default" style="margin-top: 20px">
-              Spara
-            </button>
-          </form>
-        </div>
+    <div style="text-align: center">
+      <button data-ng-click="abort()" class="btn btn-default" style="margin-top: 20px; margin-right: 80px">Avbryt</button>
+
+      <button data-ng-click="post();" class="btn btn-default" style="margin-top: 20px; font-weight:bold ">Spara</button>
+    </div>
+  </form>
+</div>
