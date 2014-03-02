@@ -289,3 +289,84 @@ democracyControllers.controller('StatisticsController', ['$scope', '$rootScope',
   $rootScope.$watch('pageAddCount', queryPage);
 }]);
 
+democracyControllers.controller('TagsPerDateController', ['$scope', '$rootScope', 'LoginService', function($scope, $rootScope, LoginService) {
+
+  var currentUser = Parse.User.current();
+  var pageQuery = new Parse.Query("Page");
+  pageQuery.equalTo("user", currentUser);
+  pageQuery.include("positive_tags");
+  pageQuery.include("negative_tags");
+
+  pageQuery.descending("createdAt");
+
+  pageQuery.find().then(function(pages) {
+    var result = [];
+    for (var i = 0; i < pages.length; i++) {
+      var positiveTags = pages[i].get("positive_tags");
+      for (var j = 0; j < positiveTags.length; j++) {
+        var resultTag = {
+          id: positiveTags[j].id,
+          date: pages[i].createdAt,
+          name: positiveTags[j].get("name"),
+          score: 1
+        };
+        result[result.length] = resultTag;
+      }
+
+      var negativeTags = pages[i].get("negative_tags");
+      for (var j = 0; j < negativeTags.length; j++) {
+        var resultTag = {
+          id: negativeTags[j].id,
+          date: pages[i].createdAt,
+          name: negativeTags[j].get("name"),
+          score: -1
+        };
+        result[result.length] = resultTag;
+      }
+    }
+
+    // Format the data as csv
+    var csvResult = "id; date; name; score\n";
+    for (var i = 0; i < result.length; i++) {
+      csvResult += result[i].id + ";" + result[i].date + ";" + result[i].name + ";" + result[i].score + "\n";
+    }
+
+    $scope.tags = csvResult;
+    $scope.$apply();
+  }, function (error) {
+    alert(error);
+  });
+}]);
+
+
+democracyControllers.controller('AccumulatedTagsController', ['$scope', '$rootScope', 'LoginService', function($scope, $rootScope, LoginService) {
+
+  var currentUser = Parse.User.current();
+  var userTagQuery = new Parse.Query("UserTag");
+  userTagQuery.equalTo("user", currentUser);
+
+  userTagQuery.find().then(function(userTags) {
+    var result = [];
+    for (var i = 0; i < userTags.length; i++) {
+      var resultTag = {
+        id: userTags[i].id,
+        name: userTags[i].get("name"),
+        score: userTags[i].get("negativeCount") + userTags[i].get("positiveCount")
+      };
+      result[result.length] = resultTag;
+    }
+
+    result.sort(function(a, b) { return b.score - a.score; });
+
+    // Format the data as csv
+    var csvResult = "id; name; score\n";
+    for (var i = 0; i < result.length; i++) {
+      csvResult += result[i].id + ";" + result[i].name + ";" + result[i].score + "\n";
+    }
+
+    $scope.tags = csvResult;
+    $scope.$apply();
+  }, function (error) {
+    alert(error);
+  });
+}]);
