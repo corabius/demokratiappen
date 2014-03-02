@@ -54,7 +54,10 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
     return result;
   }
 
-  updateUserTags = function(positiveTags, negativeTags) {
+
+  // Update user tags table 
+  // Return promise when the tags are updated
+  function updateUserTags(positiveTags, negativeTags) {
     // Add tags to the user object, first update the tags we already have
     var UserTag = Parse.Object.extend("UserTag");
     var currentUser = Parse.User.current();
@@ -65,58 +68,57 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
     query.equalTo("user", currentUser);
     query.limit(allTags.length + 1);
     
-    query.find({
-      success: function(userTags) {
-        for (var t = 0; t < userTags.length; t++) {
-          var userTag = userTags[t];
-          var tag = userTag.get("tag");
+    var promise = query.find().then(function(userTags) {
+      var promises = [];
 
-          // Check if this tag is positive
+      for (var t = 0; t < userTags.length; t++) {
+        var userTag = userTags[t];
+        var tag = userTag.get("tag");
+
+        // Check if this tag is positive
+        var isPositive = (indexOf(positiveTags, tag) >= 0);
+        var isNegative = (indexOf(negativeTags, tag) >= 0);
+
+        // Update the user tag
+        if (isPositive) {
+          userTag.set("positiveCount", userTag.get("positiveCount") + 1);
+        }
+        if (isNegative) {
+          userTag.set("negativeCount", userTag.get("negativeCount") + 1);
+        }
+        promises.push(userTag.save());
+      }
+
+      // Create new user tags for the ones not contained in returned set.
+      for (var i = 0; i < allTags.length; i++) {
+        var tag = allTags[i];
+
+        var needNewObject = true;
+        for (var j = 0; needNewObject && (j < userTags.length); j++) {
+          var userTag = userTags[j];
+          var userTagTag = userTag.get("tag");
+          needNewObject = !(userTagTag.id === tag.id);
+        }
+
+        if (needNewObject) {
+          // Check if this tag is positive 
           var isPositive = (indexOf(positiveTags, tag) >= 0);
           var isNegative = (indexOf(negativeTags, tag) >= 0);
 
-          // Update the user tag
-          if (isPositive) {
-            userTag.set("positiveCount", userTag.get("positiveCount") + 1);
-          }
-          if (isNegative) {
-            userTag.set("negativeCount", userTag.get("negativeCount") + 1);
-          }
-          userTag.save();
+          // Create new UserTag object and initialize
+          var userTag = new UserTag();
+          userTag.set("tag", tag);
+          userTag.set("name", tag.get("name"));
+          userTag.set("positiveCount", isPositive ? 1 : 0);
+          userTag.set("negativeCount", isPositive ? 0 : 1);
+          userTag.set("user", currentUser);
+          userTag.setACL(new Parse.ACL(currentUser));
+          promises.push(userTag.save());
         }
-
-        // Create new user tags for the ones not contained in returned set.
-        for (var i = 0; i < allTags.length; i++) {
-          var tag = allTags[i];
-
-          var needNewObject = true;
-          for (var j = 0; needNewObject && (j < userTags.length); j++) {
-            var userTag = userTags[j];
-            var userTagTag = userTag.get("tag");
-            needNewObject = !(userTagTag.id === tag.id);
-          }
-
-          if (needNewObject) {
-            // Check if this tag is positive 
-            var isPositive = (indexOf(positiveTags, tag) >= 0);
-            var isNegative = (indexOf(negativeTags, tag) >= 0);
-
-            // Create new UserTag object and initialize
-            var userTag = new UserTag();
-            userTag.set("tag", tag);
-            userTag.set("name", tag.get("name"));
-            userTag.set("positiveCount", isPositive ? 1 : 0);
-            userTag.set("negativeCount", isPositive ? 0 : 1);
-            userTag.set("user", currentUser);
-            userTag.setACL(new Parse.ACL(currentUser));
-            userTag.save();
-          }
-        }
-
-        $rootScope.pageAddCount++;
-        $scope.$apply();
       }
+      return Parse.Promise.when(promises);
     });
+    return promise;
   }
 
 
@@ -150,10 +152,10 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
       page.set("positive_tags", upTags);
       page.set("negative_tags", downTags);
 
-      updateUserTags(upTags, downTags);
-
-      page.save(null, {
-        success: function(page) {
+      // Update user tags and save the page object
+      Parse.Promise.when([
+        updateUserTags(upTags, downTags),
+        page.save()]).then(function() {
           // Clear the entry from
           $scope.title = "";
           $scope.url = "";
@@ -161,13 +163,13 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
           $rootScope.pageAddCount++;
           $scope.$apply();
           $window.history.back();
-        },
-        error: function(page, error) {
+        }, function(error) {
           // Execute any logic that should take place if the save fails.
           // error is a Parse.Error with an error code and description.
+          console.log("Error while saving page:");
+          console.log(error);
           alert('Failed to create new object, with error code: ' + error.message);
-        }
-      });
+        });
     }
   };
 
