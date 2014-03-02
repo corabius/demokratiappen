@@ -1240,7 +1240,7 @@ var demokratiappen = {
           var url_part = '&url=' + encodeURIComponent(document.location.href);
           var tags_part = '&tags=' + encodeURIComponent(tagIds);
           // We have our tags, redirect to our page
-          document.location = 'https://demokratiappen.parseapp.com#/addPage' + title_part + url_part + tags_part;
+          document.location = 'https://demokratiappen.parseapp.com/#/addPage' + title_part + url_part + tags_part;
         }
         else {
           console.log("Error retrieving tags:");
