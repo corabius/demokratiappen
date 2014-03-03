@@ -140,12 +140,6 @@ function extractTags(request, response){
         var query = new Parse.Query("Tag");
         query.containedIn("name", tagNames);
         query.find().then(function (parseTags) {
-          // Make copy of result set from query (we want to modify it later
-          // and got error when modifying the parameter directly
-          for (var i = 0; i < parseTags.length; i++) {
-            resultTags = resultTags.concat(parseTags[i]);
-          }
-
           // Check if we have found any new tags that don't have a post in
           // the parse database.
           var newTagPromises = [];
@@ -155,6 +149,12 @@ function extractTags(request, response){
               if (parseTags[j].get("name") == saploTags.tags[i].tag
                   && parseTags[j].get("type") == saploTags.tags[i].category) {
                 foundTag = true;
+
+                // Make a copy of the found tag, and add the relevance for this particular text
+                resultTag = parseTags[i];
+                resultTag.relevance = saploTags.tags[i].relevance;
+                resultTags.concat(resultTag);
+
                 break;
               }
             }
@@ -168,8 +168,10 @@ function extractTags(request, response){
               // Add save operation to promise
               newTagPromises.push(tag.save());
 
-              // Add tag to our resultset
-              resultTags = resultTags.concat(tag);
+              // Make a copy of the new tag, and add the relevance for this particular text
+              resultTag = tag;
+              resultTag.relevance = saploTags.tags[i].relevance;
+              resultTags.concat(resultTag); 
             }
           }
 
