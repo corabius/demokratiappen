@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require 'net/ftp'
+
+ip_address, user, password = ARGV
+
+if ip_address && user && password
+  ftp = Net::FTP.new(ip_address)
+  ftp.passive = true
+  ftp.login user, password
+
+  entries = Dir.glob('../parse/public/**/*').sort
+
+  entries.each do |file|
+    if File.directory? file
+      begin
+        ftp.mkdir File.basename file
+        puts "Creating directory: #{file}"
+      rescue
+        puts "Directory exists, skipping transfer: #{file}"
+      end
+    else
+      puts "Transferring: #{file}"
+      ftp.putbinaryfile file, file.gsub('../parse/public/', '')
+    end
+  end
+
+  ftp.close
+else
+  puts "Usage: `./host_deploy <ftp-ip-address> <ftp-username> <ftp-password>"
+end
