@@ -348,6 +348,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Logga in" image="first" id="hSi-WU-nkO"/>
                     <connections>
+                        <outlet property="button" destination="cnr-vN-8AN" id="cpG-Ir-6NP"/>
                         <outlet property="emailContactPersonBtn" destination="VRw-7s-Qba" id="pZu-oI-nrc"/>
                         <outlet property="emailGmailBtn" destination="r9z-Hm-zbo" id="DjH-BN-hsT"/>
                         <outlet property="instructionsTextView" destination="DHJ-Bn-X91" id="2xW-HI-JzY"/>
@@ -359,6 +360,7 @@
                         <outlet property="testBtn" destination="cnr-vN-8AN" id="gWT-qX-O1p"/>
                         <outlet property="userAccountLabel" destination="u9S-iP-iwS" id="3NU-b2-q32"/>
                         <outlet property="userFBLabel" destination="s6L-t0-K3L" id="JX4-bK-HYs"/>
+                        <segue destination="qwr-eK-ong" kind="modal" id="zev-ia-e86"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l3H-o7-caM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -396,6 +398,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qq-4t-Ow8" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1179" y="498"/>
+        </scene>
+        <!--Parse Config View Controller-->
+        <scene sceneID="lxI-tS-yyP">
+            <objects>
+                <viewController id="qwr-eK-ong" customClass="ParseConfigViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dmc-YQ-wUA"/>
+                        <viewControllerLayoutGuide type="bottom" id="ACy-bM-6f7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AUo-ic-a3F">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yb-qr-bH3">
+                                <rect key="frame" x="139" y="201" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfR-Jf-3ky">
+                                <rect key="frame" x="137" y="428" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutButtonTapAction:" destination="qwr-eK-ong" eventType="touchUpInside" id="8qJ-Af-bBH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="2yb-qr-bH3" id="BM8-IV-0Zh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wxd-Or-Rnx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="462" y="1379"/>
         </scene>
         <!--Information View Controller-->
         <scene sceneID="Ker-j9-xzk">

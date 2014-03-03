@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0959F61218C51FC300B3B086 /* ParseSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0959F61118C51FC300B3B086 /* ParseSignUpViewController.m */; };
+		09C4C0CB18C1656200594709 /* ParseLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C4C0CA18C1656200594709 /* ParseLogInViewController.m */; };
+		09C4C0CE18C4DAD000594709 /* ParseConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C4C0CD18C4DAD000594709 /* ParseConfigViewController.m */; };
 		3B04EF8D1896D9E900A1F456 /* UserTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04EF8C1896D9E900A1F456 /* UserTag.m */; };
 		3B04EF901896E0D700A1F456 /* UserTagsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */; };
 		3B2B444C18984B3400FC1DEC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B2B444618984B3400FC1DEC /* README.md */; };
@@ -57,6 +60,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0959F61018C51FC300B3B086 /* ParseSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseSignUpViewController.h; sourceTree = "<group>"; };
+		0959F61118C51FC300B3B086 /* ParseSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseSignUpViewController.m; sourceTree = "<group>"; };
+		09C4C0C918C1656200594709 /* ParseLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseLogInViewController.h; path = ../ParseLogInViewController.h; sourceTree = "<group>"; };
+		09C4C0CA18C1656200594709 /* ParseLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParseLogInViewController.m; path = ../ParseLogInViewController.m; sourceTree = "<group>"; };
+		09C4C0CC18C4DAD000594709 /* ParseConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseConfigViewController.h; path = ../ParseConfigViewController.h; sourceTree = "<group>"; };
+		09C4C0CD18C4DAD000594709 /* ParseConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParseConfigViewController.m; path = ../ParseConfigViewController.m; sourceTree = "<group>"; };
 		3B04EF8B1896D9E900A1F456 /* UserTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTag.h; sourceTree = "<group>"; };
 		3B04EF8C1896D9E900A1F456 /* UserTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTag.m; sourceTree = "<group>"; };
 		3B04EF8E1896E0D700A1F456 /* UserTagsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTagsListViewController.h; sourceTree = "<group>"; };
@@ -226,6 +235,12 @@
 				3BD8EE2018A9558D008EC595 /* InformationViewController.m */,
 				3BC7928A1882D730005C9BBA /* LoginViewController.h */,
 				3BC7928B1882D730005C9BBA /* LoginViewController.m */,
+				09C4C0C918C1656200594709 /* ParseLogInViewController.h */,
+				09C4C0CA18C1656200594709 /* ParseLogInViewController.m */,
+				0959F61018C51FC300B3B086 /* ParseSignUpViewController.h */,
+				0959F61118C51FC300B3B086 /* ParseSignUpViewController.m */,
+				09C4C0CC18C4DAD000594709 /* ParseConfigViewController.h */,
+				09C4C0CD18C4DAD000594709 /* ParseConfigViewController.m */,
 				55A5270318828FF8009207E2 /* UIGraphView.xib */,
 				55A5270418828FF8009207E2 /* UIGraphViewController.h */,
 				55A5270518828FF8009207E2 /* UIGraphViewController.m */,
@@ -385,6 +400,7 @@
 				55A82E55188170A9004F2383 /* AppDelegate.m in Sources */,
 				3BC79278188298C8005C9BBA /* Page.m in Sources */,
 				3BD8EE2118A9558D008EC595 /* InformationViewController.m in Sources */,
+				09C4C0CE18C4DAD000594709 /* ParseConfigViewController.m in Sources */,
 				3BC792891882D502005C9BBA /* Tag.m in Sources */,
 				55A82E5B188170A9004F2383 /* URLListViewController.m in Sources */,
 				55A82E7E1881742A004F2383 /* UserData.m in Sources */,
@@ -392,6 +408,8 @@
 				55A82E51188170A9004F2383 /* main.m in Sources */,
 				55A82E8418819BEB004F2383 /* Party.m in Sources */,
 				3BC7928C1882D730005C9BBA /* LoginViewController.m in Sources */,
+				09C4C0CB18C1656200594709 /* ParseLogInViewController.m in Sources */,
+				0959F61218C51FC300B3B086 /* ParseSignUpViewController.m in Sources */,
 				55A82E8118818932004F2383 /* URLDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,11 +10,13 @@
 #import "InformationViewController.h"
 #import <Parse/Parse.h>
 #import <MessageUI/MessageUI.h>
+#import "ParseLogInViewController.h"
+#import "ParseConfigViewController.h"
 
 
 @interface LoginViewController () <PFLogInViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
-@property PFLogInViewController* parseLoginController;  //jag blir delegerad till från PF-login-kod
+@property ParseLogInViewController* parseLoginController;  //jag blir delegerad till från PF-login-kod
 
 @property (weak, nonatomic) IBOutlet UIButton *loginFBBtn;
 @property (weak, nonatomic) IBOutlet UIButton *logoutFBBtn;
@@ -28,6 +30,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *openParseAccountBtn;
 @property (weak, nonatomic) IBOutlet UIButton *emailContactPersonBtn;
 @property (weak, nonatomic) IBOutlet UIButton *emailGmailBtn;
+
+//@property ParseLogInViewController* myParseLogInController;
+
+
 - (IBAction)openInSafariAction:(id)sender;
 - (IBAction)sendEmailAction:(id)sender;
 
@@ -41,21 +47,13 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *testBtn;
 
-- (IBAction)testBtnAction:(id)sender;
+//- (IBAction)testBtnAction:(id)sender;
 
 
 @end
 
 @implementation LoginViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -69,6 +67,29 @@
     NSString *text4 = @"\nDu kan också ta kontakt med en av våra projektledare: Adam Svensson, 070 - 603 12 53";
 
     self.instructionsTextView.text = [NSString stringWithFormat:@"%@ %@ %@ %@", text1, text2, text3, text4];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    /*
+    if (![PFUser currentUser]) { // No user logged in
+        // Create the log in view controller
+        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        [logInViewController setDelegate:self]; // Set ourselves as the delegate
+        
+        // Create the sign up view controller
+        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+        
+        // Assign our sign up controller to be displayed from the login controller
+        [logInViewController setSignUpController:signUpViewController];
+        
+        // Present the log in view controller
+        [self presentViewController:logInViewController animated:YES completion:NULL];
+    }
+     */
 }
 
 
@@ -175,9 +196,9 @@
          */
         NSArray *facebookPermissions = [[NSArray alloc] initWithObjects: @"email", nil];
 
-
-        self.parseLoginController = [[PFLogInViewController alloc] init];
+        self.parseLoginController = [[ParseLogInViewController alloc] init];
         self.parseLoginController.delegate = self;
+        //self.parseLoginController.facebookPermissions = @[@"friends_about_me"];
         self.parseLoginController.facebookPermissions = facebookPermissions;
 
         /*
@@ -219,15 +240,24 @@
 }
 
 
+ 
 - (IBAction)loginAccountAction:(id)sender {
 
     //tutorial custom login-view https://parse.com/tutorials/login-and-signup-views
-    self.parseLoginController = [[PFLogInViewController alloc] init];
+    //self.parseLoginController = [[PFLogInViewController alloc] init];
+    
+    self.parseLoginController = [[ParseLogInViewController alloc] init];
+    
+    //add and remove buttons here
+    
     self.parseLoginController.delegate = self;
     [self presentViewController: self.parseLoginController animated:YES completion:nil];
 
 
 }
+ 
+
+
 
 - (IBAction)logoutAccountAction:(id)sender {
     [PFUser logOut];
@@ -296,16 +326,23 @@
 }
 
 
+// aaaanvand deras case kod
 
-
+/*
 
 - (IBAction)testBtnAction:(id)sender {
+    
+    ParseLogInViewController *controller =[PFLogInViewController alloc] initWithNibName:@"ParseLogInViewController" bundle:nil];
+    [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [self presentModalViewController:controller animated:YES];
 
-    NSLog(@"inne i testBtnAction");
+   // NSLog(@"inne i testBtnAction");
 
     //Using Custom URL Scheme to Launch Application
     //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"demokratiappen://test_page/one?token=12345&domain=foo.com"]];
 
 }
+ 
+ */
 
 @end

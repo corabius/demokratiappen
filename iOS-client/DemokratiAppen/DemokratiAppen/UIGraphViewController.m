@@ -208,7 +208,7 @@
         tagLabel.minimumScaleFactor = 0.5;
         tagLabel.font = [UIFont fontWithName:@"Arial Rounded MT Bold" size:(15.0)];
         [_graphView addSubview:tagLabel];
-        tagLabel.text = [NSString stringWithFormat: p.acronym];
+        tagLabel.text = [NSString stringWithFormat: @"%@", p.acronym];
 
         //CGColorRef color = [p.color CGColor];
         //[self drawInContext:context fromImage:srcIm fromRect:srcRect toRect:dstRect inColor:color];
