@@ -9,25 +9,24 @@ democracyApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/addPage', {
-        templateUrl: 'view/addPage.html',
+        templateUrl: '/view/addPage.html',
       }).
       when('/listPages', {
-        templateUrl: 'view/listPages.html',
+        templateUrl: '/view/listPages.html',
       }).
       when('/tagsPerDate', {
-        templateUrl: 'view/tagsPerDate.html',
+        templateUrl: '/view/tagsPerDate.html',
       }).
       when('/accumulatedTags', {
-        templateUrl: 'view/accumulatedTags.html',
+        templateUrl: '/view/accumulatedTags.html',
       }).
       when('/statistics', {
-        templateUrl: 'view/statistics.html',
+        templateUrl: '/view/statistics.html',
       }).
       when('/login', {
-        templateUrl: 'view/login.html',
+        templateUrl: '/view/login.html',
       }).
       otherwise({
         redirectTo: '/statistics'
       });
   }]);
-
