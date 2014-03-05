@@ -1229,18 +1229,23 @@ var demokratiappen = {
           // GET request.
           var resultJSON = JSON.parse(request.responseText);
           var tagIds = "";
+          var relevance = "";
           for (var i = 0; i < resultJSON.result.length; i++) {
             if (i > 0) {
               tagIds = tagIds.concat(",");
+              relevance = relevance.concat(",");
             }
-            tagIds = tagIds.concat(resultJSON.result[i].objectId);
+            tagIds = tagIds.concat(resultJSON.result[i].id);
+            relevance = relevance.concat(resultJSON.result[i].relevance);
           }
 
           var title_part = '?title=' + encodeURIComponent(scrapeResult.title);
           var url_part = '&url=' + encodeURIComponent(document.location.href);
           var tags_part = '&tags=' + encodeURIComponent(tagIds);
+          var relevance_part = '&relevance=' + encodeURIComponent(relevance);
+
           // We have our tags, redirect to our page
-          document.location = 'https://demokratiappen.parseapp.com/#/addPage' + title_part + url_part + tags_part;
+          document.location = 'https://demokratiappen.parseapp.com/#/addPage' + title_part + url_part + tags_part + relevance_part;
         }
         else {
           console.log("Error retrieving tags:");

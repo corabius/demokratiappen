@@ -134,6 +134,9 @@ function extractTags(request, response){
         for (var i = 0; i < saploTags.tags.length; i++) {
           tagNames = tagNames.concat(saploTags.tags[i].tag);
         }
+
+        // This is where we collect our parse tags. The indices matches the
+        // items in the saploTags.tags array
         var resultTags = [];
 
         var Tag = Parse.Object.extend("Tag");
@@ -150,11 +153,7 @@ function extractTags(request, response){
                   && parseTags[j].get("type") == saploTags.tags[i].category) {
                 foundTag = true;
 
-                // Make a copy of the found tag, and add the relevance for this particular text
-                resultTag = parseTags[i];
-                resultTag.relevance = saploTags.tags[i].relevance;
-                resultTags.concat(resultTag);
-
+                resultTags[resultTags.length] = parseTags[j];
                 break;
               }
             }
@@ -167,21 +166,31 @@ function extractTags(request, response){
 
               // Add save operation to promise
               newTagPromises.push(tag.save());
-
-              // Make a copy of the new tag, and add the relevance for this particular text
-              resultTag = tag;
-              resultTag.relevance = saploTags.tags[i].relevance;
-              resultTags.concat(resultTag); 
+              resultTags[resultTags.length] = tag;
             }
           }
 
           // Return promise that is triggered when all tags have been saved.
           return Parse.Promise.when(newTagPromises);
         }).then(function () {
+          // Associate relevance with the tags (now we have id on all our
+          // objects).
+          // Note resultTags and saploTags match so same index can be used in
+          // both arrays.
+          var relevanceTags = [];
+          for (var i = 0; i < resultTags.length; i++) {
+            relevanceTag = {
+              id: resultTags[i].id,
+              name: resultTags[i].get("name"),
+              relevance: saploTags.tags[i].relevance
+            };
+            relevanceTags[relevanceTags.length] = relevanceTag;
+          }
+ 
           // TODO: Save the tags on the Url object
 
           // Return the result tag objects to the requester
-          response.success(resultTags);
+          response.success(relevanceTags);
         }, function (error) {
           response.error("Finding demokratiappen tags failed");
         });
