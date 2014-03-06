@@ -41,7 +41,7 @@ var readability = {
     maxPages:    30, /* The maximum number of pages to loop through before we call it quits and just show a link. */
     parsedPages: {}, /* The list of pages we've parsed in this call of readability, for autopaging. As a key store for easier searching. */
     pageETags:   {}, /* A list of the ETag headers of pages we've parsed, in case they happen to match, we'll know it's a duplicate. */
-    
+
     scrapeResult: {},
     /**
      * All of the regular expressions in use within readability.
@@ -69,7 +69,7 @@ var readability = {
 
     /**
      * Runs readability.
-     * 
+     *
      * Workflow:
      *  1. Prep the document by removing script tags, css, etc.
      *  2. Build readability's DOM tree.
@@ -115,14 +115,13 @@ var readability = {
      * @return void
      **/
     getArticleTitle: function () {
-        var curTitle = "",
-            origTitle = "";
+        var curTitle = "", origTitle = "";
 
         try {
             curTitle = origTitle = document.title;
 
             if(typeof curTitle != "string") { /* If they had an element with id "title" in their HTML */
-                curTitle = origTitle = readability.getInnerText(document.getElementsByTagName('title')[0]);             
+                curTitle = origTitle = readability.getInnerText(document.getElementsByTagName('title')[0]);
             }
         }
         catch(e) {}
@@ -175,19 +174,13 @@ var readability = {
          * In some cases a body element can't be found (if the HTML is totally hosed for example)
          * so we create a new body node and append it to the document.
          */
-        if(document.body === null)
-        {
-            var body = document.createElement("body");
-            try {
-                document.body = body;
-            }
-            catch(e) {
-                document.documentElement.appendChild(body);
-                dbg(e);
-            }
-        }
 
-        document.body.id = "readabilityBody";
+        // create a completely new node instead
+        var body = document.createElement("demok_node");
+        document.documentElement.appendChild(body);
+
+        var demok_node = document.getElementsByTagName("demok_node")[0]
+        demok_node.id = "demokAppBody";
 
         var frames = document.getElementsByTagName('frame');
         if(frames.length > 0)
@@ -223,10 +216,9 @@ var readability = {
 
             if(bestFrame)
             {
-                var newBody = document.createElement('body');
+                var newBody = document.createElement("demok_node");
                 newBody.innerHTML = bestFrame.contentWindow.document.body.innerHTML;
-                newBody.style.overflow = 'scroll';
-                document.body = newBody;
+                document.documentElement.appendChild(newBody);
 
                 var frameset = document.getElementsByTagName('frameset')[0];
                 if(frameset) {
@@ -234,22 +226,10 @@ var readability = {
             }
         }
 
-        /* Remove all stylesheets */
-        for (var k=0;k < document.styleSheets.length; k++) {
-            if (document.styleSheets[k].href !== null && document.styleSheets[k].href.lastIndexOf("readability") == -1) {
-                document.styleSheets[k].disabled = true;
-            }
-        }
-
-        /* Remove all style tags in head (not doing this on IE) - TODO: Why not? */
-        var styleTags = document.getElementsByTagName("style");
-        for (var st=0;st < styleTags.length; st++) {
-            styleTags[st].textContent = "";
-        }
-
         /* Turn all double br's into p's */
         /* Note, this is pretty costly as far as processing goes. Maybe optimize later. */
-        document.body.innerHTML = document.body.innerHTML.replace(readability.regexps.replaceBrs, '</p><p>').replace(readability.regexps.replaceFonts, '<$1span>');
+        var demok_node = document.getElementsByTagName("demok_node")[0]
+        demok_node.innerHTML = demok_node.innerHTML.replace(readability.regexps.replaceBrs, '</p><p>').replace(readability.regexps.replaceFonts, '<$1span>');
     },
 
     /**
@@ -359,9 +339,9 @@ var readability = {
     **/
     grabArticle: function (page) {
         var stripUnlikelyCandidates = readability.flagIsActive(readability.FLAG_STRIP_UNLIKELYS),
-            isPaging = (page !== null) ? true: false;
+        isPaging = (page !== null) ? true: false;
 
-        page = page ? page : document.body;
+        page = page ? page : document.body.cloneNode(true);
 
         var pageCacheHtml = page.innerHTML;
 
@@ -449,7 +429,8 @@ var readability = {
 
             /* If this paragraph is less than 25 characters, don't even count it. */
             if(innerText.length < 25) {
-                continue; }
+                continue;
+            }
 
             /* Initialize readability data for the parent. */
             if(typeof parentNode.readability == 'undefined') {
@@ -498,14 +479,15 @@ var readability = {
             dbg('Candidate: ' + candidates[c] + " (" + candidates[c].className + ":" + candidates[c].id + ") with score " + candidates[c].readability.contentScore);
 
             if(!topCandidate || candidates[c].readability.contentScore > topCandidate.readability.contentScore) {
-                topCandidate = candidates[c]; }
+                topCandidate = candidates[c];
+            }
         }
 
         /**
          * If we still have no top candidate, just use the body as a last resort.
          * We also have to copy the body node so it is something we can modify.
          **/
-        if (topCandidate === null || topCandidate.tagName == "BODY")
+        if (topCandidate === null)
         {
             topCandidate = document.createElement("DIV");
             topCandidate.innerHTML = page.innerHTML;
@@ -622,7 +604,7 @@ var readability = {
          * finding the -right- content.
         **/
         if(readability.getInnerText(articleContent, false).length < 250) {
-        page.innerHTML = pageCacheHtml;
+            page.innerHTML = pageCacheHtml;
 
             if (readability.flagIsActive(readability.FLAG_STRIP_UNLIKELYS)) {
                 readability.removeFlag(readability.FLAG_STRIP_UNLIKELYS);
@@ -680,14 +662,16 @@ var readability = {
         normalizeSpaces = (typeof normalizeSpaces == 'undefined') ? true : normalizeSpaces;
 
         if (navigator.appName == "Microsoft Internet Explorer") {
-            textContent = e.innerText.replace( readability.regexps.trim, "" ); }
-        else {
-            textContent = e.textContent.replace( readability.regexps.trim, "" ); }
+            textContent = e.innerText.replace( readability.regexps.trim, "" );
+        } else {
+            textContent = e.textContent.replace( readability.regexps.trim, "" );
+        }
 
         if(normalizeSpaces) {
-            return textContent.replace( readability.regexps.normalize, " "); }
-        else {
-            return textContent; }
+            return textContent.replace( readability.regexps.normalize, " "); 
+        } else {
+            return textContent;
+        }
     },
 
     /**
