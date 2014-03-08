@@ -15,10 +15,16 @@
 
 @implementation AppDelegate
 
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    [TestFlight takeOff:@"8dcf0abe-9e39-4391-8f94-a54d059674dd"];
+    NSLog(@"brytpunkt 1");
+
+    
+    //[TestFlight takeOff:@"8dcf0abe-9e39-4391-8f94-a54d059674dd"];
 
     // Register classes to parse
     [Page registerSubclass];
@@ -73,8 +79,8 @@
         return NO;
     }
 
-    NSString *URLString = [url absoluteString];
-    NSLog(URLString);
+   // NSString *URLString = [url absoluteString];
+   // NSLog(URLString);
 
     NSLog(@"url recieved: %@", url);
     NSLog(@"query string: %@", [url query]);

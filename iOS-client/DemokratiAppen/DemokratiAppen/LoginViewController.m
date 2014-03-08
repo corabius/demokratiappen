@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "AppDelegate.h"
 #import "InformationViewController.h"
 #import <Parse/Parse.h>
 #import <MessageUI/MessageUI.h>
@@ -14,13 +15,20 @@
 #import "ParseConfigViewController.h"
 
 
-@interface LoginViewController () <PFLogInViewControllerDelegate, MFMailComposeViewControllerDelegate>
+//@interface LoginViewController () <PFLogInViewControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface LoginViewController () <MFMailComposeViewControllerDelegate>
+
+
 
 @property ParseLogInViewController* parseLoginController;  //jag blir delegerad till från PF-login-kod
 
-@property (weak, nonatomic) IBOutlet UIButton *loginFBBtn;
-@property (weak, nonatomic) IBOutlet UIButton *logoutFBBtn;
-@property (weak, nonatomic) IBOutlet UILabel *userFBLabel;
+@property ParseConfigViewController* parseConfigController;
+ 
+ 
+
+//@property (weak, nonatomic) IBOutlet UIButton *loginFBBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *logoutFBBtn;
+//@property (weak, nonatomic) IBOutlet UILabel *userFBLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginAccountBtn;
 @property (weak, nonatomic) IBOutlet UIButton *logoutAccountBtn;
@@ -31,21 +39,26 @@
 @property (weak, nonatomic) IBOutlet UIButton *emailContactPersonBtn;
 @property (weak, nonatomic) IBOutlet UIButton *emailGmailBtn;
 
+
+
+
+
+
 //@property ParseLogInViewController* myParseLogInController;
 
 
 - (IBAction)openInSafariAction:(id)sender;
 - (IBAction)sendEmailAction:(id)sender;
 
-- (IBAction)sendToFBAction:(id)sender;
+//- (IBAction)sendToFBAction:(id)sender;
 
-- (IBAction)loginFBAction:(id)sender;
-- (IBAction)logoutFBAction:(id)sender;
+//- (IBAction)loginFBAction:(id)sender;
+//- (IBAction)logoutFBAction:(id)sender;
 - (IBAction)loginAccountAction:(id)sender;
-- (IBAction)logoutAccountAction:(id)sender;
+//- (IBAction)logoutAccountAction:(id)sender;
 
 
-@property (weak, nonatomic) IBOutlet UIButton *testBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *testBtn;
 
 //- (IBAction)testBtnAction:(id)sender;
 
@@ -55,11 +68,17 @@
 @implementation LoginViewController
 
 
+
+
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    
+    NSLog(@"The code runs through here!");
 
-    [self updateCurrentUser];
+
+    //[self updateCurrentUser];
 
     NSString *text1 = @"\nAnvänd samma testkonto som du skapar för både appen och webbgränssnittet \n";
     NSString *text2 = @"\nDemokratiappen är under utveckling. Databasen med användare kommer då och då att tömmas. Räkna inte med att spara ner något och sen återfinna det. Observera också att vi ännu inte lagt på något säkerhetslager så vi kan i nuläget öppet se alla dina taggmarkeringar.";
@@ -71,9 +90,11 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    
     [super viewDidAppear:animated];
     
     /*
+    
     if (![PFUser currentUser]) { // No user logged in
         // Create the log in view controller
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
@@ -89,10 +110,12 @@
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
+     
      */
+     
 }
 
-
+/*
 - (void) updateCurrentUser{
 
     PFUser* user = [PFUser currentUser];
@@ -141,6 +164,7 @@
 
 
     }
+*/
 
 
 - (void)didReceiveMemoryWarning
@@ -182,63 +206,64 @@
 
 
 
+
 #pragma mark Login/Logout
-
-- (IBAction)loginFBAction:(id)sender {
-
-    PFUser* user = [PFUser currentUser];
-
-
-    if(user == nil){  //login (and create if not excist) user linked to their facebook-account
-
-        /*
-         User's public profile and also their friend list. Public profile refers to the following properties by default: id, name, first_name, last_name, link, username, gender, locale, age_range, Other public information
-         */
-        NSArray *facebookPermissions = [[NSArray alloc] initWithObjects: @"email", nil];
-
-        self.parseLoginController = [[ParseLogInViewController alloc] init];
-        self.parseLoginController.delegate = self;
-        //self.parseLoginController.facebookPermissions = @[@"friends_about_me"];
-        self.parseLoginController.facebookPermissions = facebookPermissions;
-
-        /*
-         A bitmask specifying the log in elements which are enabled in the view : for the property PFLogInFields fields
-         enum {
-         PFLogInFieldsNone = 0,
-         PFLogInFieldsUsernameAndPassword = 1 << 0,
-         PFLogInFieldsPasswordForgotten = 1 << 1,
-         PFLogInFieldsLogInButton = 1 << 2,
-         PFLogInFieldsFacebook = 1 << 3,
-         PFLogInFieldsTwitter = 1 << 4,
-         PFLogInFieldsSignUpButton = 1 << 5,
-         PFLogInFieldsDismissButton = 1 << 6,
-         PFLogInFieldsDefault = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsDismissButton
-         };
-         */
-
-        [self updateUserNameAndEmailFromFacebook: user];
-
-        self.parseLoginController.fields = PFLogInFieldsFacebook | PFLogInFieldsDismissButton;
-
-        [self presentViewController: self.parseLoginController animated:YES completion:nil];
-
-        [self updateCurrentUser];
-
-    }
+//
+//- (IBAction)loginFBAction:(id)sender {
+//
+//    PFUser* user = [PFUser currentUser];
+//
+//
+//    if(user == nil){  //login (and create if not excist) user linked to their facebook-account
+//
+//        /*
+//         User's public profile and also their friend list. Public profile refers to the following properties by default: id, name, first_name, last_name, link, username, gender, locale, age_range, Other public information
+//         */
+//        NSArray *facebookPermissions = [[NSArray alloc] initWithObjects: @"email", nil];
+//
+//        self.parseLoginController = [[ParseLogInViewController alloc] init];
+//        self.parseLoginController.delegate = self;
+//        //self.parseLoginController.facebookPermissions = @[@"friends_about_me"];
+//        self.parseLoginController.facebookPermissions = facebookPermissions;
+//
+//        /*
+//         A bitmask specifying the log in elements which are enabled in the view : for the property PFLogInFields fields
+//         enum {
+//         PFLogInFieldsNone = 0,
+//         PFLogInFieldsUsernameAndPassword = 1 << 0,
+//         PFLogInFieldsPasswordForgotten = 1 << 1,
+//         PFLogInFieldsLogInButton = 1 << 2,
+//         PFLogInFieldsFacebook = 1 << 3,
+//         PFLogInFieldsTwitter = 1 << 4,
+//         PFLogInFieldsSignUpButton = 1 << 5,
+//         PFLogInFieldsDismissButton = 1 << 6,
+//         PFLogInFieldsDefault = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsDismissButton
+//         };
+//         */
+//
+//        [self updateUserNameAndEmailFromFacebook: user];
+//
+//        self.parseLoginController.fields = PFLogInFieldsFacebook | PFLogInFieldsDismissButton;
+//
+//        [self presentViewController: self.parseLoginController animated:YES completion:nil];
+//
+//        [self updateCurrentUser];
+//
+//    }
 
 /*
     else{ //user is loggedin
         [self performSegueWithIdentifier:@"NewCommentSeque" sender:self];
     }
 */
-}
-
-- (IBAction)logoutFBAction:(id)sender {
-
-    [PFUser logOut];
-    [self updateCurrentUser];
-}
-
+//}
+//
+//- (IBAction)logoutFBAction:(id)sender {
+//
+//    [PFUser logOut];
+//    [self updateCurrentUser];
+//}
+//
 
  
 - (IBAction)loginAccountAction:(id)sender {
@@ -250,13 +275,13 @@
     
     //add and remove buttons here
     
-    self.parseLoginController.delegate = self;
+    //self.parseLoginController.delegate = self;
     [self presentViewController: self.parseLoginController animated:YES completion:nil];
 
 
 }
  
-
+/*
 
 
 - (IBAction)logoutAccountAction:(id)sender {
@@ -301,7 +326,7 @@
 }
 
 
-
+*/
 
 #pragma mark - Navigation
 
@@ -314,6 +339,8 @@
     if ([segue.identifier isEqualToString:@"InformationSeque"]){
     }
 
+    if ([segue.identifier isEqualToString:@"ParseConfigSegue"]){
+    }
 }
 
 
@@ -322,6 +349,9 @@
     UIViewController* sourceViewController = sender.sourceViewController;
 
     if ([sourceViewController isKindOfClass:[InformationViewController class]]){
+    }
+    
+    if ([sourceViewController isKindOfClass:[ParseConfigViewController class]]){
     }
 }
 

@@ -80,7 +80,6 @@
       "orientation" : "landscape",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "Default-Landscape.png",
       "scale" : "1x"
     },
     {
@@ -105,7 +104,6 @@
       "orientation" : "landscape",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "Default-Landscape@2x.png",
       "scale" : "2x"
     },
     {

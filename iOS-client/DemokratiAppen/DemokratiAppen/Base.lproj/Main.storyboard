@@ -194,6 +194,7 @@
                                         </state>
                                         <connections>
                                             <action selector="loginAccountAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="Abp-L9-bfx"/>
+                                            <segue destination="qwr-eK-ong" kind="modal" identifier="ParseConfigSegue" id="Ga5-YN-q6q"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jtl-qr-O4q">
@@ -360,7 +361,6 @@
                         <outlet property="testBtn" destination="cnr-vN-8AN" id="gWT-qX-O1p"/>
                         <outlet property="userAccountLabel" destination="u9S-iP-iwS" id="3NU-b2-q32"/>
                         <outlet property="userFBLabel" destination="s6L-t0-K3L" id="JX4-bK-HYs"/>
-                        <segue destination="qwr-eK-ong" kind="modal" id="zev-ia-e86"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l3H-o7-caM" userLabel="First Responder" sceneMemberID="firstResponder"/>
