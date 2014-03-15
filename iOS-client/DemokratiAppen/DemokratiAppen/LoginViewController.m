@@ -70,6 +70,7 @@
     NSString *text4 = @"Du kan också ta kontakt med en av våra projektledare: Adam Svensson, 070 - 603 12 53";
 
     self.instructionsTextView.text = [NSString stringWithFormat:@"%@ %@ %@ %@", text1, text2, text3, text4];
+    self.instructionsTextView.editable = false;
 
      [self.instructionsTextView flashScrollIndicators];  //not possible to always show scrollbar. can only flash once to show indication
 
