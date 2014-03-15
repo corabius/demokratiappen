@@ -35,7 +35,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 
-    NSURL* url = [NSURL URLWithString: @"http:www.demokratiappen.se"];
+    NSURL* url = [NSURL URLWithString: @"http://www.demokratiappen.se/support/hur-man-sparar-en-lank/ios"];
     NSURLRequest* urlRequest = [NSURLRequest requestWithURL: url];
     self.jsBookmarkletWebView.scalesPageToFit = true;
     [self.jsBookmarkletWebView loadRequest: urlRequest];
@@ -45,6 +45,8 @@
     self.jsBookmarkletBtn.layer.cornerRadius = 7;
     self.jsBookmarkletBtn.layer.masksToBounds = YES;
 
+    self.jsBookmarkletBtn.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    //[self.jsBookmarkletBtn setTitle: @"Line1\nLine2" forState: UIControlStateNormal];
 
    }
 
@@ -56,21 +58,23 @@
 
 - (IBAction)jsBookmarkletAction:(id)sender {
 
-    //copies the booklet-js-code to system clipboard
-    [UIPasteboard generalPasteboard].string = @"javascript:function iprl5(){var d=document,l=d.location;document.location=l.protocol+'//demokratiappen.parseapp.com/#/?title='+d.title+'&url='+encodeURIComponent(l.href);}iprl5();void(0)";
-
+    [self jsBookmarkletCodeSnippet];
     //opens Safari
     //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http:www.demokratiappen.se"]];
-
-
-
 }
 
+
+-(void) jsBookmarkletCodeSnippet{
+
+    //copies the booklet-js-code to system clipboard
+    [UIPasteboard generalPasteboard].string = @"javascript:function iprl5(){var d=document,l=d.location;document.location=l.protocol+'//demokratiappen.parseapp.com/#/?title='+d.title+'&url='+encodeURIComponent(l.href);}iprl5();void(0)";
+}
 
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if(sender == self.okBtn){
+        [self jsBookmarkletCodeSnippet];
     }
 }
 
