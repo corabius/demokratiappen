@@ -61,6 +61,7 @@
 {
     [super viewDidLoad];
 
+    //self.userAccountLabel.text = @"Ej inloggad";
     [self updateCurrentUser];
 
     NSString *text1 = @"\nAnvänd samma testkonto som du skapar för både appen och webbgränssnittet. \n";
@@ -113,7 +114,9 @@
         }
 
         else{
-            self.userAccountLabel.hidden = true;
+            self.userAccountLabel.text = @"Ej inloggad";
+            //self.userAccountLabel.hidden = true;
+            
             self.logoutAccountBtn.hidden = true;
             self.loginAccountBtn.hidden = false;
             
