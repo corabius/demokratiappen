@@ -71,6 +71,8 @@
     self.instructionsTextView.text = [NSString stringWithFormat:@"%@ %@ %@ %@", text1, text2, text3, text4];
 
      [self.instructionsTextView flashScrollIndicators];  //not possible to always show scrollbar. can only flash once to show indication
+
+    self.testBtn.hidden = true;
 }
 
 
