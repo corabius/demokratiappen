@@ -374,15 +374,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pluginCell" rowHeight="86" id="Nei-Oa-kqr" customClass="PluginTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pluginCell" rowHeight="86" id="Nei-Oa-kqr" customClass="PluginTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="86"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nei-Oa-kqr" id="F0J-7e-vj6">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRx-q6-NNQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="52" height="85"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PluginNamn" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YY-QK-xI4">
@@ -418,6 +418,7 @@
                                     <outlet property="tableViewCellPluginIcon" destination="aRx-q6-NNQ" id="G7e-PA-r4c"/>
                                     <outlet property="tableViewCellPublisherLabel" destination="HxU-Mj-POV" id="7cA-bt-Q8m"/>
                                     <outlet property="tableViewCellSubtitleNameLabel" destination="r3s-pD-mdf" id="7Ax-Un-sbu"/>
+                                    <segue destination="QUy-BD-bpt" kind="push" id="gof-88-gnm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -443,11 +444,11 @@
                         <viewControllerLayoutGuide type="bottom" id="BIp-FA-AVR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="frw-w9-Apz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TMs-Py-Id9">
-                                <rect key="frame" x="0.0" y="129" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="129" width="320" height="271"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -458,6 +459,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Partigraf" image="fourth" id="Z7h-1E-pvt"/>
+                    <navigationItem key="navigationItem" id="9zP-Qy-6ah"/>
                     <connections>
                         <outlet property="container" destination="TMs-Py-Id9" id="b88-MO-eAc"/>
                     </connections>
