@@ -13,6 +13,7 @@
 		3B2B444D18984B3400FC1DEC /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B2B444718984B3400FC1DEC /* release_notes.md */; };
 		3B2B444F18984B9E00FC1DEC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B444E18984B9E00FC1DEC /* libz.dylib */; };
 		3B2B445018986C8300FC1DEC /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B444518984B3400FC1DEC /* libTestFlight.a */; };
+		3B49A30918D5C1F50032B551 /* PluginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49A30818D5C1F50032B551 /* PluginTableViewController.m */; };
 		3B7C84EF18A133220076DA14 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7C84EE18A133220076DA14 /* MessageUI.framework */; };
 		3BC79278188298C8005C9BBA /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC79277188298C8005C9BBA /* Page.m */; };
 		3BC7927B1882A054005C9BBA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927218829516005C9BBA /* FacebookSDK.framework */; };
@@ -68,6 +69,8 @@
 		3B2B444918984B3400FC1DEC /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		3B2B444A18984B3400FC1DEC /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		3B2B444E18984B9E00FC1DEC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3B49A30718D5C1F50032B551 /* PluginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginTableViewController.h; sourceTree = "<group>"; };
+		3B49A30818D5C1F50032B551 /* PluginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginTableViewController.m; sourceTree = "<group>"; };
 		3B7C84EE18A133220076DA14 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3BC7927218829516005C9BBA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3BC7927318829516005C9BBA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 				55A82E5A188170A9004F2383 /* URLListViewController.m */,
 				3B04EF8E1896E0D700A1F456 /* UserTagsListViewController.h */,
 				3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */,
+				3B49A30718D5C1F50032B551 /* PluginTableViewController.h */,
+				3B49A30818D5C1F50032B551 /* PluginTableViewController.m */,
 			);
 			path = DemokratiAppen;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55A5270718828FF8009207E2 /* UIGraphViewController.m in Sources */,
+				3B49A30918D5C1F50032B551 /* PluginTableViewController.m in Sources */,
 				3B04EF901896E0D700A1F456 /* UserTagsListViewController.m in Sources */,
 				55A82E5E188170A9004F2383 /* PartyGraphViewController.m in Sources */,
 				55A82E55188170A9004F2383 /* AppDelegate.m in Sources */,
