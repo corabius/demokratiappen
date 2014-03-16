@@ -418,7 +418,6 @@
                                     <outlet property="tableViewCellPluginIcon" destination="aRx-q6-NNQ" id="G7e-PA-r4c"/>
                                     <outlet property="tableViewCellPublisherLabel" destination="HxU-Mj-POV" id="7cA-bt-Q8m"/>
                                     <outlet property="tableViewCellSubtitleNameLabel" destination="r3s-pD-mdf" id="7Ax-Un-sbu"/>
-                                    <segue destination="QUy-BD-bpt" kind="push" id="gof-88-gnm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -444,11 +443,11 @@
                         <viewControllerLayoutGuide type="bottom" id="BIp-FA-AVR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="frw-w9-Apz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TMs-Py-Id9">
-                                <rect key="frame" x="0.0" y="129" width="320" height="271"/>
+                                <rect key="frame" x="0.0" y="129" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>

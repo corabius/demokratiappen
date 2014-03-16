@@ -61,7 +61,11 @@
     // Create a bitmap graphics context of the given size
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(NULL, width*imageScale, height*imageScale, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
-    
+
+    // Clear the bitmap
+    CGContextSetRGBFillColor (context, 1, 1, 1, 1);
+    CGContextFillRect (context, CGRectMake (0, 0, width, height));
+
     [self drawGraphInContext:context];
     
     // Get your image
@@ -200,7 +204,7 @@
         CGRect dstRect = CGRectMake(x0, y0-20, barThickness, 15);
         CGRect srcRect = CGRectMake(0, 0, 140, 140);
 */
-        UILabel *tagLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(x0, y0, barThickness+5, 15)];
+        UILabel *tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(x0, y0, barThickness+5, 35)];
         tagLabel.textAlignment =  NSTextAlignmentCenter;
         tagLabel.adjustsFontSizeToFitWidth = YES;
         tagLabel.textColor = p.color;

@@ -285,15 +285,15 @@
 		55A82E4A188170A9004F2383 /* DemokratiAppen */ = {
 			isa = PBXGroup;
 			children = (
+				55A82E53188170A9004F2383 /* AppDelegate.h */,
+				55A82E54188170A9004F2383 /* AppDelegate.m */,
+				55A82E56188170A9004F2383 /* Main.storyboard */,
 				3B49A31418D5E8D80032B551 /* Tab_Plugin */,
 				3B49A31318D5E8C50032B551 /* Tab_TaggList */,
 				3B49A31218D5E8A10032B551 /* Tab_LinkList */,
 				3B49A31118D5E8930032B551 /* Tab_Login */,
 				3B49A31018D5E8660032B551 /* Parse_ClassObjects */,
 				3B2B445118986F1700FC1DEC /* iPad */,
-				55A82E53188170A9004F2383 /* AppDelegate.h */,
-				55A82E54188170A9004F2383 /* AppDelegate.m */,
-				55A82E56188170A9004F2383 /* Main.storyboard */,
 				55A82E5F188170A9004F2383 /* Images.xcassets */,
 				55A82E4B188170A9004F2383 /* Supporting Files */,
 				55A82E7C1881742A004F2383 /* UserData.h */,
