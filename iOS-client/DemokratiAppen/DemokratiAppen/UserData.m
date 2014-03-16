@@ -203,7 +203,7 @@
 
     PFQuery *allUserTagsQuery = [UserTag query];
 
-    NSMutableArray *partyArray = [self swedishPartyNameArray];
+    NSMutableArray *partyArray = [self swedishRiksdagsPartyNameArray];
     NSMutableArray *partyNamesArray = [[NSMutableArray alloc] init];
 
     for(int i=0; i<[partyArray count]; i++){
@@ -300,7 +300,7 @@
 
 }
 
-- (NSMutableArray*) swedishPartyNameArray{
+- (NSMutableArray*) swedishRiksdagsPartyNameArray{
 
     NSMutableArray *array = [[NSMutableArray alloc] init];;
 
@@ -318,7 +318,9 @@
     return array;
 }
 
+- (NSMutableArray*) swedishSmallPartyNameArray{
 
+}
 
 
 - (void) populatePartyArray{
