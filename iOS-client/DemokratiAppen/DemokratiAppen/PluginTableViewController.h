@@ -3,14 +3,14 @@
 //  DemokratiAppen
 //
 //  Created by Silvia Man on 2014-03-16.
-//  Copyright (c) 2014 Joakim Rydell. All rights reserved.
+//  Copyright (c) 2014 Demokratiappen
 //
 
 #import <UIKit/UIKit.h>
 
 @interface PluginTableViewController : UITableViewController
 
-@property NSMutableArray *visiualPlugin;
-@property NSMutableArray *analyticPlugin;
+@property NSMutableArray *visiualPluginArray;
+@property NSMutableArray *analyticPluginArray;
 
 @end

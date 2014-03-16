@@ -3,12 +3,15 @@
 //  DemokratiAppen
 //
 //  Created by Silvia Man on 2014-03-16.
-//  Copyright (c) 2014 Joakim Rydell. All rights reserved.
+//  Copyright (c) 2014 Demokratiappen
 //
 
 #import "PluginTableViewController.h"
+#import "Plugin.h"
+#import "PluginTableViewCell.h"
 
 @interface PluginTableViewController ()
+
 
 @end
 
@@ -33,10 +36,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    self.visiualPlugin = [[NSMutableArray alloc] init];
-    self.analyticPlugin = [[NSMutableArray alloc] init];
+    self.visiualPluginArray = [[NSMutableArray alloc] init];
+    self.analyticPluginArray = [[NSMutableArray alloc] init];
 
-    [self buildTableViewItems];
+    [self createTableViewItems];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,38 +53,75 @@
 
 
 
-- (void) buildTableViewItems{
+- (void) createTableViewItems{
+
+    Plugin *plugin = [[Plugin alloc] init];
+
+    plugin.name = @"Riksdagspartier";
+    plugin.subTitleName = @"Grafstatistik";
+    plugin.publisher = @"Demokratiappen";
+    //plugin.pluginIcon = [UIImage imageNamed:@"AppIcon"];
+    plugin.pluginIcon = [UIImage imageNamed:@"horizontal_bars_128.png"];
+
+    [self.visiualPluginArray addObject: plugin];
 
 }
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     // Return the number of sections.
     return 2;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (section)
+    {
+        case 0:
+            sectionName = @"Visuella plugin";
+            break;
+        case 1:
+            sectionName = @"Analytiska plugin";
+            break;
+        default:
+            sectionName = @"Plugin";
+            break;
+    }
+    return sectionName;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     //Return the number of rows in the section.
     if(section == 0){
-        return [self.visiualPlugin count];
+        return [self.visiualPluginArray count];
     }
     else if(section == 1){
-        return [self.analyticPlugin count];
+        return [self.analyticPluginArray count];
     }
 
     assert(false); // Failsafe. Will break in debug-mode. Will return if in release-mode.
     return 0;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    PluginTableViewCell *pluginCell = [tableView
+                                   dequeueReusableCellWithIdentifier:@"pluginCell" forIndexPath:indexPath];
     
     // Configure the cell...
+
+    Plugin *plugin = self.visiualPluginArray[indexPath.row];
+
+    pluginCell.tableViewCellNameLabel.text = plugin.name;
+    pluginCell.tableViewCellSubtitleNameLabel.text = plugin.subTitleName;
+    pluginCell.tableViewCellPublisherLabel.text = plugin.publisher;
+    pluginCell.tableViewCellPluginIcon.image = plugin.pluginIcon;
     
-    return cell;
+    return pluginCell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

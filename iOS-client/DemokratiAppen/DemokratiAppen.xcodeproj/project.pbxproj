@@ -14,6 +14,8 @@
 		3B2B444F18984B9E00FC1DEC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B444E18984B9E00FC1DEC /* libz.dylib */; };
 		3B2B445018986C8300FC1DEC /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B444518984B3400FC1DEC /* libTestFlight.a */; };
 		3B49A30918D5C1F50032B551 /* PluginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49A30818D5C1F50032B551 /* PluginTableViewController.m */; };
+		3B49A30C18D5D0010032B551 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49A30B18D5D0010032B551 /* Plugin.m */; };
+		3B49A30F18D5D7BA0032B551 /* PluginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49A30E18D5D7BA0032B551 /* PluginTableViewCell.m */; };
 		3B7C84EF18A133220076DA14 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7C84EE18A133220076DA14 /* MessageUI.framework */; };
 		3BC79278188298C8005C9BBA /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC79277188298C8005C9BBA /* Page.m */; };
 		3BC7927B1882A054005C9BBA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927218829516005C9BBA /* FacebookSDK.framework */; };
@@ -71,6 +73,10 @@
 		3B2B444E18984B9E00FC1DEC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3B49A30718D5C1F50032B551 /* PluginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginTableViewController.h; sourceTree = "<group>"; };
 		3B49A30818D5C1F50032B551 /* PluginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginTableViewController.m; sourceTree = "<group>"; };
+		3B49A30A18D5D0010032B551 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
+		3B49A30B18D5D0010032B551 /* Plugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plugin.m; sourceTree = "<group>"; };
+		3B49A30D18D5D7BA0032B551 /* PluginTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginTableViewCell.h; sourceTree = "<group>"; };
+		3B49A30E18D5D7BA0032B551 /* PluginTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginTableViewCell.m; sourceTree = "<group>"; };
 		3B7C84EE18A133220076DA14 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3BC7927218829516005C9BBA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3BC7927318829516005C9BBA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -224,6 +230,8 @@
 				3B04EF8C1896D9E900A1F456 /* UserTag.m */,
 				3BC79276188298C7005C9BBA /* Page.h */,
 				3BC79277188298C8005C9BBA /* Page.m */,
+				3B49A30A18D5D0010032B551 /* Plugin.h */,
+				3B49A30B18D5D0010032B551 /* Plugin.m */,
 				55A82E56188170A9004F2383 /* Main.storyboard */,
 				3BD8EE1F18A9558D008EC595 /* InformationViewController.h */,
 				3BD8EE2018A9558D008EC595 /* InformationViewController.m */,
@@ -248,6 +256,8 @@
 				3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */,
 				3B49A30718D5C1F50032B551 /* PluginTableViewController.h */,
 				3B49A30818D5C1F50032B551 /* PluginTableViewController.m */,
+				3B49A30D18D5D7BA0032B551 /* PluginTableViewCell.h */,
+				3B49A30E18D5D7BA0032B551 /* PluginTableViewCell.m */,
 			);
 			path = DemokratiAppen;
 			sourceTree = "<group>";
@@ -386,6 +396,7 @@
 			files = (
 				55A5270718828FF8009207E2 /* UIGraphViewController.m in Sources */,
 				3B49A30918D5C1F50032B551 /* PluginTableViewController.m in Sources */,
+				3B49A30C18D5D0010032B551 /* Plugin.m in Sources */,
 				3B04EF901896E0D700A1F456 /* UserTagsListViewController.m in Sources */,
 				55A82E5E188170A9004F2383 /* PartyGraphViewController.m in Sources */,
 				55A82E55188170A9004F2383 /* AppDelegate.m in Sources */,
@@ -394,6 +405,7 @@
 				3BC792891882D502005C9BBA /* Tag.m in Sources */,
 				55A82E5B188170A9004F2383 /* URLListViewController.m in Sources */,
 				55A82E7E1881742A004F2383 /* UserData.m in Sources */,
+				3B49A30F18D5D7BA0032B551 /* PluginTableViewCell.m in Sources */,
 				3B04EF8D1896D9E900A1F456 /* UserTag.m in Sources */,
 				55A82E51188170A9004F2383 /* main.m in Sources */,
 				55A82E8418819BEB004F2383 /* Party.m in Sources */,
