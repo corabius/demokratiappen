@@ -1,5 +1,6 @@
 var saplo = require('cloud/saplo');  // relative to root path of parse (but only code in cloud can be used)
 var tag = require('cloud/tag');
+var statistics = require('cloud/statistics');
 
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // For example:
@@ -9,6 +10,11 @@ Parse.Cloud.define("hello", function(request, response) {
 
 Parse.Cloud.define("getTags", tag.getTags);
 
+// Extract statistics
+Parse.Cloud.define("accumulatedTags", statistics.accumulatedTags);
+Parse.Cloud.define("negativeTags", statistics.negativeTags);
+Parse.Cloud.define("positiveTags", statistics.positiveTags);
+Parse.Cloud.define("tagsPerDate", statistics.tagsPerDate);
 
 // -----------------------------------------------------------------------
 /*
