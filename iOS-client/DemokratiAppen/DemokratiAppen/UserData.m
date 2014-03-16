@@ -92,7 +92,8 @@
 
         _networkError = true;
 
-        [alert show];
+//TODO: networkError happens too often to be accurate...
+        //[alert show];
     }
 }
 
