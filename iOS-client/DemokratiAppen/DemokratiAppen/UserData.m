@@ -302,7 +302,7 @@
 
 - (NSMutableArray*) swedishRiksdagsPartyNameArray{
 
-    NSMutableArray *array = [[NSMutableArray alloc] init];;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
 
     [array addObject:[[Party alloc] initWithName:@"Socialdemokraterna" acronym:@"S" plusScore:0 minusScore:0 color:@"ff0000"]];
     [array addObject:[[Party alloc] initWithName:@"Moderaterna" acronym:@"M" plusScore:0 minusScore:0 color:@"0000aa"]];
@@ -320,6 +320,8 @@
 
 - (NSMutableArray*) swedishSmallPartyNameArray{
 
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    return array;
 }
 
 
