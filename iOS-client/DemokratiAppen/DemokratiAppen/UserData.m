@@ -36,12 +36,11 @@
 -(id) init {
     self = [super init];
 
-    _partyArray = [[NSMutableArray alloc] init];
-    //[self populatePartyArray];
+    self.partyArray = [[NSMutableArray alloc] init];
     [self queryAllPartyTags];
 
 
-    [self queryAllTagsAndPages];
+    //[self queryAllTagsAndPages];
     [self queryAllUserTags];
     [self queryAllPages];
     
@@ -203,11 +202,11 @@
 
     PFQuery *allUserTagsQuery = [UserTag query];
 
-    NSMutableArray *partyArray = [self swedishRiksdagsPartyNameArray];
+    NSMutableArray *riksdagsPartyArray = [self swedishRiksdagsPartyNameArray];
     NSMutableArray *partyNamesArray = [[NSMutableArray alloc] init];
 
-    for(int i=0; i<[partyArray count]; i++){
-        Party *party = partyArray[i];
+    for(int i=0; i<[riksdagsPartyArray count]; i++){
+        Party *party = riksdagsPartyArray[i];
         NSString *name = party.name;
 
         [partyNamesArray addObject:name];
@@ -223,6 +222,8 @@
         //NSLog(@"number of UserTag in total: %d", [objects count]);
         
         if (error == nil) {
+            [self.partyArray removeAllObjects];
+            
             //NSLog(@"userTagsArray, %lu", (unsigned long)[objects count]);
 
 
@@ -262,9 +263,9 @@
                 NSString *acronym;
                 NSString *color;
 
-                for(int i=0; i<[partyArray count]; i++){
+                for(int i=0; i<[riksdagsPartyArray count]; i++){
 
-                    party = partyArray[i];
+                    party = riksdagsPartyArray[i];
                     if([party.name isEqualToString:name]){
                         acronym = party.acronym;
                         color = [party uiColorToHexString: party.color];
@@ -324,7 +325,7 @@
     return array;
 }
 
-
+/*
 - (void) populatePartyArray{
 
     //NSLog(@"populatePartyData %d", [self.partyArray count]);
@@ -342,6 +343,7 @@
 
         [self.partyArray addObject:[[Party alloc] initWithName:name acronym:@"S" plusScore:plusScore minusScore:minusScore color:@"ff0000"]];
     }
+ */
 
 /*
     [_partyArray addObject:[[Party alloc] initWithName:@"Socialdemokraterna" acronym:@"S" plusScore:4 minusScore:2 color:@"ff0000"]];
@@ -351,7 +353,7 @@
     [_partyArray addObject:[[Party alloc] initWithName:@"Miljöpartiet" acronym:@"MP" plusScore:3 minusScore:1 color:@"00ff00"]];
 */
 
-}
+//}
 
 
 
