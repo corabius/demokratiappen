@@ -201,15 +201,55 @@
 
 - (void) queryAllPartyTags {
 
-    //PFQuery *allTagsQuery = [Tag query];  //TODO: change UserTag to Tag!
-    PFQuery *allTagsQuery = [UserTag query];
+    PFQuery *allUserTagsQuery = [UserTag query];
 
-    allTagsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    NSMutableArray *partyArray = [self swedishPartyNameArray];
+    NSMutableArray *partyNamesArray =[[NSMutableArray alloc] init];
 
-    [allTagsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    for(int i=0; i<[partyArray count]; i++){
+        Party *party = partyArray[i];
+        NSString *name = party.name;
 
+        [partyNamesArray addObject:name];
+    }
+
+    [allUserTagsQuery whereKey:@"name" containedIn: partyNamesArray];
+
+
+    allUserTagsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+
+    [allUserTagsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+
+        //NSLog(@"number of UserTag in total: %d", [objects count]);
+        
         if (error == nil) {
             //NSLog(@"userTagsArray, %lu", (unsigned long)[objects count]);
+
+
+            //NSMutableArray *myMutableArray =[[NSMutableArray alloc] init];
+            //NSString *parameter = @"Folkpartiet";
+
+            //NSArray *myArray = [objects valueForKey:@"Folkpartiet"];
+            //NSLog(myArray[0]);
+
+            /*for (int i = 0 ; i < [objects count] ; i++) {
+
+                UserTag *p = [objects objectAtIndex:i];
+                NSString *s = p.name;
+                //NSLog(@"%@ name", p.name);
+
+                if ([s isEqualToString:parameter]) {
+                    [myMutableArray addObject:p];
+                    NSLog(@"index %d %@ added", i, parameter);
+                }
+                else{
+                    [myMutableArray removeObject:parameter];
+                    NSLog(@"%@ deleted", parameter);
+                }
+            }*/
+
+
+            NSLog(@"%d", [objects count]);
 
             for (UserTag *object in objects) {
                 //NSLog(@"queryAllUserTags %@", object);
@@ -218,15 +258,13 @@
                 int plusScore = object.positiveCount;
                 int minusScore = object.negativeCount;
 
-                NSMutableArray *partiesArray = [self swedishPartyNameArray];
-
                 Party *party;
                 NSString *acronym;
                 NSString *color;
 
-                for(int i=0; i<[partiesArray count]; i++){
+                for(int i=0; i<[partyArray count]; i++){
 
-                    party = partiesArray[i];
+                    party = partyArray[i];
                     if([party.name isEqualToString:name]){
                         acronym = party.acronym;
                         color = [party uiColorToHexString: party.color];
