@@ -178,6 +178,70 @@
 			name = iPad;
 			sourceTree = "<group>";
 		};
+		3B49A31018D5E8660032B551 /* Parse_ClassObjects */ = {
+			isa = PBXGroup;
+			children = (
+				55A82E8218819BEB004F2383 /* Party.h */,
+				55A82E8318819BEB004F2383 /* Party.m */,
+				3BC792871882D502005C9BBA /* Tag.h */,
+				3BC792881882D502005C9BBA /* Tag.m */,
+				3B04EF8B1896D9E900A1F456 /* UserTag.h */,
+				3B04EF8C1896D9E900A1F456 /* UserTag.m */,
+				3BC79276188298C7005C9BBA /* Page.h */,
+				3BC79277188298C8005C9BBA /* Page.m */,
+			);
+			name = Parse_ClassObjects;
+			sourceTree = "<group>";
+		};
+		3B49A31118D5E8930032B551 /* Tab_Login */ = {
+			isa = PBXGroup;
+			children = (
+				3BD8EE1F18A9558D008EC595 /* InformationViewController.h */,
+				3BD8EE2018A9558D008EC595 /* InformationViewController.m */,
+				3BC7928A1882D730005C9BBA /* LoginViewController.h */,
+				3BC7928B1882D730005C9BBA /* LoginViewController.m */,
+			);
+			name = Tab_Login;
+			sourceTree = "<group>";
+		};
+		3B49A31218D5E8A10032B551 /* Tab_LinkList */ = {
+			isa = PBXGroup;
+			children = (
+				55A82E7F18818932004F2383 /* URLDetailViewController.h */,
+				55A82E8018818932004F2383 /* URLDetailViewController.m */,
+				55A82E59188170A9004F2383 /* URLListViewController.h */,
+				55A82E5A188170A9004F2383 /* URLListViewController.m */,
+			);
+			name = Tab_LinkList;
+			sourceTree = "<group>";
+		};
+		3B49A31318D5E8C50032B551 /* Tab_TaggList */ = {
+			isa = PBXGroup;
+			children = (
+				3B04EF8E1896E0D700A1F456 /* UserTagsListViewController.h */,
+				3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */,
+			);
+			name = Tab_TaggList;
+			sourceTree = "<group>";
+		};
+		3B49A31418D5E8D80032B551 /* Tab_Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				3B49A30718D5C1F50032B551 /* PluginTableViewController.h */,
+				3B49A30818D5C1F50032B551 /* PluginTableViewController.m */,
+				3B49A30D18D5D7BA0032B551 /* PluginTableViewCell.h */,
+				3B49A30E18D5D7BA0032B551 /* PluginTableViewCell.m */,
+				55A5270318828FF8009207E2 /* UIGraphView.xib */,
+				55A5270418828FF8009207E2 /* UIGraphViewController.h */,
+				55A5270518828FF8009207E2 /* UIGraphViewController.m */,
+				55A82E5C188170A9004F2383 /* PartyGraphViewController.h */,
+				55A82E5D188170A9004F2383 /* PartyGraphViewController.m */,
+				3B49A30A18D5D0010032B551 /* Plugin.h */,
+				3B49A30B18D5D0010032B551 /* Plugin.m */,
+			);
+			name = Tab_Plugin;
+			sourceTree = "<group>";
+		};
 		55A82E38188170A9004F2383 = {
 			isa = PBXGroup;
 			children = (
@@ -221,43 +285,19 @@
 		55A82E4A188170A9004F2383 /* DemokratiAppen */ = {
 			isa = PBXGroup;
 			children = (
+				3B49A31418D5E8D80032B551 /* Tab_Plugin */,
+				3B49A31318D5E8C50032B551 /* Tab_TaggList */,
+				3B49A31218D5E8A10032B551 /* Tab_LinkList */,
+				3B49A31118D5E8930032B551 /* Tab_Login */,
+				3B49A31018D5E8660032B551 /* Parse_ClassObjects */,
 				3B2B445118986F1700FC1DEC /* iPad */,
 				55A82E53188170A9004F2383 /* AppDelegate.h */,
 				55A82E54188170A9004F2383 /* AppDelegate.m */,
-				3BC792871882D502005C9BBA /* Tag.h */,
-				3BC792881882D502005C9BBA /* Tag.m */,
-				3B04EF8B1896D9E900A1F456 /* UserTag.h */,
-				3B04EF8C1896D9E900A1F456 /* UserTag.m */,
-				3BC79276188298C7005C9BBA /* Page.h */,
-				3BC79277188298C8005C9BBA /* Page.m */,
-				3B49A30A18D5D0010032B551 /* Plugin.h */,
-				3B49A30B18D5D0010032B551 /* Plugin.m */,
 				55A82E56188170A9004F2383 /* Main.storyboard */,
-				3BD8EE1F18A9558D008EC595 /* InformationViewController.h */,
-				3BD8EE2018A9558D008EC595 /* InformationViewController.m */,
-				3BC7928A1882D730005C9BBA /* LoginViewController.h */,
-				3BC7928B1882D730005C9BBA /* LoginViewController.m */,
-				55A5270318828FF8009207E2 /* UIGraphView.xib */,
-				55A5270418828FF8009207E2 /* UIGraphViewController.h */,
-				55A5270518828FF8009207E2 /* UIGraphViewController.m */,
-				55A82E5C188170A9004F2383 /* PartyGraphViewController.h */,
-				55A82E5D188170A9004F2383 /* PartyGraphViewController.m */,
 				55A82E5F188170A9004F2383 /* Images.xcassets */,
 				55A82E4B188170A9004F2383 /* Supporting Files */,
 				55A82E7C1881742A004F2383 /* UserData.h */,
 				55A82E7D1881742A004F2383 /* UserData.m */,
-				55A82E8218819BEB004F2383 /* Party.h */,
-				55A82E8318819BEB004F2383 /* Party.m */,
-				55A82E7F18818932004F2383 /* URLDetailViewController.h */,
-				55A82E8018818932004F2383 /* URLDetailViewController.m */,
-				55A82E59188170A9004F2383 /* URLListViewController.h */,
-				55A82E5A188170A9004F2383 /* URLListViewController.m */,
-				3B04EF8E1896E0D700A1F456 /* UserTagsListViewController.h */,
-				3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */,
-				3B49A30718D5C1F50032B551 /* PluginTableViewController.h */,
-				3B49A30818D5C1F50032B551 /* PluginTableViewController.m */,
-				3B49A30D18D5D7BA0032B551 /* PluginTableViewCell.h */,
-				3B49A30E18D5D7BA0032B551 /* PluginTableViewCell.m */,
 			);
 			path = DemokratiAppen;
 			sourceTree = "<group>";
