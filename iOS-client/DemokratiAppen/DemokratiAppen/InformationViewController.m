@@ -67,7 +67,9 @@
 -(void) jsBookmarkletCodeSnippet{
 
     //copies the booklet-js-code to system clipboard
-    [UIPasteboard generalPasteboard].string = @"javascript:function iprl5(){var d=document,l=d.location;document.location=l.protocol+'//demokratiappen.parseapp.com/#/?title='+d.title+'&url='+encodeURIComponent(l.href);}iprl5();void(0)";
+    //[UIPasteboard generalPasteboard].string = @"javascript:function iprl5(){var d=document,l=d.location;document.location=l.protocol+'//demokratiappen.parseapp.com/#/?title='+d.title+'&url='+encodeURIComponent(l.href);}iprl5();void(0)";
+
+    [UIPasteboard generalPasteboard].string = @"javascript:function dar1(){var e=document,t,n=e.body,r=e.location;try{if(!n)throw 0;e.title='(Saving...) '+e.title;t=e.createElement('script');t.setAttribute('src',r.protocol+'//demokratiappen.parseapp.com/scripts/Scrape.js');n.appendChild(t)}catch(i){alert('Please wait until the page has loaded.')}}dar1();void(0)";
 }
 
 
