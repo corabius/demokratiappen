@@ -204,17 +204,19 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
   }
 
   function filterTags(tagsArg) {
-    function splitCollection(collection) { return collection.split(","); }
+    function splitCollectionHelper(collection) { return collection.split(","); }
 
-    var tagIds = splitCollection(tagsArg);
-    var relevanceArg = splitCollection($location.search().relevance);
+    var tagIds = splitCollectionHelper(tagsArg);
+    var relevanceArg = splitCollectionHelper($location.search().relevance);
 
     var parsedRelevanceArg = _.map(relevanceArg, function(relevance) {
       return parseFloat(relevance);
     });
 
-    var sortedDescendingListOfRelevance = _.sortBy(_.zip(tagIds, parsedRelevanceArg), function(num) {
-      return num[1];
+    var tagsWithRelevance = _.zip(tagIds, parsedRelevanceArg);
+
+    var sortedDescendingListOfRelevance = _.sortBy(tagsWithRelevance, function(tagWithRelevance) {
+      return tagWithRelevance[1];
     }).reverse();
 
     var tagIdList = _.pluck(_.first(sortedDescendingListOfRelevance, 5), [0]);
