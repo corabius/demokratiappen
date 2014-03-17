@@ -219,7 +219,7 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
       return tagWithRelevance[1];
     }).reverse();
 
-    var tagIdList = _.pluck(_.first(sortedDescendingListOfRelevance, 5), [0]);
+    var tagIdList = _.pluck(_.take(sortedDescendingListOfRelevance, 5), [0]);
 
     return tagIdList;
   }
