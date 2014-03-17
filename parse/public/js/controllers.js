@@ -303,25 +303,35 @@ democracyControllers.controller('TagsPerDateController', ['$scope', '$rootScope'
     var result = [];
     for (var i = 0; i < pages.length; i++) {
       var positiveTags = pages[i].get("positive_tags");
-      for (var j = 0; j < positiveTags.length; j++) {
-        var resultTag = {
-          id: positiveTags[j].id,
-          date: pages[i].createdAt,
-          name: positiveTags[j].get("name"),
-          score: 1
-        };
-        result[result.length] = resultTag;
+      if (positiveTags) {
+        for (var j = 0; j < positiveTags.length; j++) {
+          var positiveTag = positiveTags[j];
+          if (positiveTag) {
+            var resultTag = {
+              id: positiveTag.id,
+              date: pages[i].createdAt,
+              name: positiveTag.get("name"),
+              score: 1
+            };
+            result[result.length] = resultTag;
+          }
+        }
       }
 
       var negativeTags = pages[i].get("negative_tags");
-      for (var j = 0; j < negativeTags.length; j++) {
-        var resultTag = {
-          id: negativeTags[j].id,
-          date: pages[i].createdAt,
-          name: negativeTags[j].get("name"),
-          score: -1
-        };
-        result[result.length] = resultTag;
+      if (negativeTags) {
+        for (var j = 0; j < negativeTags.length; j++) {
+          var negativeTag = negativeTags[j];
+          if (negativeTag) {
+            var resultTag = {
+              id: negativeTag.id,
+              date: pages[i].createdAt,
+              name: negativeTag.get("name"),
+              score: -1
+            };
+            result[result.length] = resultTag;
+          }
+        }
       }
     }
 
