@@ -33,11 +33,11 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
   $scope.$watch(function() {
     return $location.search();
   }, function() {
-    var title = $location.search().title; 
+    var title = $location.search().title;
     if (title) {
       $scope.title = title;
     }
-    var url = $location.search().url; 
+    var url = $location.search().url;
     if (url) {
       $scope.url = url;
     }
@@ -67,7 +67,7 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
     query.containedIn("tag", allTags);
     query.equalTo("user", currentUser);
     query.limit(allTags.length + 1);
-    
+
     var promise = query.find().then(function(userTags) {
       var promises = [];
 
@@ -101,7 +101,7 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
         }
 
         if (needNewObject) {
-          // Check if this tag is positive 
+          // Check if this tag is positive
           var isPositive = (indexOf(positiveTags, tag) >= 0);
           var isNegative = (indexOf(negativeTags, tag) >= 0);
 
@@ -186,10 +186,11 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
     var Tag = Parse.Object.extend("Tag");
 
     // Convert tag id to Tag objects with a name
-    $scope.tags = []; 
+    $scope.tags = [];
     var tagsArg = $location.search().tags;
+
     if (tagsArg) {
-      var tagIds = tagsArg.split(",");
+      var tagIds = filterTags(tagsArg);
 
       var query = new Parse.Query("Tag");
       query.containedIn("objectId", tagIds);
@@ -200,6 +201,25 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
         alert("Connection to Parse failed, no tags");
       });
     }
+  }
+
+  function filterTags(tagsArg) {
+    function splitCollection(collection) { return collection.split(","); }
+
+    var tagIds = splitCollection(tagsArg);
+    var relevanceArg = splitCollection($location.search().relevance);
+
+    var parsedRelevanceArg = _.map(relevanceArg, function(relevance) {
+      return parseFloat(relevance);
+    });
+
+    var sortedDescendingListOfRelevance = _.sortBy(_.zip(tagIds, parsedRelevanceArg), function(num) {
+      return num[1];
+    }).reverse();
+
+    var tagIdList = _.pluck(_.first(sortedDescendingListOfRelevance, 5), [0]);
+
+    return tagIdList;
   }
 
   getTags();
