@@ -8,11 +8,14 @@
 
 #import "LoginViewController.h"
 #import "InformationViewController.h"
+#import "ParseConfigViewController.h"
 #import <Parse/Parse.h>
 #import <MessageUI/MessageUI.h>
 
 
-@interface LoginViewController () <PFLogInViewControllerDelegate, MFMailComposeViewControllerDelegate>
+//@interface LoginViewController () <PFLogInViewControllerDelegate, MFMailComposeViewControllerDelegate>
+
+@interface LoginViewController () <MFMailComposeViewControllerDelegate>
 
 @property PFLogInViewController* parseLoginController;  //jag blir delegerad till från PF-login-kod
 
@@ -28,12 +31,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *openParseAccountBtn;
 @property (weak, nonatomic) IBOutlet UIButton *emailContactPersonBtn;
 @property (weak, nonatomic) IBOutlet UIButton *emailGmailBtn;
+
+
 - (IBAction)openInSafariAction:(id)sender;
 - (IBAction)sendEmailAction:(id)sender;
 
 - (IBAction)sendToFBAction:(id)sender;
 
-- (IBAction)loginFBAction:(id)sender;
+//- (IBAction)loginFBAction:(id)sender;
 - (IBAction)logoutFBAction:(id)sender;
 - (IBAction)loginAccountAction:(id)sender;
 - (IBAction)logoutAccountAction:(id)sender;
@@ -171,54 +176,54 @@
 
 #pragma mark Login/Logout
 
-- (IBAction)loginFBAction:(id)sender {
-
-    PFUser* user = [PFUser currentUser];
-
-
-    if(user == nil){  //login (and create if not excist) user linked to their facebook-account
-
-        /*
-         User's public profile and also their friend list. Public profile refers to the following properties by default: id, name, first_name, last_name, link, username, gender, locale, age_range, Other public information
-         */
-        NSArray *facebookPermissions = [[NSArray alloc] initWithObjects: @"email", nil];
-
-
-        self.parseLoginController = [[PFLogInViewController alloc] init];
-        self.parseLoginController.delegate = self;
-        self.parseLoginController.facebookPermissions = facebookPermissions;
-
-        /*
-         A bitmask specifying the log in elements which are enabled in the view : for the property PFLogInFields fields
-         enum {
-         PFLogInFieldsNone = 0,
-         PFLogInFieldsUsernameAndPassword = 1 << 0,
-         PFLogInFieldsPasswordForgotten = 1 << 1,
-         PFLogInFieldsLogInButton = 1 << 2,
-         PFLogInFieldsFacebook = 1 << 3,
-         PFLogInFieldsTwitter = 1 << 4,
-         PFLogInFieldsSignUpButton = 1 << 5,
-         PFLogInFieldsDismissButton = 1 << 6,
-         PFLogInFieldsDefault = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsDismissButton
-         };
-         */
-
-        [self updateUserNameAndEmailFromFacebook: user];
-
-        self.parseLoginController.fields = PFLogInFieldsFacebook | PFLogInFieldsDismissButton;
-
-        [self presentViewController: self.parseLoginController animated:YES completion:nil];
-
-        [self updateCurrentUser];
-
-    }
+//- (IBAction)loginFBAction:(id)sender {
+//
+//    PFUser* user = [PFUser currentUser];
+//
+//
+//    if(user == nil){  //login (and create if not excist) user linked to their facebook-account
+//
+//        /*
+//         User's public profile and also their friend list. Public profile refers to the following properties by default: id, name, first_name, last_name, link, username, gender, locale, age_range, Other public information
+//         */
+//        NSArray *facebookPermissions = [[NSArray alloc] initWithObjects: @"email", nil];
+//
+//
+//        self.parseLoginController = [[PFLogInViewController alloc] init];
+//        self.parseLoginController.delegate = self;
+//        self.parseLoginController.facebookPermissions = facebookPermissions;
+//
+//        /*
+//         A bitmask specifying the log in elements which are enabled in the view : for the property PFLogInFields fields
+//         enum {
+//         PFLogInFieldsNone = 0,
+//         PFLogInFieldsUsernameAndPassword = 1 << 0,
+//         PFLogInFieldsPasswordForgotten = 1 << 1,
+//         PFLogInFieldsLogInButton = 1 << 2,
+//         PFLogInFieldsFacebook = 1 << 3,
+//         PFLogInFieldsTwitter = 1 << 4,
+//         PFLogInFieldsSignUpButton = 1 << 5,
+//         PFLogInFieldsDismissButton = 1 << 6,
+//         PFLogInFieldsDefault = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsDismissButton
+//         };
+//         */
+//
+//        [self updateUserNameAndEmailFromFacebook: user];
+//
+//        self.parseLoginController.fields = PFLogInFieldsFacebook | PFLogInFieldsDismissButton;
+//
+//        [self presentViewController: self.parseLoginController animated:YES completion:nil];
+//
+//        [self updateCurrentUser];
+//
+//    }
 
 /*
     else{ //user is loggedin
         [self performSegueWithIdentifier:@"NewCommentSeque" sender:self];
     }
 */
-}
+//}
 
 - (IBAction)logoutFBAction:(id)sender {
 
@@ -230,10 +235,19 @@
 - (IBAction)loginAccountAction:(id)sender {
 
     //tutorial custom login-view https://parse.com/tutorials/login-and-signup-views
+    
+    /*
+    
     self.parseLoginController = [[PFLogInViewController alloc] init];
+    
     self.parseLoginController.delegate = self;
+    
     [self presentViewController: self.parseLoginController animated:YES completion:nil];
 
+     */
+    
+    
+    
 
 }
 
@@ -291,6 +305,9 @@
 
     if ([segue.identifier isEqualToString:@"InformationSeque"]){
     }
+    
+    if ([segue.identifier isEqualToString:@"ParseLogInViewControllerSegue"]){
+    }
 
 }
 
@@ -300,6 +317,9 @@
     UIViewController* sourceViewController = sender.sourceViewController;
 
     if ([sourceViewController isKindOfClass:[InformationViewController class]]){
+    }
+    
+    if ([sourceViewController isKindOfClass:[ParseConfigViewController class]]){
     }
 }
 

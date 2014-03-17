@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -181,7 +181,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="loginAccountAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="Abp-L9-bfx"/>
+                                            <segue destination="Zgv-nF-cHU" kind="modal" identifier="ParseLogInViewControllerSegue" id="KSD-Ad-qhO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jtl-qr-O4q">
@@ -324,7 +324,6 @@
                         <outlet property="emailContactPersonBtn" destination="VRw-7s-Qba" id="pZu-oI-nrc"/>
                         <outlet property="emailGmailBtn" destination="r9z-Hm-zbo" id="DjH-BN-hsT"/>
                         <outlet property="instructionsTextView" destination="DHJ-Bn-X91" id="2xW-HI-JzY"/>
-                        <outlet property="loginAccountBtn" destination="duG-nb-nPQ" id="UbT-B2-up2"/>
                         <outlet property="loginFBBtn" destination="VRn-Dy-Hzu" id="St6-Rk-gTx"/>
                         <outlet property="logoutAccountBtn" destination="Jtl-qr-O4q" id="utY-yK-EBE"/>
                         <outlet property="logoutFBBtn" destination="9BE-L7-SD1" id="sdJ-6K-IwS"/>
@@ -435,6 +434,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qq-4t-Ow8" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2095" y="568"/>
+        </scene>
+        <!--Parse Config View Controller-->
+        <scene sceneID="vJi-k3-Hty">
+            <objects>
+                <viewController id="Zgv-nF-cHU" customClass="ParseConfigViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GXi-Xp-tt0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPL-dz-tkT">
+                                <rect key="frame" x="60" y="261" width="200" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="GPL-dz-tkT" id="oNZ-vW-OFV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sAf-Em-DKY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="490" y="1439"/>
         </scene>
         <!--Information View Controller-->
         <scene sceneID="Ker-j9-xzk">

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0917AC0C18CE2FB6004DC9B9 /* ParseConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0917AC0B18CE2FB6004DC9B9 /* ParseConfigViewController.m */; };
+		0917AC0F18CE337F004DC9B9 /* ParseLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0917AC0E18CE337F004DC9B9 /* ParseLogInViewController.m */; };
+		0917AC1218CE33AB004DC9B9 /* ParseSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0917AC1118CE33AB004DC9B9 /* ParseSignUpViewController.m */; };
 		3B04EF8D1896D9E900A1F456 /* UserTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04EF8C1896D9E900A1F456 /* UserTag.m */; };
 		3B04EF901896E0D700A1F456 /* UserTagsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */; };
 		3B2B444C18984B3400FC1DEC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B2B444618984B3400FC1DEC /* README.md */; };
@@ -60,6 +63,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0917AC0A18CE2FB6004DC9B9 /* ParseConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseConfigViewController.h; sourceTree = "<group>"; };
+		0917AC0B18CE2FB6004DC9B9 /* ParseConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseConfigViewController.m; sourceTree = "<group>"; };
+		0917AC0D18CE337F004DC9B9 /* ParseLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseLogInViewController.h; sourceTree = "<group>"; };
+		0917AC0E18CE337F004DC9B9 /* ParseLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseLogInViewController.m; sourceTree = "<group>"; };
+		0917AC1018CE33AB004DC9B9 /* ParseSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseSignUpViewController.h; sourceTree = "<group>"; };
+		0917AC1118CE33AB004DC9B9 /* ParseSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseSignUpViewController.m; sourceTree = "<group>"; };
 		3B04EF8B1896D9E900A1F456 /* UserTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTag.h; sourceTree = "<group>"; };
 		3B04EF8C1896D9E900A1F456 /* UserTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTag.m; sourceTree = "<group>"; };
 		3B04EF8E1896E0D700A1F456 /* UserTagsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTagsListViewController.h; sourceTree = "<group>"; };
@@ -288,12 +297,27 @@
 				55A82E53188170A9004F2383 /* AppDelegate.h */,
 				55A82E54188170A9004F2383 /* AppDelegate.m */,
 				55A82E56188170A9004F2383 /* Main.storyboard */,
-				3B49A31418D5E8D80032B551 /* Tab_Plugin */,
-				3B49A31318D5E8C50032B551 /* Tab_TaggList */,
-				3B49A31218D5E8A10032B551 /* Tab_LinkList */,
-				3B49A31118D5E8930032B551 /* Tab_Login */,
-				3B49A31018D5E8660032B551 /* Parse_ClassObjects */,
-				3B2B445118986F1700FC1DEC /* iPad */,
+                                3B49A31418D5E8D80032B551 /* Tab_Plugin */,
+                                3B49A31318D5E8C50032B551 /* Tab_TaggList */,
+                                3B49A31218D5E8A10032B551 /* Tab_LinkList */,
+                                3B49A31118D5E8930032B551 /* Tab_Login */,
+                                3B49A31018D5E8660032B551 /* Parse_ClassObjects */,
+                                3B2B445118986F1700FC1DEC /* iPad */,
+				3BD8EE1F18A9558D008EC595 /* InformationViewController.h */,
+				3BD8EE2018A9558D008EC595 /* InformationViewController.m */,
+				3BC7928A1882D730005C9BBA /* LoginViewController.h */,
+				3BC7928B1882D730005C9BBA /* LoginViewController.m */,
+				0917AC0A18CE2FB6004DC9B9 /* ParseConfigViewController.h */,
+				0917AC0B18CE2FB6004DC9B9 /* ParseConfigViewController.m */,
+				0917AC0D18CE337F004DC9B9 /* ParseLogInViewController.h */,
+				0917AC0E18CE337F004DC9B9 /* ParseLogInViewController.m */,
+				0917AC1018CE33AB004DC9B9 /* ParseSignUpViewController.h */,
+				0917AC1118CE33AB004DC9B9 /* ParseSignUpViewController.m */,
+				55A5270318828FF8009207E2 /* UIGraphView.xib */,
+				55A5270418828FF8009207E2 /* UIGraphViewController.h */,
+				55A5270518828FF8009207E2 /* UIGraphViewController.m */,
+				55A82E5C188170A9004F2383 /* PartyGraphViewController.h */,
+				55A82E5D188170A9004F2383 /* PartyGraphViewController.m */,
 				55A82E5F188170A9004F2383 /* Images.xcassets */,
 				55A82E4B188170A9004F2383 /* Supporting Files */,
 				55A82E7C1881742A004F2383 /* UserData.h */,
@@ -442,10 +466,13 @@
 				55A82E55188170A9004F2383 /* AppDelegate.m in Sources */,
 				3BC79278188298C8005C9BBA /* Page.m in Sources */,
 				3BD8EE2118A9558D008EC595 /* InformationViewController.m in Sources */,
+				0917AC0C18CE2FB6004DC9B9 /* ParseConfigViewController.m in Sources */,
 				3BC792891882D502005C9BBA /* Tag.m in Sources */,
+				0917AC0F18CE337F004DC9B9 /* ParseLogInViewController.m in Sources */,
 				55A82E5B188170A9004F2383 /* URLListViewController.m in Sources */,
 				55A82E7E1881742A004F2383 /* UserData.m in Sources */,
 				3B49A30F18D5D7BA0032B551 /* PluginTableViewCell.m in Sources */,
+				0917AC1218CE33AB004DC9B9 /* ParseSignUpViewController.m in Sources */,
 				3B04EF8D1896D9E900A1F456 /* UserTag.m in Sources */,
 				55A82E51188170A9004F2383 /* main.m in Sources */,
 				55A82E8418819BEB004F2383 /* Party.m in Sources */,
