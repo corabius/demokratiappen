@@ -1,10 +1,46 @@
 var saploKeys = require('cloud/saplo_parameters').saploKeys; // relative to root path of parse
 
+/**
+ * Connect to Saplo.
+ *
+ * @return Promise when we are connected
+ */
+function connectToSaplo() {
+  var saploUrlWithToken = 'http://api.saplo.com/rpc/json?access_token=';
+
+  // Request object to ask for a authorization token
+  var accessTokenRequest = {
+    "method": "auth.accessToken",
+    "params": {
+      "api_key":    saploKeys.saploApiKey,
+      "secret_key": saploKeys.saploSecretKey
+    }
+  };
+
+  return Parse.Cloud.httpRequest({
+    // First connect to Saplo (we need an access token to get the tags)
+    url: 'http://api.saplo.com/rpc/json',
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    body: JSON.stringify(accessTokenRequest),
+  }).then(function (httpResponse) {
+    if (httpResponse.status != 200) {
+      return Parse.Promise.error('saploConnectFailure: Saplo returned status: ' + httpResponse.status);
+    }
+
+    var requestObject = JSON.parse(httpResponse.text).result;
+    var accessToken = requestObject.access_token;
+
+    return Parse.Promise.as(saploUrlWithToken + accessToken);
+  });
+}
+
+
 // Supported parameters in request object:
 // text:     The text to be tagged
 // url:      The url for the text (uesd for cache:ing)
 // headline: The text's headline
-function extractTags(request, response){
+function extractTags(request, response) {
   var requestJSON = JSON.parse(request.body);
 
   var textToBeParsed = requestJSON.text;
@@ -270,6 +306,10 @@ function extractTags(request, response){
         textIdGet.params.text_id = textId;
         urlExists = true;
 
+        console.log("Get tags from saplo:");
+        console.log(textIdGet);
+        console.log(JSON.stringify(textIdGet));
+
         // Get the tags from Saplo or from Parse?
         // Now from Saplo (=> we must have the Saplo accessToken)
         // If we change this, we _could_ move the saplo login from the main request.
@@ -304,5 +344,37 @@ function extractTags(request, response){
     }
   });  // Main request
 } // extractTags
-
 exports.extractTags = extractTags;
+
+
+function listCollections(request, response) {
+  var collectionList = {
+    'method': 'collection.list',
+    'params': {},
+    'id': 0
+  };
+
+  connectToSaplo().then(function(saploUrlWithToken) {
+    return Parse.Cloud.httpRequest({
+      url: saploUrlWithToken,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(collectionList)
+    });
+  }).then(function(httpResponse) {
+    if (httpResponse.status != 200) {
+      response.error("saplo: collection.list failed.");
+      return;
+    }
+
+    console.log(httpResponse.data);
+    // var responseData = JSON.parse(httpResponse);
+    response.success(httpResponse.data);
+  },
+  function(error) {
+    console.log('saplo.listCollections failed: ' + error);
+    response.error('listCollections failed.');
+  });
+}
+exports.listCollections = listCollections;
+

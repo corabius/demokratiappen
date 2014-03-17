@@ -1,13 +1,12 @@
-var saplo = require('cloud/saplo');  // relative to root path of parse (but only code in cloud can be used)
-var tag = require('cloud/tag');
+// relative to root path of parse (but only code in cloud can be used)
+var saplo = require('cloud/saplo');
+// var tag = require('cloud/tag');
 
-// Use Parse.Cloud.define to define as many cloud functions as you want.
-// For example:
-Parse.Cloud.define("hello", function(request, response) {
-  response.success("Hello Democracy!");
-});
+// Parse.Cloud.define("getTags", tag.getTags);
 
-Parse.Cloud.define("getTags", tag.getTags);
+Parse.Cloud.define('tagga', saplo.extractTags);
+// Parse.Cloud.define('listCollections', saplo.listCollections);
+
 
 
 // -----------------------------------------------------------------------
@@ -31,12 +30,6 @@ Supported parameters:
 For questions ask Rasmus or Sven
 
 */
-
-Parse.Cloud.define("tagga",
-  function(request, response) {
-    saplo.extractTags(request, response);
-  }
-); // END tagga
 
 
 // -----------------------------------------------------------------------
