@@ -10,6 +10,7 @@
 		0917AC0C18CE2FB6004DC9B9 /* ParseConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0917AC0B18CE2FB6004DC9B9 /* ParseConfigViewController.m */; };
 		0917AC0F18CE337F004DC9B9 /* ParseLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0917AC0E18CE337F004DC9B9 /* ParseLogInViewController.m */; };
 		0917AC1218CE33AB004DC9B9 /* ParseSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0917AC1118CE33AB004DC9B9 /* ParseSignUpViewController.m */; };
+		09D1148A18D90D5900A9F91A /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D1148918D90D5900A9F91A /* PageContentViewController.m */; };
 		3B04EF8D1896D9E900A1F456 /* UserTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04EF8C1896D9E900A1F456 /* UserTag.m */; };
 		3B04EF901896E0D700A1F456 /* UserTagsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */; };
 		3B2B444C18984B3400FC1DEC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B2B444618984B3400FC1DEC /* README.md */; };
@@ -69,6 +70,8 @@
 		0917AC0E18CE337F004DC9B9 /* ParseLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseLogInViewController.m; sourceTree = "<group>"; };
 		0917AC1018CE33AB004DC9B9 /* ParseSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseSignUpViewController.h; sourceTree = "<group>"; };
 		0917AC1118CE33AB004DC9B9 /* ParseSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseSignUpViewController.m; sourceTree = "<group>"; };
+		09D1148818D90D5900A9F91A /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
+		09D1148918D90D5900A9F91A /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		3B04EF8B1896D9E900A1F456 /* UserTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTag.h; sourceTree = "<group>"; };
 		3B04EF8C1896D9E900A1F456 /* UserTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTag.m; sourceTree = "<group>"; };
 		3B04EF8E1896E0D700A1F456 /* UserTagsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTagsListViewController.h; sourceTree = "<group>"; };
@@ -297,12 +300,14 @@
 				55A82E53188170A9004F2383 /* AppDelegate.h */,
 				55A82E54188170A9004F2383 /* AppDelegate.m */,
 				55A82E56188170A9004F2383 /* Main.storyboard */,
-                                3B49A31418D5E8D80032B551 /* Tab_Plugin */,
-                                3B49A31318D5E8C50032B551 /* Tab_TaggList */,
-                                3B49A31218D5E8A10032B551 /* Tab_LinkList */,
-                                3B49A31118D5E8930032B551 /* Tab_Login */,
-                                3B49A31018D5E8660032B551 /* Parse_ClassObjects */,
-                                3B2B445118986F1700FC1DEC /* iPad */,
+				09D1148818D90D5900A9F91A /* PageContentViewController.h */,
+				09D1148918D90D5900A9F91A /* PageContentViewController.m */,
+				3B49A31418D5E8D80032B551 /* Tab_Plugin */,
+				3B49A31318D5E8C50032B551 /* Tab_TaggList */,
+				3B49A31218D5E8A10032B551 /* Tab_LinkList */,
+				3B49A31118D5E8930032B551 /* Tab_Login */,
+				3B49A31018D5E8660032B551 /* Parse_ClassObjects */,
+				3B2B445118986F1700FC1DEC /* iPad */,
 				3BD8EE1F18A9558D008EC595 /* InformationViewController.h */,
 				3BD8EE2018A9558D008EC595 /* InformationViewController.m */,
 				3BC7928A1882D730005C9BBA /* LoginViewController.h */,
@@ -460,6 +465,7 @@
 			files = (
 				55A5270718828FF8009207E2 /* UIGraphViewController.m in Sources */,
 				3B49A30918D5C1F50032B551 /* PluginTableViewController.m in Sources */,
+				09D1148A18D90D5900A9F91A /* PageContentViewController.m in Sources */,
 				3B49A30C18D5D0010032B551 /* Plugin.m in Sources */,
 				3B04EF901896E0D700A1F456 /* UserTagsListViewController.m in Sources */,
 				55A82E5E188170A9004F2383 /* PartyGraphViewController.m in Sources */,
