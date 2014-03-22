@@ -24,7 +24,7 @@
     if ([PFUser currentUser]) {
         
         // Create the data model
-        _pageTitles = @[@"Välkommen till Demokratiappen", @"Discover Hidden Features", @"Bookmark Favorite Tip", @"Free Regular Update"];
+        _pageTitles = @[@"label1", @"label2", @"label3", @"label4"];
         _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png"];
         
         // Create page view controller
