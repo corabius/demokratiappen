@@ -20,6 +20,9 @@ democracyApp.config(['$routeProvider',
       when('/accumulatedTags', {
         templateUrl: '/view/accumulatedTags.html',
       }).
+      when('/listCollections', {
+        templateUrl: '/view/listCollections.html',
+      }).
       when('/statistics', {
         templateUrl: '/view/statistics.html',
       }).

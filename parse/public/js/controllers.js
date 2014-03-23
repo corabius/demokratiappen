@@ -402,3 +402,13 @@ democracyControllers.controller('AccumulatedTagsController', ['$scope', '$rootSc
     alert(error);
   });
 }]);
+
+democracyControllers.controller('ListCollectionsController', ['$scope', '$rootScope', 'LoginService', function($scope, $rootScope, LoginService) {
+
+  Parse.Cloud.run('listCollections', {}).then(function(result) {
+    $scope.tags = result;
+    $scope.$apply();
+  }, function (error) {
+    alert(error);
+  });
+}]);
