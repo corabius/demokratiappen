@@ -272,11 +272,19 @@ democracyControllers.controller('ListPagesController', ['$scope', '$rootScope', 
 
         a.tags = a.tags.concat(_.map(article.get("positive_tags"),
           function(tag) {
-            return {name: tag.get("name"), type: 'success' };
+            var tagName = 'unknown';
+            if (tag) {
+              tagName = tag.get('name');
+            }
+            return {name: tagName, type: 'success' };
           }));
         a.tags = a.tags.concat(_.map(article.get("negative_tags"),
           function(tag) {
-            return {name: tag.get("name"), type: 'danger' };
+            var tagName = 'unknown';
+            if (tag) {
+              tagName = tag.get('name');
+            }
+            return {name: tagName, type: 'danger' };
           }));
 
         return a;
