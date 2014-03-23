@@ -15,11 +15,3 @@
  * You should have received a copy of the GNU General Public License
  * along with Demokratiappen.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#import <UIKit/UIKit.h>
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-@end
