@@ -1233,6 +1233,9 @@ var demokratiappen = {
       if (scrapeResult.title.substr(0, 12) == "(Saving...) ") {
         scrapeResult.title = scrapeResult.title.substr(12);
       }
+      if (scrapeResult.title.substr(0, 12) == "(Sparar...) ") {
+        scrapeResult.title = scrapeResult.title.substr(12);
+      }
       scrapeResult.url = document.location.href;
 
       var request = new XMLHttpRequest();
