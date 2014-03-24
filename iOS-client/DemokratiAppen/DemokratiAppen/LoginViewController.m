@@ -50,6 +50,8 @@
 
 - (IBAction)sendToDemokratiappenWebbAction:(id)sender;
 
+- (IBAction)sendToGitHubAction:(id)sender;
+
 //- (IBAction)loginFBAction:(id)sender;
 - (IBAction)logoutFBAction:(id)sender;
 - (IBAction)loginAccountAction:(id)sender;
@@ -195,6 +197,12 @@
 - (IBAction)sendToDemokratiappenWebbAction:(id)sender {
 
     NSURL *url = [NSURL URLWithString:@"http://demokratiappen.se"];
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+- (IBAction)sendToGitHubAction:(id)sender {
+
+    NSURL *url = [NSURL URLWithString:@"https://github.com/corabius/demokratiappen"];
     [[UIApplication sharedApplication] openURL:url];
 }
 
