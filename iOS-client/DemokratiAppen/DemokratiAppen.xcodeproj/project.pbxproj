@@ -17,6 +17,7 @@
 		3B49A30918D5C1F50032B551 /* PluginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49A30818D5C1F50032B551 /* PluginTableViewController.m */; };
 		3B49A30C18D5D0010032B551 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49A30B18D5D0010032B551 /* Plugin.m */; };
 		3B49A30F18D5D7BA0032B551 /* PluginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49A30E18D5D7BA0032B551 /* PluginTableViewCell.m */; };
+		3B61BD3818E0E188005EC001 /* PluginWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B61BD3718E0E188005EC001 /* PluginWebViewController.m */; };
 		3B7C84EF18A133220076DA14 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7C84EE18A133220076DA14 /* MessageUI.framework */; };
 		3BC79278188298C8005C9BBA /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC79277188298C8005C9BBA /* Page.m */; };
 		3BC7927B1882A054005C9BBA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC7927218829516005C9BBA /* FacebookSDK.framework */; };
@@ -80,6 +81,8 @@
 		3B49A30B18D5D0010032B551 /* Plugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plugin.m; sourceTree = "<group>"; };
 		3B49A30D18D5D7BA0032B551 /* PluginTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginTableViewCell.h; sourceTree = "<group>"; };
 		3B49A30E18D5D7BA0032B551 /* PluginTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginTableViewCell.m; sourceTree = "<group>"; };
+		3B61BD3618E0E188005EC001 /* PluginWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginWebViewController.h; path = ../PluginWebViewController.h; sourceTree = "<group>"; };
+		3B61BD3718E0E188005EC001 /* PluginWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PluginWebViewController.m; path = ../PluginWebViewController.m; sourceTree = "<group>"; };
 		3B7C84EE18A133220076DA14 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3BC7927218829516005C9BBA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3BC7927318829516005C9BBA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 		3B49A31418D5E8D80032B551 /* Tab_Plugin */ = {
 			isa = PBXGroup;
 			children = (
+				3B61BD3618E0E188005EC001 /* PluginWebViewController.h */,
+				3B61BD3718E0E188005EC001 /* PluginWebViewController.m */,
 				3B49A30718D5C1F50032B551 /* PluginTableViewController.h */,
 				3B49A30818D5C1F50032B551 /* PluginTableViewController.m */,
 				3B49A30D18D5D7BA0032B551 /* PluginTableViewCell.h */,
@@ -451,6 +456,7 @@
 				3B49A30C18D5D0010032B551 /* Plugin.m in Sources */,
 				3B04EF901896E0D700A1F456 /* UserTagsListViewController.m in Sources */,
 				55A82E5E188170A9004F2383 /* PartyGraphViewController.m in Sources */,
+				3B61BD3818E0E188005EC001 /* PluginWebViewController.m in Sources */,
 				55A82E55188170A9004F2383 /* AppDelegate.m in Sources */,
 				3BC79278188298C8005C9BBA /* Page.m in Sources */,
 				3BD8EE2118A9558D008EC595 /* InformationViewController.m in Sources */,

@@ -417,6 +417,27 @@
             </objects>
             <point key="canvasLocation" x="1710" y="569"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="dYr-ZK-GhF">
+            <objects>
+                <viewController id="2oJ-jX-D2V" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tYt-vb-Zh9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="v3Q-tM-hpi">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RgF-4A-Q3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2185" y="568"/>
+        </scene>
         <!--PartyGraphViewController-->
         <scene sceneID="ot8-2e-RuS">
             <objects>
@@ -444,7 +465,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qq-4t-Ow8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2095" y="568"/>
+            <point key="canvasLocation" x="2642" y="675"/>
         </scene>
         <!--Parse Config View Controller-->
         <scene sceneID="vJi-k3-Hty">
@@ -627,7 +648,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEu-K3-BTF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2523" y="588"/>
+            <point key="canvasLocation" x="3070" y="706"/>
         </scene>
         <!--Navigation Controller - Plugin-->
         <scene sceneID="7MR-zq-MwB">
