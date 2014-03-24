@@ -1,0 +1,29 @@
+För att lägga till bokmärket kan du göra så här
+
+i Chrome:
+Välj Bokmärken -> Bokmärkeshanteraren i menyn
+Högerklicka i listan och välj "Lägg till sida …" i menyn.
+Skriv Demokratiappen i Namn-rutan och klistra in bokmärkeskoden nedan i Webbadress-rutan.
+
+i Firefox:
+Välj Bokmärke -> Visa alla bokmärken
+Markera t.ex. Bokmärkesmenyn (eller Bokmärkesfältet beroende på var du vill ha bokmärket)
+Högerklicka i listan och välj "Nytt bokmärke…"
+I dialogrutan skriver du Demokratiappen i Namn-rutan och klistrar in bokmärkeskoden nedan i Adress-rutan.
+
+I Safari:
+?
+
+Bokmärkeskoden:
+[javascript:function dar1() {var d = document, z, b = d.body, l = d.location; try {if (!b) throw(0); d.title='(Saving...) ' + d.title; z = d.createElement('script'); z.setAttribute('src', l.protocol + '//demokratiappen.se/scripts/Scrape.js'); b.appendChild(z);} catch(e) { alert('Please wait until the page has loaded.'); }} dar1(); void(0)]
+
+------------------------------------
+Men i IE ska det gå att göra
+
+window.external.AddFavorite([javascriptet],'Demokratiappen'); 
+
+Så man skulle kunna göra en skriptsnutt som kollar om det är IE
+och i så fall skapar/visar en knapp med denna kod.
+
+------------------------------------
+
