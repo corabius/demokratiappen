@@ -35,14 +35,14 @@ democracyServices.factory('LoginService', [ '$rootScope', 'ParseInitializer', fu
   obj.stateLoggedIn = (Parse.User.current() ? obj.LOGGED_IN : obj.NOT_LOGGED_IN);
   obj.stateLoginProcess = obj.INITIAL;
   
-  obj.setStateLoggedIn = function(newState) {
+  var setStateLoggedIn = function(newState) {
     obj.stateLoggedIn = newState;
 
     obj.password = '';
     obj.setStateLoginProcess(obj.INITIAL);
   };
 
-  obj.setStateLoginProcess = function(newState) {
+  var setStateLoginProcess = function(newState) {
     obj.stateLoginProcess = newState;
   };
 
@@ -54,18 +54,31 @@ democracyServices.factory('LoginService', [ '$rootScope', 'ParseInitializer', fu
       obj.password,
       {
         success: function(user) {
-          obj.setStateLoggedIn(obj.LOGGED_IN);
+          setStateLoggedIn(obj.LOGGED_IN);
           $rootScope.$apply();
         },
         error: function(user, error) {
-          obj.setStateLoginProcess(obj.LOGIN_FAILED);
+          setStateLoginProcess(obj.LOGIN_FAILED);
           $rootScope.$apply();
         }
       });
   };
 
+  obj.facebookLogin = function() {
+    Parse.FacebookUtils.logIn(null /* No extra Facebook permissions */, {
+      success: function(user) {
+        setStateLoggedIn(obj.LOGGED_IN);
+        $rootScope.$apply();
+      },
+      error: function(user, error) {
+        setStateLoginProcess(obj.LOGIN_FAILED);
+        $rootScope.$apply();
+      }
+    });
+  };
+
   obj.signUp = function(scope) {
-    obj.setStateLoginProcess(obj.LOADING);
+    setStateLoginProcess(obj.LOADING);
 
     Parse.User.signUp(
       obj.username,
@@ -73,12 +86,12 @@ democracyServices.factory('LoginService', [ '$rootScope', 'ParseInitializer', fu
       { ACL: new Parse.ACL() },
       {
         success: function(user) {
-          obj.setStateLoggedIn(obj.LOGGED_IN);
           obj.username = user.getUsername();
+          setStateLoggedIn(obj.LOGGED_IN); 
           $rootScope.$apply();
         },
         error: function(user, error) {
-          obj.setStateLoginProcess(obj.REGISTRATION_FAILED);
+          setStateLoginProcess(obj.REGISTRATION_FAILED);
           $rootScope.$apply();
         }
       });
@@ -86,8 +99,9 @@ democracyServices.factory('LoginService', [ '$rootScope', 'ParseInitializer', fu
 
   obj.logout = function() {
     obj.username = '';
+
     Parse.User.logOut();
-    obj.setStateLoggedIn(obj.NOT_LOGGED_IN);
+    setStateLoggedIn(obj.NOT_LOGGED_IN);
   };
 
   obj.username = (Parse.User.current() ? Parse.User.current().getUsername() : '');

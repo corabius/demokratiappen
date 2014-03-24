@@ -1,22 +1,26 @@
-<div ng-controller="LoginController">
-  <div ng-show="loginService.stateLoggedIn != loginService.LOGGED_IN">
-    <div class="alert alert-info">
-      <h3 ng-show="loginService.stateLoginProcess == loginService.LOADING">
-        Loggar in...
-      </h3>
+<div ng-controller="LoginController" class="row">
+  <div ng-show="loginService.stateLoggedIn != loginService.LOGGED_IN" class="col-xs-12 panel">
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+    <div class="alert alert-info" ng-show="loginService.stateLoginProcess == loginService.LOADING">
+      Loggar in...
     </div>
     <div class="alert alert-danger alert-dismissable" ng-show="loginService.stateLoginProcess == loginService.LOGIN_FAILED">
-      <h3>
-        Inloggning misslyckades. Kontrollera att ditt användarnamn och lösenord är korrekt.
-      </h3>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      Inloggning misslyckades. Kontrollera att ditt användarnamn och lösenord är korrekt.
     </div>
     <div class="alert alert-danger alert-dismissable" ng-show="loginService.stateLoginProcess == loginService.REGISTRATION_FAILED">
-      <h3>
-        Registrering misslyckades. Försök igen senare.
-      </h3>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      Registrering misslyckades. Försök igen senare.
     </div>
 
     <form role="form" ng-show="loginService.stateLoginProcess != loginService.LOADING">
+      <button data-ng-click="loginService.facebookLogin()" class="btn btn-primary">Logga in med Facebook</button>
+
+      <hr></hr>
+
       <div class="form-group">
         <label for="loginUsernameInput">Användarnamn</label>
         <input type="text" class="form-control" data-ng-model="loginService.username" id="loginUsernameInput" placeholder="Skriv ditt användarnamn">
@@ -26,8 +30,13 @@
         <input type="password" data-ng-model="loginService.password" id="loginPasswordInput" class="form-control" placeholder="Skriv ditt lösenord">
       </div>
 
-      <button data-ng-click="loginService.login()" class="btn btn-primary" style="margin-left: 100px">Logga in</button>
-      <button data-ng-click="loginService.signUp()" class="btn btn-default" style="margin-right: 100px; float: right">Registrera ny användare</button>
+      <button data-ng-click="loginService.login()" class="btn btn-primary">Logga in</button>
+
+      <hr></hr>
+
+      Har du inget konto? <button data-ng-click="loginService.signUp()" class="btn">Registrera ny användare</button>
     </form>
+
+    </div></div>
   </div>
 </div>

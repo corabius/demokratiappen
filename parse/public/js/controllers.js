@@ -24,23 +24,13 @@ democracyControllers.controller('MainController', [ '$scope', 'LoginService', fu
 
 
 democracyControllers.controller('LoginController', ['$scope', 'LoginService', function($scope, LoginService) {
-  $scope.oldFillerHeight = 0;
-
-  window.onresize = function() {
-    // So that fillerHeight() is evaluated.
-    $scope.$apply();
-  }
-
-  $scope.fillerHeight = function() {
-    var newFillerHeight = Math.max(0, ($(window).height() - $('#modallogin').outerHeight(true)) / 2);
-    if (Math.abs(newFillerHeight - $scope.oldFillerHeight) > 1) {
-      $scope.oldFillerHeight = newFillerHeight;
-    }
-    
-    return {height: $scope.oldFillerHeight + 'px'};
-  };
-
   $scope.loginService = LoginService;
+
+  if (LoginService.stateLoggedIn == LoginService.LOGGED_IN) {
+    $location = "#/statistics";
+  }
+  function login() {
+  } 
 }]);
 
 
