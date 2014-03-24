@@ -13,10 +13,7 @@
 		09D1148A18D90D5900A9F91A /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D1148918D90D5900A9F91A /* PageContentViewController.m */; };
 		3B04EF8D1896D9E900A1F456 /* UserTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04EF8C1896D9E900A1F456 /* UserTag.m */; };
 		3B04EF901896E0D700A1F456 /* UserTagsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */; };
-		3B2B444C18984B3400FC1DEC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B2B444618984B3400FC1DEC /* README.md */; };
-		3B2B444D18984B3400FC1DEC /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B2B444718984B3400FC1DEC /* release_notes.md */; };
 		3B2B444F18984B9E00FC1DEC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B444E18984B9E00FC1DEC /* libz.dylib */; };
-		3B2B445018986C8300FC1DEC /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B444518984B3400FC1DEC /* libTestFlight.a */; };
 		3B49A30918D5C1F50032B551 /* PluginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49A30818D5C1F50032B551 /* PluginTableViewController.m */; };
 		3B49A30C18D5D0010032B551 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49A30B18D5D0010032B551 /* Plugin.m */; };
 		3B49A30F18D5D7BA0032B551 /* PluginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49A30E18D5D7BA0032B551 /* PluginTableViewCell.m */; };
@@ -76,12 +73,6 @@
 		3B04EF8C1896D9E900A1F456 /* UserTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTag.m; sourceTree = "<group>"; };
 		3B04EF8E1896E0D700A1F456 /* UserTagsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTagsListViewController.h; sourceTree = "<group>"; };
 		3B04EF8F1896E0D700A1F456 /* UserTagsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTagsListViewController.m; sourceTree = "<group>"; };
-		3B2B444518984B3400FC1DEC /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		3B2B444618984B3400FC1DEC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		3B2B444718984B3400FC1DEC /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		3B2B444818984B3400FC1DEC /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
-		3B2B444918984B3400FC1DEC /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
-		3B2B444A18984B3400FC1DEC /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		3B2B444E18984B9E00FC1DEC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3B49A30718D5C1F50032B551 /* PluginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginTableViewController.h; sourceTree = "<group>"; };
 		3B49A30818D5C1F50032B551 /* PluginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginTableViewController.m; sourceTree = "<group>"; };
@@ -143,7 +134,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B7C84EF18A133220076DA14 /* MessageUI.framework in Frameworks */,
-				3B2B445018986C8300FC1DEC /* libTestFlight.a in Frameworks */,
 				3B2B444F18984B9E00FC1DEC /* libz.dylib in Frameworks */,
 				3BC792861882A1D8005C9BBA /* MobileCoreServices.framework in Frameworks */,
 				3BC792821882A195005C9BBA /* CFNetwork.framework in Frameworks */,
@@ -170,19 +160,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3B2B444418984B3400FC1DEC /* TestFlightSDK2 */ = {
-			isa = PBXGroup;
-			children = (
-				3B2B444518984B3400FC1DEC /* libTestFlight.a */,
-				3B2B444618984B3400FC1DEC /* README.md */,
-				3B2B444718984B3400FC1DEC /* release_notes.md */,
-				3B2B444818984B3400FC1DEC /* TestFlight+AsyncLogging.h */,
-				3B2B444918984B3400FC1DEC /* TestFlight+ManualSessions.h */,
-				3B2B444A18984B3400FC1DEC /* TestFlight.h */,
-			);
-			path = TestFlightSDK2;
-			sourceTree = "<group>";
-		};
 		3B2B445118986F1700FC1DEC /* iPad */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,7 +234,6 @@
 		55A82E38188170A9004F2383 = {
 			isa = PBXGroup;
 			children = (
-				3B2B444418984B3400FC1DEC /* TestFlightSDK2 */,
 				55A82E4A188170A9004F2383 /* DemokratiAppen */,
 				55A82E6C188170A9004F2383 /* DemokratiAppenTests */,
 				55A82E43188170A9004F2383 /* Frameworks */,
@@ -439,10 +415,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B2B444D18984B3400FC1DEC /* release_notes.md in Resources */,
 				55A82E60188170A9004F2383 /* Images.xcassets in Resources */,
 				55A82E4F188170A9004F2383 /* InfoPlist.strings in Resources */,
-				3B2B444C18984B3400FC1DEC /* README.md in Resources */,
 				55A82E58188170A9004F2383 /* Main.storyboard in Resources */,
 				55A5270618828FF8009207E2 /* UIGraphView.xib in Resources */,
 			);
