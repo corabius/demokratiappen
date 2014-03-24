@@ -40,7 +40,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *instructionsTextView;
 @property (weak, nonatomic) IBOutlet UIButton *openParseAccountBtn;
 @property (weak, nonatomic) IBOutlet UIButton *emailContactPersonBtn;
-@property (weak, nonatomic) IBOutlet UIButton *emailGmailBtn;
+@property (weak, nonatomic) IBOutlet UIButton *emailDemokratiappenBtn;
 
 
 - (IBAction)openInSafariAction:(id)sender;

@@ -248,22 +248,11 @@
                                 <rect key="frame" x="8" y="263" width="301" height="151"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VRw-7s-Qba">
-                                        <rect key="frame" x="6" y="20" width="107" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="adam@audita.se">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sendEmailAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="Q1X-BU-VC0"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="r9z-Hm-zbo">
-                                        <rect key="frame" x="6" y="0.0" width="184" height="29"/>
+                                        <rect key="frame" x="6" y="0.0" width="160" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="demokratiappen@gmail.com">
+                                        <state key="normal" title="hej@demokratiappen.se">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -321,8 +310,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Logga in" image="first" id="hSi-WU-nkO"/>
                     <connections>
-                        <outlet property="emailContactPersonBtn" destination="VRw-7s-Qba" id="pZu-oI-nrc"/>
-                        <outlet property="emailGmailBtn" destination="r9z-Hm-zbo" id="DjH-BN-hsT"/>
+                        <outlet property="emailDemokratiappenBtn" destination="r9z-Hm-zbo" id="5n3-bc-XDj"/>
                         <outlet property="instructionsTextView" destination="DHJ-Bn-X91" id="2xW-HI-JzY"/>
                         <outlet property="loginAccountBtn" destination="duG-nb-nPQ" id="pb7-BN-EYT"/>
                         <outlet property="loginFBBtn" destination="VRn-Dy-Hzu" id="St6-Rk-gTx"/>
