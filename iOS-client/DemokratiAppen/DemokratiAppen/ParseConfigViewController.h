@@ -26,6 +26,9 @@
 @property (nonatomic, strong) IBOutlet UILabel *welcomeLabel;
 
 - (IBAction)startWalkthrough:(id)sender;
+- (IBAction)home:(id)sender;
+
+
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) NSArray *pageTitles;
 @property (strong, nonatomic) NSArray *pageImages;

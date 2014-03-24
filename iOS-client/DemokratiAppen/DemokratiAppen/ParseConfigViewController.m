@@ -161,6 +161,10 @@
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
 }
 
+- (IBAction)home:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
