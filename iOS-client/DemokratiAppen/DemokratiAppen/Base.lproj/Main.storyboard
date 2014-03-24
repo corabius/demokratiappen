@@ -401,6 +401,7 @@
                                     <outlet property="tableViewCellPluginIcon" destination="aRx-q6-NNQ" id="G7e-PA-r4c"/>
                                     <outlet property="tableViewCellPublisherLabel" destination="HxU-Mj-POV" id="7cA-bt-Q8m"/>
                                     <outlet property="tableViewCellSubtitleNameLabel" destination="r3s-pD-mdf" id="7Ax-Un-sbu"/>
+                                    <segue destination="2oJ-jX-D2V" kind="push" id="w4K-nd-BZi"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -422,17 +423,18 @@
             <objects>
                 <viewController id="2oJ-jX-D2V" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tYt-vb-Zh9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="v3Q-tM-hpi">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="vyg-d2-93l"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RgF-4A-Q3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
