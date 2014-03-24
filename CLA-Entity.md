@@ -2,7 +2,7 @@
 
 **Thank you for your interest in contributing to Demokratiappen ("We" or "Us").**
 
-**This contributor agreement ("Agreement") documents the rights granted by contributors to Us. To make this document effective, please sign it and send it to Us by email, following the instructions at https://github.com/corabius/demokratiappen/blob/master/CONTRIBUTING.md. This is a legally binding document, so please read it carefully before agreeing to it. The Agreement may cover more than one software project managed by Us.**
+**This contributor agreement ("Agreement") documents the rights granted by contributors to Us. To make this document effective, please sign it and send it to Us by filling out this [form](https://docs.google.com/forms/d/1wV_i3DSetrFABO-WvlOvgBV1sznpeHXe2BaioQ6Fhro/viewform), following the instructions at https://github.com/corabius/demokratiappen/blob/master/CONTRIBUTING.md. This is a legally binding document, so please read it carefully before agreeing to it. The Agreement may cover more than one software project managed by Us.**
 
 ##1. Definitions
 "You" means any Legal Entity on behalf of whom a Contribution has been received by Us. "Legal Entity" means an entity which is not a natural person. "Affiliates" means other Legal Entities that control, are controlled by, or under common control with that Legal Entity. For the purposes of this definition, "control" means (i) the power, direct or indirect, to cause the direction or management of such Legal Entity, whether by contract or otherwise, (ii) ownership of fifty percent (50%) or more of the outstanding shares or securities which vote to elect the management or other persons who direct such Legal Entity or (iii) beneficial ownership of such entity.
