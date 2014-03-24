@@ -48,6 +48,8 @@
 
 - (IBAction)sendToFBAction:(id)sender;
 
+- (IBAction)sendToDemokratiappenWebbAction:(id)sender;
+
 //- (IBAction)loginFBAction:(id)sender;
 - (IBAction)logoutFBAction:(id)sender;
 - (IBAction)loginAccountAction:(id)sender;
@@ -187,6 +189,12 @@
 - (IBAction)sendToFBAction:(id)sender {
 
     NSURL *url = [NSURL URLWithString:@"fb://profile/744880375539876"];  //to fb-group: demokratiappen
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+- (IBAction)sendToDemokratiappenWebbAction:(id)sender {
+
+    NSURL *url = [NSURL URLWithString:@"http://demokratiappen.se"];
     [[UIApplication sharedApplication] openURL:url];
 }
 

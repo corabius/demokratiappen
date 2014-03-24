@@ -281,7 +281,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Udn-y4-A2I">
-                                        <rect key="frame" x="6" y="57" width="195" height="29"/>
+                                        <rect key="frame" x="6" y="37" width="195" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Demokratiappen på Facebook">
@@ -289,6 +289,17 @@
                                         </state>
                                         <connections>
                                             <action selector="sendToFBAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="D9o-2M-UF1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fAa-at-ycq">
+                                        <rect key="frame" x="1" y="60" width="195" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Demokratiappens webbplats">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendToDemokratiappenWebbAction:" destination="Qa6-m4-wM7" eventType="touchUpInside" id="55o-9c-eu8"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3Kz-mt-Znp">
