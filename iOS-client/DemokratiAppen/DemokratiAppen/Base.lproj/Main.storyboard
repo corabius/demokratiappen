@@ -324,6 +324,7 @@
                         <outlet property="emailContactPersonBtn" destination="VRw-7s-Qba" id="pZu-oI-nrc"/>
                         <outlet property="emailGmailBtn" destination="r9z-Hm-zbo" id="DjH-BN-hsT"/>
                         <outlet property="instructionsTextView" destination="DHJ-Bn-X91" id="2xW-HI-JzY"/>
+                        <outlet property="loginAccountBtn" destination="duG-nb-nPQ" id="pb7-BN-EYT"/>
                         <outlet property="loginFBBtn" destination="VRn-Dy-Hzu" id="St6-Rk-gTx"/>
                         <outlet property="logoutAccountBtn" destination="Jtl-qr-O4q" id="utY-yK-EBE"/>
                         <outlet property="logoutFBBtn" destination="9BE-L7-SD1" id="sdJ-6K-IwS"/>

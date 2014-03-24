@@ -93,6 +93,14 @@
 }
 
 
+-(void)viewDidAppear:(BOOL)animated{
+
+    [super viewDidAppear:true];
+    [self updateCurrentUser];
+
+}
+
+
 - (void) updateCurrentUser{
 
     PFUser* user = [PFUser currentUser];
@@ -330,6 +338,7 @@
     }
     
     if ([sourceViewController isKindOfClass:[ParseConfigViewController class]]){
+        //[self updateCurrentUser];
     }
 
 }
