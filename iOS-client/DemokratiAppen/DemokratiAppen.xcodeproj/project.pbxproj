@@ -231,6 +231,19 @@
 			name = Tab_Plugin;
 			sourceTree = "<group>";
 		};
+		3B61BD3518E0E05F005EC001 /* Parse_Login */ = {
+			isa = PBXGroup;
+			children = (
+				0917AC0A18CE2FB6004DC9B9 /* ParseConfigViewController.h */,
+				0917AC0B18CE2FB6004DC9B9 /* ParseConfigViewController.m */,
+				0917AC0D18CE337F004DC9B9 /* ParseLogInViewController.h */,
+				0917AC0E18CE337F004DC9B9 /* ParseLogInViewController.m */,
+				0917AC1018CE33AB004DC9B9 /* ParseSignUpViewController.h */,
+				0917AC1118CE33AB004DC9B9 /* ParseSignUpViewController.m */,
+			);
+			name = Parse_Login;
+			sourceTree = "<group>";
+		};
 		55A82E38188170A9004F2383 = {
 			isa = PBXGroup;
 			children = (
@@ -283,17 +296,12 @@
 				3B49A31218D5E8A10032B551 /* Tab_LinkList */,
 				3B49A31118D5E8930032B551 /* Tab_Login */,
 				3B49A31018D5E8660032B551 /* Parse_ClassObjects */,
+				3B61BD3518E0E05F005EC001 /* Parse_Login */,
 				3B2B445118986F1700FC1DEC /* iPad */,
 				3BD8EE1F18A9558D008EC595 /* InformationViewController.h */,
 				3BD8EE2018A9558D008EC595 /* InformationViewController.m */,
 				3BC7928A1882D730005C9BBA /* LoginViewController.h */,
 				3BC7928B1882D730005C9BBA /* LoginViewController.m */,
-				0917AC0A18CE2FB6004DC9B9 /* ParseConfigViewController.h */,
-				0917AC0B18CE2FB6004DC9B9 /* ParseConfigViewController.m */,
-				0917AC0D18CE337F004DC9B9 /* ParseLogInViewController.h */,
-				0917AC0E18CE337F004DC9B9 /* ParseLogInViewController.m */,
-				0917AC1018CE33AB004DC9B9 /* ParseSignUpViewController.h */,
-				0917AC1118CE33AB004DC9B9 /* ParseSignUpViewController.m */,
 				55A5270318828FF8009207E2 /* UIGraphView.xib */,
 				55A5270418828FF8009207E2 /* UIGraphViewController.h */,
 				55A5270518828FF8009207E2 /* UIGraphViewController.m */,
