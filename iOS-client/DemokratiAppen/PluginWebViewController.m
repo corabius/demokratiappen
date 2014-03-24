@@ -8,7 +8,8 @@
 
 #import "PluginWebViewController.h"
 
-@interface PluginWebViewController ()
+@interface PluginWebViewController () <UIWebViewDelegate>
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
 
@@ -26,7 +27,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    NSString *completeURL = @"http://demokratiappen.se";  //TODO: correct link
+    NSURL* url = [NSURL URLWithString: completeURL];
+
+    NSURLRequest* urlRequest = [NSURLRequest requestWithURL: url];
+
+    self.webView.delegate = self;
+    self.webView.scalesPageToFit = true;
+    [self.webView loadRequest: urlRequest];
+
 }
 
 - (void)didReceiveMemoryWarning

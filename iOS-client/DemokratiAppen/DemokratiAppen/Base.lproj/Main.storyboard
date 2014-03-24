@@ -418,10 +418,10 @@
             </objects>
             <point key="canvasLocation" x="1710" y="569"/>
         </scene>
-        <!--View Controller-->
+        <!--Plugin Web View Controller-->
         <scene sceneID="dYr-ZK-GhF">
             <objects>
-                <viewController id="2oJ-jX-D2V" sceneMemberID="viewController">
+                <viewController id="2oJ-jX-D2V" customClass="PluginWebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tYt-vb-Zh9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -435,6 +435,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="vyg-d2-93l"/>
+                    <connections>
+                        <outlet property="webView" destination="v3Q-tM-hpi" id="BpW-L0-zCE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RgF-4A-Q3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
