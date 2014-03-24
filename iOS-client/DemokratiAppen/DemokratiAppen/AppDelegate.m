@@ -21,14 +21,14 @@
 #import "Page.h"
 #import "Tag.h"
 #import "UserTag.h"
-#import "TestFlight.h"
+//#import "TestFlight.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    [TestFlight takeOff:@"8dcf0abe-9e39-4391-8f94-a54d059674dd"];
+    //[TestFlight takeOff:@"8dcf0abe-9e39-4391-8f94-a54d059674dd"];
 
     // Register classes to parse
     [Page registerSubclass];
