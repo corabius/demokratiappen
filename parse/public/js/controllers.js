@@ -23,14 +23,19 @@ democracyControllers.controller('MainController', [ '$scope', 'LoginService', fu
 }]);
 
 
-democracyControllers.controller('LoginController', ['$scope', 'LoginService', function($scope, LoginService) {
+democracyControllers.controller('LoginController', ['$scope', '$location', 'LoginService', function($scope, $location, LoginService) {
   $scope.loginService = LoginService;
 
   if (LoginService.stateLoggedIn == LoginService.LOGGED_IN) {
-    $location = "#/statistics";
+    // If we already are logged in, goto the statistics page.
+    $location.path('/statistics');
   }
-  function login() {
-  } 
+
+  $scope.login = function() {
+    LoginService.login().then(function() {
+      $location.path('/statistics');
+    });
+  }
 }]);
 
 

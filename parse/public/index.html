@@ -58,8 +58,10 @@
       <div class=row">
         <div class="col-xs-12">
           <h1>Demokratiappen</h1>
-          <span id="loginName">{{loginService.username}}</span>
-          <span id="logout"><a ng-click="loginService.logout();" href="#">Logga ut</a></span>
+          <div ng-show="loginService.stateLoggedIn == loginService.LOGGED_IN">
+            <span id="loginName">{{loginService.username}}</span>
+            <span id="logout"><a ng-click="loginService.logout();" href="#">Logga ut</a></span>
+          </div>
         </div>
       </div>
 
@@ -74,13 +76,13 @@
         </div>
       </div>
 
-      <div ng-include="'view/login.html'"></div>
+      <!--div ng-include="'view/login.html'"></div-->
  
       <ul class="nav nav-tabs" ng-show="loginService.stateLoggedIn == loginService.LOGGED_IN">
-        <li class="active"><a href="#/statistics">Statistik</a></li>
-        <li><a href="#/listPages">List pages</a></li>
-        <li><a href="#/tagsPerDate">Tags per date</a></li>
-        <li><a href="#/accumulatedTags">Accumulated tags</a></li>
+        <li ng-class="{ active: $location.path() == '/statistics' }"><a href="#/statistics">Statistik</a></li>
+        <li ng-class="{ active: $location.path() == '/listPages' }"><a href="#/listPages">List pages</a></li>
+        <li ng-class="{ active: $location.path() == '/tagsPerDate' }"><a href="#/tagsPerDate">Tags per date</a></li>
+        <li ng-class="{ active: $location.path() == '/accumulatedTags' }"><a href="#/accumulatedTags">Accumulated tags</a></li>
       </ul>
 
      <div ng-view></div>

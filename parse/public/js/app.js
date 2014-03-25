@@ -49,6 +49,6 @@ democracyApp.config(['$routeProvider',
         templateUrl: base + '/view/login.html',
       }).
       otherwise({
-        redirectTo: '/statistics'
+        redirectTo: '/login'
       });
   }]);

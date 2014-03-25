@@ -34,21 +34,22 @@ democracyServices.factory('LoginService', [ '$rootScope', 'ParseInitializer', fu
 
   obj.stateLoggedIn = (Parse.User.current() ? obj.LOGGED_IN : obj.NOT_LOGGED_IN);
   obj.stateLoginProcess = obj.INITIAL;
-  
-  var setStateLoggedIn = function(newState) {
-    obj.stateLoggedIn = newState;
-
-    obj.password = '';
-    obj.setStateLoginProcess(obj.INITIAL);
-  };
 
   var setStateLoginProcess = function(newState) {
     obj.stateLoginProcess = newState;
   };
+ 
+  var setStateLoggedIn = function(newState) {
+    obj.stateLoggedIn = newState;
+
+    obj.password = '';
+    setStateLoginProcess(obj.INITIAL);
+  };
 
   obj.login = function() {
-    obj.setStateLoginProcess(obj.LOADING);
+    setStateLoginProcess(obj.LOADING);
 
+    var loginPromise = new Parse.Promise();
     Parse.User.logIn(
       obj.username,
       obj.password,
@@ -56,12 +57,16 @@ democracyServices.factory('LoginService', [ '$rootScope', 'ParseInitializer', fu
         success: function(user) {
           setStateLoggedIn(obj.LOGGED_IN);
           $rootScope.$apply();
+          loginPromise.resolve(user);
         },
         error: function(user, error) {
           setStateLoginProcess(obj.LOGIN_FAILED);
           $rootScope.$apply();
+          loginPromise.reject(error);
         }
       });
+
+     return loginPromise;
   };
 
   obj.facebookLogin = function() {
