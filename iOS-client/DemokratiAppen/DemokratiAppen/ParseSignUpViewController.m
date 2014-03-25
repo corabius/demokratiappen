@@ -31,6 +31,20 @@
     [self.signUpView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background2.png"]]];
     [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo3.png"]]];
     
+    // Remove text shadow
+    CALayer *layer = self.signUpView.usernameField.layer;
+    layer.shadowOpacity = 0.0;
+    layer = self.signUpView.passwordField.layer;
+    layer.shadowOpacity = 0.0;
+    layer = self.signUpView.emailField.layer;
+    layer.shadowOpacity = 0.0;
+    
+    // Set field text color
+    [self.signUpView.usernameField setTextColor:[UIColor colorWithRed:0.0f/0.0f green:0.0f/0.0f blue:0.0f/0.0f alpha:1.0]];
+    [self.signUpView.passwordField setTextColor:[UIColor colorWithRed:0.0f/0.0f green:0.0f/0.0f blue:0.0f/0.0f alpha:1.0]];
+    [self.signUpView.emailField setTextColor:[UIColor colorWithRed:0.0f/0.0f green:0.0f/0.0f blue:0.0f/0.0f alpha:1.0]];
+
+    
 }
 
 @end

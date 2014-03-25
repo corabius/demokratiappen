@@ -71,7 +71,7 @@
         // Customize the Sign Up View Controller
         ParseSignUpViewController *signUpViewController = [[ParseSignUpViewController alloc] init];
         signUpViewController.delegate = self;
-        signUpViewController.fields = PFSignUpFieldsDefault | PFSignUpFieldsAdditional;
+        signUpViewController.fields = PFSignUpFieldsDefault;
         logInViewController.signUpController = signUpViewController;
         
         // Present Log In View Controller
