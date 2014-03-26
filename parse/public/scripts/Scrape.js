@@ -1263,7 +1263,7 @@ var demokratiappen = {
           var relevance_part = '&relevance=' + encodeURIComponent(relevance);
 
           // We have our tags, redirect to our page
-          document.location = 'https://demokratiappen.parseapp.com/#/addPage' + title_part + url_part + tags_part + relevance_part;
+          document.location = 'https://demokratiappen.se/mitt-konto/#/addPage' + title_part + url_part + tags_part + relevance_part;
         }
         else {
           console.log("Error retrieving tags:");

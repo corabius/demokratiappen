@@ -6,7 +6,7 @@ javascript:function dar1() {
     d.title='(Saving...) ' + d.title;
 
     z = d.createElement('script');
-    z.setAttribute('src', l.protocol + '//demokratiappen.parseapp.com/scripts/Scrape.js');
+    z.setAttribute('src', l.protocol + '//demokratiappen.se/scripts/Scrape.js');
     b.appendChild(z);
   }
   catch(e) {
