@@ -34,63 +34,114 @@ democracyServices.factory('LoginService', [ '$rootScope', 'ParseInitializer', fu
 
   obj.stateLoggedIn = (Parse.User.current() ? obj.LOGGED_IN : obj.NOT_LOGGED_IN);
   obj.stateLoginProcess = obj.INITIAL;
-  
-  obj.setStateLoggedIn = function(newState) {
+
+  var setStateLoginProcess = function(newState) {
+    obj.stateLoginProcess = newState;
+  };
+ 
+  var setStateLoggedIn = function(newState) {
     obj.stateLoggedIn = newState;
 
     obj.password = '';
-    obj.setStateLoginProcess(obj.INITIAL);
-  };
-
-  obj.setStateLoginProcess = function(newState) {
-    obj.stateLoginProcess = newState;
+    setStateLoginProcess(obj.INITIAL);
   };
 
   obj.login = function() {
-    obj.setStateLoginProcess(obj.LOADING);
+    setStateLoginProcess(obj.LOADING);
 
+    var loginPromise = new Parse.Promise();
     Parse.User.logIn(
       obj.username,
       obj.password,
       {
         success: function(user) {
-          obj.setStateLoggedIn(obj.LOGGED_IN);
+          setStateLoggedIn(obj.LOGGED_IN);
           $rootScope.$apply();
+          loginPromise.resolve(user);
         },
         error: function(user, error) {
-          obj.setStateLoginProcess(obj.LOGIN_FAILED);
+          setStateLoginProcess(obj.LOGIN_FAILED);
           $rootScope.$apply();
+          loginPromise.reject(error);
         }
       });
+
+     return loginPromise;
   };
 
-  obj.signUp = function(scope) {
-    obj.setStateLoginProcess(obj.LOADING);
+  obj.loginOrSignupFacebook = function() {
+    var loginPromise = new Parse.Promise();
 
-    Parse.User.signUp(
-      obj.username,
-      obj.password,
+    Parse.FacebookUtils.logIn("email", {
+      success: function(user) {
+        if (!user.existed()) {
+          // User did not exist before, update the ACL on the newly created
+          // user object.
+          user.setACL({ ACL: new Parse.ACL() });
+          user.save().then(function () {
+            setStateLoggedIn(obj.LOGGED_IN);
+            $rootScope.$apply();
+
+            loginPromise.resolve(user);
+          }, function (error) {
+            setStateLoginProcess(obj.LOGIN_FAILED);
+            $rootScope.$apply();
+
+            loginPromise.reject(error);
+          });
+        }
+        else {
+          setStateLoggedIn(obj.LOGGED_IN);
+          $rootScope.$apply();
+
+          loginPromise.resolve(user);
+        }
+      },
+      error: function(user, error) {
+        setStateLoginProcess(obj.LOGIN_FAILED);
+        $rootScope.$apply();
+        loginPromise.reject(error);
+      }
+    });
+    return loginPromise;
+  };
+
+  obj.signup = function() {
+    setStateLoginProcess(obj.LOADING);
+
+    var signupPromise = new Parse.Promise();
+    var newUser = new Parse.User();
+    newUser.set("username", obj.username);
+    newUser.set("password", obj.password);
+    newUser.set("email", obj.email);
+
+    newUser.signUp(
       { ACL: new Parse.ACL() },
       {
         success: function(user) {
-          obj.setStateLoggedIn(obj.LOGGED_IN);
           obj.username = user.getUsername();
+          setStateLoggedIn(obj.LOGGED_IN); 
           $rootScope.$apply();
+          signupPromise.resolve(user);
         },
         error: function(user, error) {
-          obj.setStateLoginProcess(obj.REGISTRATION_FAILED);
+          setStateLoginProcess(obj.REGISTRATION_FAILED);
           $rootScope.$apply();
+          signupPromise.reject(error);
         }
       });
+    return signupPromise;
   };
 
   obj.logout = function() {
     obj.username = '';
+
     Parse.User.logOut();
-    obj.setStateLoggedIn(obj.NOT_LOGGED_IN);
+    setStateLoggedIn(obj.NOT_LOGGED_IN);
   };
 
   obj.username = (Parse.User.current() ? Parse.User.current().getUsername() : '');
+  obj.email = '';
 
   return obj;
 }]);

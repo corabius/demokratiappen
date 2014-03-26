@@ -22,18 +22,23 @@
         <input type="text" class="form-control" data-ng-model="loginService.username" id="loginUsernameInput" placeholder="Skriv ditt användarnamn">
       </div>
       <div class="form-group">
+        <label for="loginEmailInput">E-post</label>
+        <input data-ng-model="loginService.email" id="loginEmailInput" class="form-control" placeholder="Skriv din epost-adress. (Valfritt)">
+      </div>
+      <div class="form-group">
         <label for="loginPasswordInput">Lösenord</label>
         <input type="password" data-ng-model="loginService.password" id="loginPasswordInput" class="form-control" placeholder="Skriv ditt lösenord">
       </div>
 
-      <button data-ng-click="login()" class="btn btn-primary btn-block">Logga in</button>
+      <button data-ng-click="signup()" class="btn btn-primary btn-block">Skapa konto</button>
       <hr>
 
       <label>eller anslut med</label><br/>
       <a href="#" data-ng-click="loginOrSignupFacebook()"><img src="/images/facebook.png"></a>
+
    </form>
  
     </div></div>
-      Har du inget konto? <a href="#/signup">Registrera ny användare.</a>
+      Har du redan ett konto? <a href="#/login">Logga in</a>.
   </div>
 </div>

@@ -25,29 +25,33 @@ var democracyApp = angular.module('democracyApp', [
 
 democracyApp.config(['$routeProvider',
   function($routeProvider) {
+    var base = ''
     $routeProvider.
       when('/addPage', {
-        templateUrl: '/view/addPage.html',
+        templateUrl: base + '/view/addPage.html',
       }).
       when('/listPages', {
-        templateUrl: '/view/listPages.html',
+        templateUrl: base + '/view/listPages.html',
       }).
       when('/tagsPerDate', {
-        templateUrl: '/view/tagsPerDate.html',
+        templateUrl: base + '/view/tagsPerDate.html',
       }).
       when('/accumulatedTags', {
-        templateUrl: '/view/accumulatedTags.html',
+        templateUrl: base + '/view/accumulatedTags.html',
       }).
       when('/listCollections', {
         templateUrl: '/view/listCollections.html',
       }).
       when('/statistics', {
-        templateUrl: '/view/statistics.html',
+        templateUrl: base + '/view/statistics.html',
       }).
       when('/login', {
-        templateUrl: '/view/login.html',
+        templateUrl: base + '/view/login.html',
+      }).
+      when('/signup', {
+        templateUrl: base + '/view/signup.html',
       }).
       otherwise({
-        redirectTo: '/statistics'
+        redirectTo: '/login'
       });
   }]);

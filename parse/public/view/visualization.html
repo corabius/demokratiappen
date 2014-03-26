@@ -1,0 +1,8 @@
+<div data-ng-controller="MainController">
+  <ul class="nav nav-tabs" ng-show="loginService.stateLoggedIn == loginService.LOGGED_IN">
+    <li ng-class="{ active: isActive('/statistics') }"><a href="#/statistics">Statistik</a></li>
+    <li ng-class="{ active: isActive('/listPages') }"><a href="#/listPages">List pages</a></li>
+    <li ng-class="{ active: isActive('/tagsPerDate') }"><a href="#/tagsPerDate">Tags per date</a></li>
+    <li ng-class="{ active: isActive('/accumulatedTags') }"><a href="#/accumulatedTags">Accumulated tags</a></li>
+  </ul>
+</div>

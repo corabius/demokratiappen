@@ -33,29 +33,48 @@
 
   </head>
   <body>
-    <div data-ng-controller="MainController" ng-cloak class="container content" class="base">
-      <div class="header content">
-        <h1>Demokratiappen</h1>
-        <span id="loginName">{{loginService.username}}</span>
-        <span id="logout"><a ng-click="loginService.logout();" href="#">Logga ut</a></span>
-      </div>
+    <!-- Initialize Parse - FaceBook -->
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        Parse.FacebookUtils.init({
+          appId      : '571438726296715', // Facebook App ID
+          status     : false, // check login status
+          cookie     : true,  // cookies allow Parse to access the session
+          xfbml      : false  // parse XFBML
+        });
+      };
 
-      <div class="panel panel-danger">
-        <div class="panel-heading">Observera</div>
-        <div class="panel-body"><p>Här är demokratiappens beta-gränssnitt. Prova gärna att skapa en användare och tt lägga in taggar, men observera att allt är under utveckling och vi FÖRVÄNTAR oss att vi kommer behöva tömma databasen med registrerade användare och inmatade taggar. Det finns i dagsläget inga garantier för att inmatad data sparas på ett integritetsäkert sätt (detta kommer naturligtvis förbättras till slutversionen).</p>
-<p>Vänlig hälsning<br/>
-/Demokratiappens teknikgrupp</p>
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div data-ng-controller="MainController" ng-cloak class="container">
+      <div class=row">
+        <div class="col-xs-12">
+          <h1>Demokratiappen</h1>
+          <div ng-show="loginService.stateLoggedIn == loginService.LOGGED_IN">
+            <span id="loginName">{{loginService.username}}</span>
+            <span id="logout"><a ng-click="loginService.logout();" href="#">Logga ut</a></span>
+          </div>
         </div>
       </div>
 
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#/statistics">Statistik</a></li>
-        <li><a href="#/listPages">List pages</a></li>
-        <li><a href="#/tagsPerDate">Tags per date</a></li>
-        <li><a href="#/accumulatedTags">Accumulated tags</a></li>
-      </ul>
-
-      <div ng-include="'view/login.html'"></div>
+      <div class="row">
+        <div class="col-xs-12">
+        <div class="panel panel-danger">
+          <div class="panel-heading">Observera</div>
+          <div class="panel-body"><p>Här är demokratiappens beta-gränssnitt. Prova gärna att skapa en användare och att lägga in taggar, men observera att allt är under utveckling och vi FÖRVÄNTAR oss att vi kommer behöva tömma databasen med registrerade användare och inmatade taggar. Det finns i dagsläget inga garantier för att inmatad data sparas på ett integritetsäkert sätt (detta kommer naturligtvis förbättras till slutversionen).</p>
+<p>Vänlig hälsning<br/>
+/Demokratiappens teknikgrupp</p>
+          </div>
+        </div>
+      </div>
       <div ng-view></div>
     </div>
   </body>

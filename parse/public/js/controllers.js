@@ -18,29 +18,48 @@
 
 var democracyControllers = angular.module('democracy.controller', ['democracy.service']);
 
-democracyControllers.controller('MainController', [ '$scope', 'LoginService', function($scope, LoginService) {
+democracyControllers.controller('MainController', [ '$scope', '$location', 'LoginService', function($scope, $location, LoginService) {
   $scope.loginService = LoginService;
+
+  $scope.isActive = function(route) {
+    return route === $location.path();
+  }
 }]);
 
 
-democracyControllers.controller('LoginController', ['$scope', 'LoginService', function($scope, LoginService) {
-  $scope.oldFillerHeight = 0;
-
-  window.onresize = function() {
-    // So that fillerHeight() is evaluated.
-    $scope.$apply();
-  }
-
-  $scope.fillerHeight = function() {
-    var newFillerHeight = Math.max(0, ($(window).height() - $('#modallogin').outerHeight(true)) / 2);
-    if (Math.abs(newFillerHeight - $scope.oldFillerHeight) > 1) {
-      $scope.oldFillerHeight = newFillerHeight;
-    }
-    
-    return {height: $scope.oldFillerHeight + 'px'};
-  };
+democracyControllers.controller('LoginController', ['$scope', '$location', 'LoginService', function($scope, $location, LoginService) {
+  var redirectTo = '/statistics';
 
   $scope.loginService = LoginService;
+
+  if (LoginService.stateLoggedIn == LoginService.LOGGED_IN) {
+    if ($location.path() == '/login') {
+      // If we already are logged in, goto the statistics page.
+      $location.path(redirectTo);
+    }
+  }
+
+  $scope.login = function() {
+    LoginService.login().then(function() {
+      if ($location.path() == '/login') {
+        $location.path(redirectTo);
+      }
+    });
+  }
+  $scope.signup = function() {
+    LoginService.signup().then(function() {
+      if ($location.path() == '/login') {
+        $location.path(redirectTo);
+      }
+    });
+  }
+  $scope.loginOrSignupFacebook = function() {
+    LoginService.loginOrSignupFacebook().then(function() {
+      if ($location.path() == '/login') {
+        $location.path(redirectTo);
+      }
+    });
+  }
 }]);
 
 
@@ -272,11 +291,19 @@ democracyControllers.controller('ListPagesController', ['$scope', '$rootScope', 
 
         a.tags = a.tags.concat(_.map(article.get("positive_tags"),
           function(tag) {
-            return {name: tag.get("name"), type: 'success' };
+            var tagName = 'unknown';
+            if (tag) {
+              tagName = tag.get('name');
+            }
+            return {name: tagName, type: 'success' };
           }));
         a.tags = a.tags.concat(_.map(article.get("negative_tags"),
           function(tag) {
-            return {name: tag.get("name"), type: 'danger' };
+            var tagName = 'unknown';
+            if (tag) {
+              tagName = tag.get('name');
+            }
+            return {name: tagName, type: 'danger' };
           }));
 
         return a;

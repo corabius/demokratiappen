@@ -78,7 +78,7 @@ h3.md-failure {
   font-weight: bold;
 }
 
-.base {
+/*.base {
   overflow: auto;
   position: fixed;
   width: 100%;
@@ -87,14 +87,9 @@ h3.md-failure {
   left: 0;
 }
 
-.content {
-  width: 45em;
-  margin: 1em auto;
-}
-
 .header {
   overflow: auto;
-}
+}*/
 .header h1 {
   text-align: center
 }
