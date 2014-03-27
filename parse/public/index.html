@@ -71,6 +71,10 @@
           <div class="panel-body">
 <div class="panel-body" >Hej <i ng-if="loginService.stateLoggedIn == 0">{{loginService.username}}</i>
 <p>Här är demokratiappens beta-gränssnitt. Prova gärna att skapa en användare och att lägga in taggar, men observera att allt är under utveckling och vi FÖRVÄNTAR oss att vi kommer behöva tömma databasen med registrerade användare och inmatade taggar. Det finns i dagsläget inga garantier för att inmatad data sparas på ett integritetsäkert sätt (detta kommer naturligtvis förbättras till slutversionen).</p>
+
+<p>Installera Demokratiappens bookmarklet genom att dra knappen till ditt bokmärkesfält.</p>
+<p><a href="javascript:function dar1(){var d=document,z,b=d.body,l=d.location;try{if(!b)throw(0);d.title='(Saving...) '+d.title;z=d.createElement('script');z.setAttribute('src',l.protocol+'//demokratiappen.se/scripts/Scrape.js');b.appendChild(z)}catch(e){alert('Please wait until the page has loaded.')}}dar1();void(0)" title="Demokratiappen" class="btn btn-primary">Demokratiappen</a><p>
+
 <p>Vänlig hälsning<br/>
 /Demokratiappens teknikgrupp</p>
           </div>
