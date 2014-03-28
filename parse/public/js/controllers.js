@@ -28,38 +28,33 @@ democracyControllers.controller('MainController', [ '$scope', '$location', 'Logi
 
 
 democracyControllers.controller('LoginController', ['$scope', '$location', 'LoginService', function($scope, $location, LoginService) {
-  var redirectTo = '/statistics';
-
   $scope.loginService = LoginService;
 
-  if (LoginService.stateLoggedIn == LoginService.LOGGED_IN) {
-    if ($location.path() == '/login') {
-      // If we already are logged in, goto the statistics page.
-      $location.path(redirectTo);
+  function redirectIfLoggedIn() {
+    if (LoginService.stateLoggedIn == LoginService.LOGGED_IN) {
+      if ($location.path() == '/login') {
+        // If we already are logged in, goto the statistics page.
+        $location.path('/statistics');
+      }
     }
   }
-
   $scope.login = function() {
     LoginService.login().then(function() {
-      if ($location.path() == '/login') {
-        $location.path(redirectTo);
-      }
+      $scope.$apply(redirectIfLoggedIn());
     });
-  }
+  };
   $scope.signup = function() {
     LoginService.signup().then(function() {
-      if ($location.path() == '/login') {
-        $location.path(redirectTo);
-      }
+      $scope.$apply(redirectIfLoggedIn());
     });
-  }
+  };
   $scope.loginOrSignupFacebook = function() {
     LoginService.loginOrSignupFacebook().then(function() {
-      if ($location.path() == '/login') {
-        $location.path(redirectTo);
-      }
+      $scope.$apply(redirectIfLoggedIn());
     });
-  }
+  };
+
+  redirectIfLoggedIn();
 }]);
 
 
