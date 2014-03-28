@@ -121,7 +121,7 @@
     Plugin *plugin8 = [[Plugin alloc] init];
     plugin8.name = @"Din viktigaste valfråga";
     plugin8.subTitleName = @"Diagram över sakfrågor";
-    plugin8.publisher = @"Departementet för viktiga saker";
+    plugin8.publisher = @"Intresseorganisationen MU";
     plugin8.pluginIcon = [UIImage imageNamed:@"logo6.png"];
     [self.analyticPluginArray addObject: plugin8];
 
@@ -230,15 +230,45 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
+
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    //if([identifier isEqualToString:@"breakSeque"]){
+
+    NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
+
+    NSLog(@"selected tableview row is %d %d", selectedRowIndex.section, selectedRowIndex.row);
+
+
+    if(selectedRowIndex.section != 0 || selectedRowIndex.row != 0){  //De Morgans theorem... not(x && y) => (!x || !y)
+
+        UIAlertView *alertDialog = [[UIAlertView alloc]
+                                    initWithTitle:@"Plugin Exempel"
+                                    message:@"Demokratiappen håller på att utveckla ett öppet API där vem som helst (person/organisation/företag/nyhetskälla) kan göra sin egen plugin för att tolka din data (anonymiserad). Vet du någon som vill bidra till antingen vår utveckling av tjänsten eller vill göra en egen plugin till appen så kontakta oss så berättar vi mer!"
+                                    delegate:self
+                                    cancelButtonTitle:@"OK"
+                                    otherButtonTitles:nil
+                                    ];
+        [alertDialog show];
+
+        return NO;
+    }
+    return YES;
+}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+
+    
+
+
 }
-*/
+
 
 @end
