@@ -166,7 +166,7 @@
 - (IBAction)openInSafariAction:(id)sender {
 
     if([sender tag] == 10){
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://demokratiappen.parseapp.com"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://demokratiappen.se/mitt-konto"]];
     }
 
 
