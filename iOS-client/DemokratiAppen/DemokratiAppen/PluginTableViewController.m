@@ -121,7 +121,7 @@
     Plugin *plugin8 = [[Plugin alloc] init];
     plugin8.name = @"Din viktigaste valfråga";
     plugin8.subTitleName = @"Diagram över sakfrågor";
-    plugin8.publisher = @"Intresseorganisationen MU";
+    plugin8.publisher = @"Intresseorganisation MU";
     plugin8.pluginIcon = [UIImage imageNamed:@"logo6.png"];
     [self.analyticPluginArray addObject: plugin8];
 
