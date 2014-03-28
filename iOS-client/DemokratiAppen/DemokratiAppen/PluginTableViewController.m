@@ -65,15 +65,68 @@
 
 - (void) createTableViewItems{
 
-    Plugin *plugin = [[Plugin alloc] init];
+    Plugin *plugin1 = [[Plugin alloc] init];
+    plugin1.name = @"Alla taggord";
+    plugin1.subTitleName = @"Grafstatistik";
+    plugin1.publisher = @"Demokratiappen";
+    plugin1.pluginIcon = [UIImage imageNamed:@"logo2.png"];
+    [self.visiualPluginArray addObject: plugin1];
 
-    plugin.name = @"Riksdagspartier";
-    plugin.subTitleName = @"Grafstatistik";
-    plugin.publisher = @"Demokratiappen";
-    //plugin.pluginIcon = [UIImage imageNamed:@"AppIcon"];
-    plugin.pluginIcon = [UIImage imageNamed:@"horizontal_bars_128.png"];
 
-    [self.visiualPluginArray addObject: plugin];
+
+    Plugin *plugin2 = [[Plugin alloc] init];
+    plugin2.name = @"Riksdagspartier";
+    plugin2.subTitleName = @"Grafstatistik";
+    plugin2.publisher = @"Demokratiappen";
+    plugin2.pluginIcon = [UIImage imageNamed:@"vertical_bars_128.png"];
+    [self.visiualPluginArray addObject: plugin2];
+
+    Plugin *plugin3 = [[Plugin alloc] init];
+    plugin3.name = @"Sakfrågor";
+    plugin3.subTitleName = @"Cirkeldiagram";
+    plugin3.publisher = @"Demokratiappen";
+    plugin3.pluginIcon = [UIImage imageNamed:@"horizontal_bars_128.png"];
+    [self.visiualPluginArray addObject: plugin3];
+
+    Plugin *plugin4 = [[Plugin alloc] init];
+    plugin4.name = @"Angående utbildning";
+    plugin4.subTitleName = @"Följ taggade artiklar";
+    plugin4.publisher = @"Mats Kvistgren, opinionsbildare";
+    plugin4.pluginIcon = [UIImage imageNamed:@"logo4.png"];
+    [self.analyticPluginArray addObject: plugin4];
+
+
+
+    Plugin *plugin5 = [[Plugin alloc] init];
+    plugin5.name = @"Vilket parti är du?";
+    plugin5.subTitleName = @"Analys av dina taggar";
+    plugin5.publisher = @"Aftonposten";
+    plugin5.pluginIcon = [UIImage imageNamed:@"logo4.png"];
+    [self.analyticPluginArray addObject: plugin5];
+
+    Plugin *plugin6 = [[Plugin alloc] init];
+    plugin6.name = @"Följ din favoritpolitiker";
+    plugin6.subTitleName = @"Visualisering över tid";
+    plugin6.publisher = @"Tankesmedjan Tidlös";
+    plugin6.pluginIcon = [UIImage imageNamed:@"logo4.png"];
+    [self.analyticPluginArray addObject: plugin6];
+
+    Plugin *plugin7 = [[Plugin alloc] init];
+    plugin7.name = @"EU-parlamentet";
+    plugin7.subTitleName = @"Namnförslag politiker";
+    plugin7.publisher = @"Oberoende ungdomspartiet";
+    plugin7.pluginIcon = [UIImage imageNamed:@"logo5.png"];
+    [self.analyticPluginArray addObject: plugin7];
+
+    Plugin *plugin8 = [[Plugin alloc] init];
+    plugin8.name = @"Din viktigaste valfråga";
+    plugin8.subTitleName = @"Diagram över sakfrågor";
+    plugin8.publisher = @"Departementet för viktiga saker";
+    plugin8.pluginIcon = [UIImage imageNamed:@"logo6.png"];
+    [self.analyticPluginArray addObject: plugin8];
+
+
+
 
 }
 
@@ -122,7 +175,13 @@
     
     // Configure the cell...
 
-    Plugin *plugin = self.visiualPluginArray[indexPath.row];
+    Plugin *plugin;
+    if(indexPath.section ==0){
+        plugin = self.visiualPluginArray[indexPath.row];
+    }
+    else{
+        plugin = self.analyticPluginArray[indexPath.row];
+    }
 
     pluginCell.tableViewCellNameLabel.text = plugin.name;
     pluginCell.tableViewCellSubtitleNameLabel.text = plugin.subTitleName;
