@@ -49,7 +49,7 @@ democracyApp.config(['$routeProvider',
         templateUrl: base + '/view/login.html',
       }).
       when('/signup', {
-        templateUrl: base + '/view/signup.html',
+        templateUrl: base + '/view/login.html',
       }).
       otherwise({
         redirectTo: '/login'

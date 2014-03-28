@@ -30,6 +30,14 @@ democracyControllers.controller('MainController', [ '$scope', '$location', 'Logi
 democracyControllers.controller('LoginController', ['$scope', '$location', 'LoginService', function($scope, $location, LoginService) {
   $scope.loginService = LoginService;
 
+  var states = {
+    LOGIN: 0,
+    SIGNUP: 1,
+    currentState: 0
+  }
+  $scope.state = states;
+  $scope.state.currentState = ($location.path() == '/signup') ? states.SIGNUP : states.LOGIN;
+
   function redirectIfLoggedIn() {
     if (LoginService.stateLoggedIn == LoginService.LOGGED_IN) {
       if ($location.path() == '/login') {
