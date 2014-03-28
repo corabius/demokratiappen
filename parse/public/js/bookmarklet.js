@@ -3,13 +3,13 @@ javascript:function dar1() {
 
   try {
     if (!b) throw(0);
-    d.title='(Saving...) ' + d.title;
+    d.title='(Sparar...) ' + d.title;
 
     z = d.createElement('script');
     z.setAttribute('src', l.protocol + '//demokratiappen.se/scripts/Scrape.js');
     b.appendChild(z);
   }
   catch(e) {
-    alert('Please wait until the page has loaded.');
+    alert('Vänta tills sidan lästs in.');
   }
 } dar1(); void(0)
