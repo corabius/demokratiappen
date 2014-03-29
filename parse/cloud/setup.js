@@ -39,7 +39,7 @@ function createDefaultUsers(request, response) {
 
   // Create a guest user
   var guestUser = new Parse.User();
-  guestUser.set('username', 'Bertil');
+  guestUser.set('username', 'Sandra');
   guestUser.set('password', 'guest');
   userPromises[userPromises.length]
     = guestUser.signUp({ ACL: new Parse.ACL() });

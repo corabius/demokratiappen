@@ -61,6 +61,13 @@ democracyControllers.controller('LoginController', ['$scope', '$location', 'Logi
       $scope.$apply(redirectIfLoggedIn());
     });
   };
+  $scope.loginAsGuest = function() {
+    LoginService.username = 'Sandra';
+    LoginService.password = 'guest';
+    LoginService.login().then(function() {
+      $scope.$apply(redirectIfLoggedIn());
+    });
+  }
 
   redirectIfLoggedIn();
 }]);

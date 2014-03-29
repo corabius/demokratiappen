@@ -44,9 +44,9 @@
         <input type="password" data-ng-model="loginService.password" id="loginPasswordInput" class="form-control" placeholder="Skriv ditt lösenord">
       </div>
 
-      <button data-ng-click="login()" class="btn btn-primary btn-block">Logga in</button>
+      <button data-ng-click="login()" class="btn btn-primary btn-block btn-lg">Logga in</button>
       <hr>
-    </form>
+     </form>
 
     <!-- Signup form -->
     <form role="form" ng-show="loginService.stateLoginProcess != loginService.LOADING && state.currentState == state.SIGNUP">
@@ -71,7 +71,9 @@
     <a href="#" data-ng-click="loginOrSignupFacebook()"><img src="/images/facebook.png"></a>
 
     </div></div>
-    <span ng-show="state.currentState == state.LOGIN">Har du inget konto? <a href="#/signup">Registrera ny användare.</a></span>
+    <span ng-show="state.currentState == state.LOGIN">Har du inget konto? <a href="#/signup">Skapa ditt eget konto här</a> eller <a data-ng-click="loginAsGuest()">logga in som gästanvändaren 'Sandra'.</a>
+</span>
     <span ng-show="state.currentState == state.SIGNUP">Har du redan ett konto? <a href="#/login">Logga in.</a></span>
+
   </div>
 </div>
