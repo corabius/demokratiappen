@@ -212,6 +212,10 @@ function extractTags(request, response) {
         }
 
         if (!foundTag) {
+          // Need to use master key, ordinary users are not allowed to create
+          // Tag objects
+          Parse.Cloud.useMasterKey();
+
           // Create parse object with public read access, but no write
           // access.
           var tagACL = new Parse.ACL();
@@ -256,6 +260,10 @@ function extractTags(request, response) {
       var promise;
       if (!urlExists) {
         dLog('Creating new Url Object');
+
+        // Need to use master key, ordinary users are not allowed to create
+        // Tag objects
+        Parse.Cloud.useMasterKey();
 
         var urlACL = new Parse.ACL();
         urlACL.setPublicReadAccess(true);
