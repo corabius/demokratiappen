@@ -16,14 +16,18 @@
  * along with Demokratiappen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// relative to root path of parse (but only code in cloud can be used)
+// Require paths are relative to root path of parse (but only code in cloud
+// can be used).
+
 var saplo = require('cloud/saplo');
-// var tag = require('cloud/tag');
-
-// Parse.Cloud.define("getTags", tag.getTags);
-
 Parse.Cloud.define('tagga', saplo.extractTags);
 // Parse.Cloud.define('listCollections', saplo.listCollections);
+
+// var setup = require('cloud/setup');
+// Parse.Cloud.define('createDefaultUsers', setup.createDefaultUsers);
+
+// var tag = require('cloud/tag');
+// Parse.Cloud.define("getTags", tag.getTags);
 
 
 
@@ -55,7 +59,7 @@ For questions ask Rasmus or Sven
 Example usage:
 curl -X POST -H "X-Parse-Application-Id: APP_ID" -H "X-Parse-REST-API-Key: REST_KEY" -H "Content-Type: application/json" -d '{"url" : "http://www.sydsvenskan.se/opinion/huvudledare/luftiga-loften-om-dagis/"}'  https://api.parse.com/1/functions/texta
 */
-Parse.Cloud.define("texta",
+/*Parse.Cloud.define("texta",
   function(request, response) {
     var textare = {
       work: function(requestUrl) {
@@ -90,4 +94,5 @@ Parse.Cloud.define("texta",
     textare.work(request.params.url);
 
     } // END main lambda
-); // END texta
+); // END texta*/
+
