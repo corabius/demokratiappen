@@ -180,6 +180,7 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
       page.set("url", $scope.url);
       page.set("user", currentUser);
       page.setACL(new Parse.ACL(currentUser));
+      page.set("topic", $scope.topic);
 
       // Create upTags or downTags array from the tags the user pressed
       var tagCount = $scope.tags.length;
@@ -206,6 +207,7 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
           // Clear the entry from
           $scope.title = "";
           $scope.url = "";
+          $scope.topic = undefined;
           $scope.addPageForm.$setPristine();
           $rootScope.pageAddCount++;
           $scope.$apply();
@@ -229,6 +231,22 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
     tag.down = false;
   };
 
+  function getTopics() {
+    $scope.topics = [];
+
+    var query = new Parse.Query("Tag");
+    query.equalTo("type", "topic");
+    query.find().then(function (topics) {
+      $scope.topics = _.sortBy(topics, function(topic) {
+        return topic.get("name");
+      });
+
+      $scope.$apply();
+    }, function (error) {
+      alert("Connection to Parse failed, no topics collected.");
+    });
+  }
+
   function getTags() {
     var Tag = Parse.Object.extend("Tag");
 
@@ -245,7 +263,7 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
         $scope.tags = tags;
         $scope.$apply();
       }, function (error) {
-        alert("Connection to Parse failed, no tags");
+        alert("Connection to Parse failed, no tags collected.");
       });
     }
   }
@@ -272,6 +290,7 @@ democracyControllers.controller('AddPageController', ['$scope', '$rootScope', '$
   }
 
   getTags();
+  getTopics();
 }]);
 
 
@@ -289,6 +308,7 @@ democracyControllers.controller('ListPagesController', ['$scope', '$rootScope', 
     query.equalTo("user", currentUser);
     query.include(["positive_tags"]);
     query.include(["negative_tags"]);
+    query.include(["topic"]);
     query.limit(20);
 
     query.find().then(function(articles) {
@@ -296,6 +316,7 @@ democracyControllers.controller('ListPagesController', ['$scope', '$rootScope', 
         var a = {
           title: article.get("title"),
           url: article.get("url"),
+          topic: article.get("topic"),
           tags: [ ]
         };
 

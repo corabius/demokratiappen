@@ -12,12 +12,11 @@
     </div>
 
     <script type="text/ng-template" id="tag.html">
-      <div style="margin: 16px auto">
+      <div class="btn-group" style="margin: 16px auto;">
         <button data-ng-click="tag.up = !tag.up"
               ng-disabled="tag.down"
               ng-class="{btn: true, 'btn-default': true,
-                'da-bg-green': tag.up}"
-              style="margin-right: -6px">
+                'da-bg-green': tag.up}">
           <span class="glyphicon glyphicon-chevron-up"></span>
         </button>
         <button class="btn btn-default" ng-click="resetTag(tag)" style="align:center; width: 300px">
@@ -26,16 +25,22 @@
         <button data-ng-click="tag.down = !tag.down"
               ng-disabled="tag.up"
               ng-class="{btn: true, 'btn-default': true,
-                'da-bg-red': tag.down}"
-              style="margin-left: -6px">
+                'da-bg-red': tag.down}">
           <span class="glyphicon glyphicon-chevron-down"></span>
         </button>
       </div>
-    </script> 
+    </script>
 
-    <div>
-       <div class="btn-group" data-ng-repeat="tag in tags" ng-include="'tag.html'" style="text-align: center; margin: auto">
-       </div>
+    <div class="form-group">
+      <label for="topicInput">Ämne</label>
+      <select class="form-control" data-ng-model="topic" ng-options="topic.get('name') for topic in topics">
+        <option value="">Välj</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6" data-ng-repeat="tag in tags" ng-include="'tag.html'">
+      </div>
     </div>
 
     <div style="text-align: center">
